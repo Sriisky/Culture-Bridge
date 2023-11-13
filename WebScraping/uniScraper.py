@@ -1,4 +1,5 @@
 # University web scraper
+# Program to read in a url and scrape information from hochschule darmstadt website
 # Sara Egan 13/11/2023
 
 from bs4 import BeautifulSoup
