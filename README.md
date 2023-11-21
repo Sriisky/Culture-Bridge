@@ -8,4 +8,5 @@ Downloaded Node.js
 Downloaded Django
 
 ### When running the project for the first time please follow the following steps:
-To start the project - npm start
+To start the project you must first install dependencies - npm install
+Then start the development server with - npm start

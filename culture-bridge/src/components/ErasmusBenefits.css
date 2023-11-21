@@ -1,0 +1,19 @@
+.benefits-container{
+    margin: 4rem 6rem;
+    text-align: start;
+}
+
+.benefits-container h1{
+    padding-bottom: 1rem;
+}
+
+.benefits-container p{
+    padding-bottom: 2rem;
+}
+
+@media screen and (max-width: 850px){
+    .benefits-container{
+        margin: 4rem 2rem;
+    }
+}
+
