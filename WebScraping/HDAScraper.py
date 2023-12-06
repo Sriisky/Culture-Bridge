@@ -15,8 +15,8 @@ def parse_page(url):
         return None
 
 # URLs for Hochschule Darmstadt Germany
-base_url = 'https://h-da.de/en/'
-study_programs_URL = f'{base_url}/studies/study-programmes'
+base_url = 'https://h-da.de'
+study_programs_URL = f'{base_url}/studium/studienangebot/studiengaenge'
 events_URL = base_url
 course_parse = parse_page(study_programs_URL)
 events_parse = parse_page(events_URL)
@@ -37,7 +37,7 @@ if course_parse:
             # Extract the text and strip whitespace from the course title
             course_title = course_name.get_text().strip()
             # Dictionary to hold course names
-            extr_courses = {'courseName': course_title}
+            extr_courses = {'Course Name': course_title}
 
             # add courses to the list
             extracted_courses.append(extr_courses)
@@ -46,34 +46,25 @@ if course_parse:
 else:
     print("Failed to parse the study programmes page url")
 
-print(extracted_courses)
+for course in extracted_courses:
+    print(course['Course Name'])
 
-if events_parse:
-    # Find the elements containing event titles and descriptions
-    events_title_elements = events_parse.find_all('div', {'class': 'teasertext col-8'})
-    events_info_elements = events_parse.find_all('div', {'itemprop': 'description'})
 
-    # Check if both titles and descriptions are found and have the same count
-    if events_title_elements and events_info_elements and len(events_title_elements) == len(events_info_elements):
+events = events_parse.find_all('div', class_='news calender')
+for event in events:
+    title = event.find('div', class_='teasertext col-9')
+    description = event.find('div', itemprop_='description')
+    day = event.find('span', class_='day')
+    dayNumber = event.find('span', class_='dayNumber')
+    month = event.find('span', class_='month')
 
-        # Extract event titles and descriptions
-        for event_title, event_info in zip(events_title_elements, events_info_elements):
-            # Use event to find the <a> tag within each title element
-            event_name_tag = event_title.find('a')
-            # Get the event info text
-            event_info_text = event_info.get_text().strip()
+    if title:
+        extr_events = {'title': title, 'description': description, 'date': {day, dayNumber, month}}
 
-            if event_name_tag and event_info_text:
-                # Extract the text and strip whitespace from the event title
-                event_title = event_name_tag.get_text().strip()
-                # Dictionary to hold event title and information
-                extr_events = {'title': event_title, 'info': event_info_text}
-
-                # add courses to the list
-                extracted_events.append(extr_events)
-            else:
-                print("Event name or info missing for an event")
-else:
-    print("Failed to parse the home page url")
+        # add courses to the list
+        extracted_events.append(extr_events)
+    else:
+        print("No course name was found within the div cell.")
 
 print(extracted_events)
+
