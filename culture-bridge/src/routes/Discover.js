@@ -16,7 +16,6 @@ function Discover (){
             />
 
         <Cities/>
-
         <Footer/>
         </>
     )

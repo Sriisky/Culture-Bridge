@@ -17,8 +17,9 @@ function Cities(){
                     image={Darmstadt}
                     heading = "Darmstadt, Germany"
                     text = "Darmstadt, known as the 'City of Science' in Germany, is a hub of innovation and progress nestled in the state of Hesse. 
-                    It's home to a myriad of research institutions and universities, which stand alongside the remarkable art nouveau architecture 
+                    It is home to a myriad of research institutions and universities, which stand alongside the remarkable art nouveau architecture 
                     that defines its unique aesthetic.Visitors can explore the Mathildenhöhe artists' colony with its iconic Wedding Tower."
+                    path="../Darmstadt"
                 /> 
 
                 <CityData 
