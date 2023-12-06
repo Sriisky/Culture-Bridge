@@ -19,11 +19,8 @@ function Home (){
             />
 
             <Destinations/>
-
             <Cities/>
-
             <Footer/>
-        
         
         </>
     );
