@@ -20,20 +20,20 @@ universities_df = pd.read_csv(universities_csv_filepath)
 song_imp_features = ['song_name', 'genre']
 songs = songs_df[song_imp_features]
 
-cities_imp_features = ['city_name', 'country', 'population']
+cities_imp_features = ['country', 'population']
 cities = cities_df[cities_imp_features]
 
-events_imp_features = ['event_name', 'location', 'event_type', 'date']
+events_imp_features = ['event_type']
 events = events_df[events_imp_features]
 
-universities_imp_features = ['course_name', 'location', 'university_name']
+universities_imp_features = ['course_name', 'university_name']
 universities = universities_df[universities_imp_features]
 
 # Combine the values together for each dataset using .loc to avoid SettingWithCopyWarning
 songs.loc[:, 'combined_songs'] = songs['song_name'] + ' ' + songs['genre']
-cities.loc[:, 'combined_cities'] = cities['city_name'] + ' ' + cities['country'] + ' ' + cities['population'].astype(str)
-events.loc[:, 'combined_events'] = events['event_name'] + ' ' + events['location'] + ' ' + events['event_type']
-universities.loc[:, 'combined_unis'] = universities['course_name'] + ' ' + universities['location'] + ' ' + universities['university_name']
+cities.loc[:, 'combined_cities'] = cities['country'] + ' ' + cities['population'].astype(str)
+events.loc[:, 'combined_events'] = events['event_type']
+universities.loc[:, 'combined_unis'] = universities['course_name'] + ' ' + universities['university_name']
 
 
 # Create a count vectorizer object
@@ -70,7 +70,8 @@ def song_recommender(song_title):
 
     return recommended_songs.iloc[1:11] # start from 1 to ignore the song the user inputted
 
-print(song_recommender('Mentirosa'))
+# Testing
+# print(song_recommender('Mentirosa'))
 
 
 # Function for city recommendations (based on extroversion or introversion)
@@ -88,8 +89,6 @@ def city_recommender(population_count, threshold = 0.3):
     # Return the city names
     return similar_cities.head(5)
 
-print(city_recommender(3734154.70))
-
 # Function for event recommender (based on event_genre)
 def event_recommender(eventType):
     # Find indices of all events of the inputted type
@@ -105,8 +104,6 @@ def event_recommender(eventType):
     # Reset the index of the recommended events DataFrame
     recommended_events = recommended_events.reset_index(drop=True)
     return recommended_events.head(10)
-
-print(event_recommender('Dubstep'))
 
 
 # Function for university recommender (based on course name)
@@ -126,5 +123,3 @@ def uni_recommender(courseName):
     # Reset the index of the recommended courses DataFrame
     recommended_uni = recommended_uni.reset_index(drop=True)
     return recommended_uni.head(10)
-
-print(uni_recommender('History'))
