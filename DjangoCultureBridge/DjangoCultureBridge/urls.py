@@ -16,10 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.urls import path
-from RecommenderSystem.views import *
+from RecommenderSystem.views import (
+    SongRecommenderView, 
+    CityRecommenderView, 
+    EventRecommenderView, 
+    UniversityRecommenderView
+)
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', ReactView.as_view(), name="anything") #set local host as endpoint 
+    path('api/song-recommender/', SongRecommenderView.as_view(), name='song-recommender'),
+    path('api/city-recommender/', CityRecommenderView.as_view(), name='city-recommender'),
+    path('api/event-recommender/', EventRecommenderView.as_view(), name='event-recommender'),
+    path('api/university-recommender/', UniversityRecommenderView.as_view(), name='university-recommender'),
 ]

@@ -1,27 +1,42 @@
-import "./RecommenderContent.css"
+import React, { useState } from 'react';
+import axios from 'axios';
 
-function RecommenderContent(){
-    return(
+function RecommenderContent() {
+    const [songTitle, setSongTitle] = useState('');
+    const [recommendations, setRecommendations] = useState([]);
+    const [error, setError] = useState('');
+
+    const fetchRecommendations = async () => {
+        try {
+            const response = await axios.get(`http://localhost:8000/api/song-recommender/?song=${songTitle}`);
+            setRecommendations(response.data);
+            setError('');
+        } catch (error) {
+            console.error('Error fetching data: ', error);
+            setError('Error fetching data');
+        }
+    };
+
+    return (
         <div className="benefits-container">
-            <h1>Get an Advantage</h1>
-            <p>Erasmus+ helps in developing highly valued soft skills such as adaptability, problem-solving, 
-                and international networking, which are crucial in the global job market. Moreover, 
-                students can combine academic study with traineeships to gain practical work experience</p>
-            
-            <h1>Learn Independence</h1>
-            <p>Living on your own provides a unique opportunity for self-discovery. 
-                You get to explore your personal preferences, habits, and lifestyle choices without the influence of others.
-                You make all the decisions about your living space and lifestyle, which can boost your confidence and decision-making skills.
-                Living alone in student communities can offer networking opportunities with neighbors who may be attending the same university or college.</p>
+            <input 
+                type="text" 
+                value={songTitle} 
+                onChange={(e) => setSongTitle(e.target.value)} 
+                placeholder="Enter a song title" 
+            />
+            <button onClick={fetchRecommendations}>Get Recommendations</button>
 
-            <h1>Experience Future Possibilities</h1>
-            <p>The Erasmus experience can be a test ground for students considering long-term travel or moving to another country for work or study. 
-                It offers a glimpse into what an international career might entail and can provide clarity on future life choices.
-                Participating in Erasmus can significantly improve communication skills in a foreign language. Immersion in a different linguistic environment 
-                is the perfect setting for learning a new language or enhancing existing language abilities</p>
-            
+            {error && <div>Error: {error}</div>}
+
+            <h1>Recommendations</h1>
+            <ul>
+                {recommendations.map((item, index) => (
+                    <li key={index}>{item.song_name} - {item.genre}</li>
+                ))}
+            </ul>
         </div>
-    )
+    );
 }
 
 export default RecommenderContent;
