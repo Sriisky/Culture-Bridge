@@ -17,7 +17,7 @@ def parse_page(url):
 # URLs for Hochschule Darmstadt Germany
 base_url = 'https://h-da.de'
 study_programs_URL = f'{base_url}/studium/studienangebot/studiengaenge'
-events_URL = base_url
+events_URL = f'{base_url}/veranstaltungsliste'
 course_parse = parse_page(study_programs_URL)
 events_parse = parse_page(events_URL)
 
@@ -50,21 +50,25 @@ for course in extracted_courses:
     print(course['Course Name'])
 
 
-events = events_parse.find_all('div', class_='news calender')
+events = events_parse.find_all('div', attrs={'class': 'teasertext'})
 for event in events:
-    title = event.find('div', class_='teasertext col-9')
-    description = event.find('div', itemprop_='description')
-    day = event.find('span', class_='day')
-    dayNumber = event.find('span', class_='dayNumber')
-    month = event.find('span', class_='month')
+    title = event.find('h3')
+    description = event.find('span', attrs={'itemprop': 'description'})
+    date = event.find('ul', attrs={'class': 'infos list-unstyled'})
 
-    if title:
-        extr_events = {'title': title, 'description': description, 'date': {day, dayNumber, month}}
-
-        # add courses to the list
-        extracted_events.append(extr_events)
+    if title and description and date:
+        event_info = {
+            'title': title.text.strip(),
+            'description': description.text.strip() if description else '',
+            'date': date.text.strip()
+        }
+        extracted_events.append(event_info)
     else:
-        print("No course name was found within the div cell.")
+        print("Incomplete event details found.")
 
-print(extracted_events)
+for event in extracted_events:
+    print("Title:", event['title'])
+    print("Description:", event['description'])
+    print("Date:", event['date'])
+    print()
 

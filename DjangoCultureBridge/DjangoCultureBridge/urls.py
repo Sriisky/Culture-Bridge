@@ -15,14 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.urls import path
 from RecommenderSystem.views import (
     SongRecommenderView, 
     CityRecommenderView, 
     EventRecommenderView, 
     UniversityRecommenderView
 )
-
+from DarmstadtWebScraper.views import courses_view, events_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,4 +29,6 @@ urlpatterns = [
     path('api/city-recommender/', CityRecommenderView.as_view(), name='city-recommender'),
     path('api/event-recommender/', EventRecommenderView.as_view(), name='event-recommender'),
     path('api/university-recommender/', UniversityRecommenderView.as_view(), name='university-recommender'),
+    path('courses/', courses_view, name='get_courses'),
+    path('events/', events_view, name='get_events'),
 ]
