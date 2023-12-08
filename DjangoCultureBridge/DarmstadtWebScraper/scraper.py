@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 
-# Function to parse a single page
+# parse a single page
 def parse_page(url):
     response = requests.get(url)
     if response.status_code == 200:
@@ -10,7 +10,7 @@ def parse_page(url):
         print(f"Failed to retrieve content from {url}, status code: {response.status_code}")
         return None
 
-# Function to get courses
+# function to get courses
 def get_courses():
     base_url = 'https://h-da.de'
     study_programs_URL = f'{base_url}/studium/studienangebot/studiengaenge'
@@ -31,7 +31,7 @@ def get_courses():
 
     return extracted_courses
 
-# Function to get events
+# function to get events
 def get_events():
     base_url = 'https://h-da.de'
     events_URL = f'{base_url}/veranstaltungsliste'
