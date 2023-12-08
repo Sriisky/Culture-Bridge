@@ -10,6 +10,6 @@ Install the following
 - pip install djangorestframework
 - pip install django-cors-headers
 
-To start the Django project navigate into the DjangoCultureBridge folder and run - python manage.py runserver
+To start the Django project navigate into the backend DjangoCultureBridge folder and run - python manage.py runserver
 
 To start the React code, navigate into the same directory as the App.js file located in culture-bridge/src and run - npm start
