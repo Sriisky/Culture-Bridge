@@ -1,0 +1,18 @@
+.kufstein-container{
+    margin: 4rem 6rem;
+    text-align: start;
+}
+
+.kufstein-container h1{
+    padding-bottom: 1rem;
+}
+
+.kufstein-container p{
+    padding-bottom: 2rem;
+}
+
+@media screen and (max-width: 850px){
+    .kufstein-container{
+        margin: 4rem 2rem;
+    }
+}

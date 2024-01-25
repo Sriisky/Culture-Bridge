@@ -1,0 +1,18 @@
+.ljubljana-container{
+    margin: 4rem 6rem;
+    text-align: start;
+}
+
+.ljubljana-container h1{
+    padding-bottom: 1rem;
+}
+
+.ljubljana-container p{
+    padding-bottom: 2rem;
+}
+
+@media screen and (max-width: 850px){
+    .ljubljana-container{
+        margin: 4rem 2rem;
+    }
+}

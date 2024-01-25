@@ -1,15 +1,25 @@
 import "./Cities.css"
-import CityData from "./CityData";
+import CityData from "./CityData"
 import Darmstadt from "../assets/images/darmstadt.jpg"
 import Zwolle from "../assets/images/zwolle.jpg"
 import Oulo from "../assets/images/finland.jpg"
+import Regensburg from "../assets/images/regensburg-vertical.jpg"
+import Vasteras from "../assets/images/sweden-vertical.jpg"
+import Zurich from "../assets/images/switzerland-vert.jpg"
+import Grimstad from "../assets/images/norway-vert.jpg"
+import Kufstein from "../assets/images/austria-vert.jpg"
+import Dubrovnik from "../assets/images/croatia-vert.jpg"
+import Ljubljana from "../assets/images/slovenia-vert.jpg"
+import Zilina from "../assets/images/slovakia-vert.jpg"
+import Perugia from "../assets/images/italy-vert.jpg"
+import Catalonia from "../assets/images/spain.jpg"
 
 function Cities(){
     return(
         <div className="city">
 
         <h1>Erasmus City Options</h1>
-            <p>The following cities include a sample of the cities and countries available for the Erasmus study abroad programme at
+            <p>The following cities include the cities and countries available for the Erasmus study abroad programme at
             Technological University Dublin.
             </p>
             <div className="citycard">
@@ -29,6 +39,7 @@ function Cities(){
                     Marvel at the grandeur of the Grote Kerk. Zwolle is also famous for its culinary delights, 
                     including the must-try bluefinger delicacies. With its picturesque canals and a calendar full of cultural festivals, 
                     Zwolle is a Dutch delight that seamlessly blends tradition with a lively contemporary spirit"
+                    path="../Zwolle"
                 /> 
 
                 <CityData 
@@ -37,7 +48,90 @@ function Cities(){
                     text = "Oulu offers a gateway to arctic experiences with its stunning landscapes and unique cultural heritage. 
                     Visitors can enjoy the serene beauty of the Oulujoki River, explore the vibrant market square, and experience the magic of the Northern Lights. 
                     With year-round activities from cycling along its extensive paths in summer to cross-country skiing in winter, Oulu is a dynamic city for all seasons."
+                    path="../Oulo"
                 /> 
+
+                <CityData 
+                    image={Regensburg}
+                    heading = "Regensburg, Germany"
+                    text = "Regensburg is a picturesque city in Germany, boasts a rich history dating back to Roman times. Its well-preserved medieval architecture, including the stunning Regensburg Cathedral, has earned it UNESCO World Heritage status. 
+                    The city's vibrant cultural scene and charming narrow streets add to its allure."
+                    path="../Regensburg"
+                />
+
+                <CityData 
+                    image={Vasteras}
+                    heading = "Vasteras, Sweden"
+                    text = "Västerås, situated on the shores of Lake Mälaren in Sweden, is a city blending modernity with historical charm. It features landmarks like the Västerås Castle. 
+                    The city embraces innovation, 
+                    housing contemporary structures alongside green parks and lakeside promenades which creates a harmonious urban landscape."
+                    path="../Vasteras"
+                />
+
+                <CityData 
+                    image={Zurich}
+                    heading = "Zurich, Switzerland"
+                    text = "Zurich, Switzerland, a global financial hub, is nestled by Lake Zurich and surrounded by the Alps. Renowned for its pristine streets, the city boasts medieval architecture, including Grossmünster Church.
+                     Zurich hosts museums, theaters, and a vibrant culinary scene, making it a charming blend of tradition and modernity."
+                    path="../Zurich"
+                />
+
+                <CityData 
+                    image={Grimstad}
+                    heading = "Grimstad/Kristiansand, Norway"
+                    text = "Grimstad, Norway, a coastal gem, enchants with its white wooden houses and maritime history. Home to the Ibsen Museum, celebrating playwright Henrik Ibsen, the town exudes a tranquil seaside atmosphere.
+                     You can enjoy coastal views and delve into the town's literary and maritime heritage."
+                    path="../Grimstad"
+                />
+
+                <CityData 
+                    image={Kufstein}
+                    heading = "Kufstein, Austria"
+                    text = "Kufstein, Austria, nestled along the Inn River, captivates with its medieval charm and the iconic Kufstein Fortress perched atop a hill. The town's cobblestone streets invite exploration, revealing historic architecture,
+                     vibrant markets, and a backdrop of the Austrian Alps, making Kufstein a picturesque blend of culture and nature."
+                    path="../Kufstein"
+                />
+
+                <CityData 
+                    image={Dubrovnik}
+                    heading = "Dubrovnik/Zagreb, Croatia"
+                    text = "Dubrovnik, Croatia is a vibrant tapestry where students can immerse themselves in ancient stories while enjoying the lively energy of the city. With its stunning coastline, eclectic culture, 
+                    and buzzing student-friendly atmosphere, Dubrovnik offers an enriching experience that combines academic curiosity with a vibrant social scene."
+                    path="../Zagreb"
+                />
+
+                <CityData 
+                    image={Ljubljana}
+                    heading = "Ljubljana, Slovenia"
+                    text = "Ljubljana, Slovenia, beckons students with its dynamic fusion of academia and laid-back charm. Nestled along the Ljubljanica River, this green capital boasts lively cafes, art-filled streets, and a welcoming student community. 
+                    From historic landmarks to cozy bookshops, Ljubljana promises a delightful blend of academic exploration and vibrant cultural experiences."
+                    path="../Ljubljana"
+                />
+
+                <CityData 
+                    image={Zilina}
+                    heading = "Zilina, Slovakia"
+                    text = "Zilina, Slovakia, invites students into a captivating blend of history and youthful energy. With its medieval charm and modern vibes, this city nestled in the picturesque Tatra Mountains offers students a unique academic experience. 
+                    Explore historic sites, enjoy cultural events, and embrace the friendly atmosphere that makes studying in Zilina a memorable adventure."
+                    path="../Zilina"
+                />
+
+                <CityData 
+                    image={Perugia}
+                    heading = "Perguia, Italy"
+                    text = "Perugia, Italy, is more than a city; it's a canvas of inspiration for students. With its winding medieval streets, artistic heritage, and delectable cuisine, Perugia provides an enchanting backdrop for academic pursuits. 
+                    Immerse yourself in Italian culture, savor the vibrant atmosphere, and let the city's timeless charm fuel your educational journey."
+                    path="../Perugia"
+                />
+
+                <CityData 
+                    image={Catalonia}
+                    heading = "Catalonia, Spain"
+                    text = "Catalonia, Spain, is a captivating destination that beckons students with its unique blend of culture, history, and modern flair. Whether exploring the vibrant streets of Barcelona, delving into Catalonia's rich artistic legacy, or savoring the culinary delights, 
+                    students find an inspiring backdrop for academic growth and cultural immersion in this dynamic region."
+                    path="../Catalonia"
+                />
+                
 
             </div>
         </div>

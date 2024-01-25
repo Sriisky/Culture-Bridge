@@ -1,0 +1,18 @@
+.vasteras-container{
+    margin: 4rem 6rem;
+    text-align: start;
+}
+
+.vasteras-container h1{
+    padding-bottom: 1rem;
+}
+
+.vasteras-container p{
+    padding-bottom: 2rem;
+}
+
+@media screen and (max-width: 850px){
+    .vasteras-container{
+        margin: 4rem 2rem;
+    }
+}
