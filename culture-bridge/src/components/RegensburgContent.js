@@ -2,16 +2,21 @@ import "./RegensburgContent.css";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+// Regensburg OTH Course URL - https://www.oth-regensburg.de/studieren/studienganguebersicht
+// Regensburg OTH Events URL - https://www.oth-regensburg.de/termine
+
 function RegensburgContent() {
     const [courses, setCourses] = useState([]);
     const [events, setEvents] = useState([]);
+    const coursesUrl = 'https://www.oth-regensburg.de/studieren/studienganguebersicht';
+    const eventsUrl = 'https://www.oth-regensburg.de/termine';
 
     useEffect(() => {
-        axios.get('http://localhost:8000/courses/')
+        axios.get('http://localhost:8000/courses/', { params: { url: coursesUrl } })
             .then(response => setCourses(response.data.courses))  
             .catch(error => console.log(error));
 
-        axios.get('http://localhost:8000/events/')
+        axios.get('http://localhost:8000/events/', { params: { url: eventsUrl } })
             .then(response => setEvents(response.data.events))
             .catch(error => console.log(error));
     }, []);

@@ -2,16 +2,21 @@ import "./GrimstadContent.css";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+// University of Adger Courses URL - https://www.uia.no/study/search
+// University of Adger Events URL - https://www.uia.no/arrangementer
+
 function GrimstadContent() {
     const [courses, setCourses] = useState([]);
     const [events, setEvents] = useState([]);
+    const coursesUrl = 'https://www.uia.no/study/search';
+    const eventsUrl = 'https://www.uia.no/arrangementer';
 
     useEffect(() => {
-        axios.get('http://localhost:8000/courses/')
+        axios.get('http://localhost:8000/courses/', { params: { url: coursesUrl } })
             .then(response => setCourses(response.data.courses))  
             .catch(error => console.log(error));
 
-        axios.get('http://localhost:8000/events/')
+        axios.get('http://localhost:8000/events/', { params: { url: eventsUrl } })
             .then(response => setEvents(response.data.events))
             .catch(error => console.log(error));
     }, []);

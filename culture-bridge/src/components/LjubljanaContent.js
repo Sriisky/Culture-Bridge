@@ -2,16 +2,21 @@ import "./LjubljanaContent.css";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+// University of Ljublana courses url - https://www.uni-lj.si/study/eng/subjects-bachelor/#University%20of%20Ljubljana%20BIOTECHNICAL%20FACULTY
+// University of Ljublana events url - https://www.uni-lj.si/news/events_calendar/
+
 function LjubljanaContent() {
     const [courses, setCourses] = useState([]);
     const [events, setEvents] = useState([]);
+    const coursesUrl = 'https://www.uni-lj.si/study/eng/subjects-bachelor/#University%20of%20Ljubljana%20BIOTECHNICAL%20FACULTY';
+    const eventsUrl = 'https://www.uni-lj.si/news/events_calendar/';
 
     useEffect(() => {
-        axios.get('http://localhost:8000/courses/')
+        axios.get('http://localhost:8000/courses/', { params: { url: coursesUrl } })
             .then(response => setCourses(response.data.courses))  
             .catch(error => console.log(error));
 
-        axios.get('http://localhost:8000/events/')
+        axios.get('http://localhost:8000/events/', { params: { url: eventsUrl } })
             .then(response => setEvents(response.data.events))
             .catch(error => console.log(error));
     }, []);

@@ -2,16 +2,21 @@ import "./ZilinaContent.css";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+// University of Zilina courses url - https://www.uniza.sk/index.php/en/study/study-options/programmes-2024-2025
+// University of Zilina events url - https://www.uniza.sk/index.php/en/
+
 function ZilinaContent() {
     const [courses, setCourses] = useState([]);
     const [events, setEvents] = useState([]);
+    const coursesUrl = 'https://www.uniza.sk/index.php/en/study/study-options/programmes-2024-2025';
+    const eventsUrl = 'https://www.uniza.sk/index.php/en/';
 
     useEffect(() => {
-        axios.get('http://localhost:8000/courses/')
+        axios.get('http://localhost:8000/courses/', { params: { url: coursesUrl } })
             .then(response => setCourses(response.data.courses))  
             .catch(error => console.log(error));
 
-        axios.get('http://localhost:8000/events/')
+        axios.get('http://localhost:8000/events/', { params: { url: eventsUrl } })
             .then(response => setEvents(response.data.events))
             .catch(error => console.log(error));
     }, []);

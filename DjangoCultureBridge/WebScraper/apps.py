@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class DarmstadtwebscraperConfig(AppConfig):
+class webscraperConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'DarmstadtWebScraper'
+    name = 'WebScraper'

@@ -21,7 +21,7 @@ from RecommenderSystem.views import (
     EventRecommenderView, 
     UniversityRecommenderView
 )
-from DarmstadtWebScraper.views import courses_view, events_view
+from WebScraper.views import courses_view, events_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),

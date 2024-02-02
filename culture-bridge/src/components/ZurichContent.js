@@ -2,16 +2,21 @@ import "./ZurichContent.css";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+// Uni of App sciences and arts Northwestern courses url - https://www.fhnw.ch/en/degree-programmes/undergraduate-programmes
+// Uni of App sciences and arts Northwestern events url - https://www.fhnw.ch/en/startseite
+
 function ZurichContent() {
     const [courses, setCourses] = useState([]);
     const [events, setEvents] = useState([]);
+    const coursesUrl = 'https://www.fhnw.ch/en/degree-programmes/undergraduate-programmes';
+    const eventsUrl = 'https://www.fhnw.ch/en/startseite';
 
     useEffect(() => {
-        axios.get('http://localhost:8000/courses/')
+        axios.get('http://localhost:8000/courses/', { params: { url: coursesUrl } })
             .then(response => setCourses(response.data.courses))  
             .catch(error => console.log(error));
 
-        axios.get('http://localhost:8000/events/')
+        axios.get('http://localhost:8000/events/', { params: { url: eventsUrl } })
             .then(response => setEvents(response.data.events))
             .catch(error => console.log(error));
     }, []);

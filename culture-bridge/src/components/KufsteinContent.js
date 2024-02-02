@@ -2,16 +2,21 @@ import "./KufsteinContent.css";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+// university of kufstein courses url - https://www.fh-kufstein.ac.at/eng/
+// university of kufstein events url - https://www.fh-kufstein.ac.at/eng/Events
+
 function KufsteinContent() {
     const [courses, setCourses] = useState([]);
     const [events, setEvents] = useState([]);
+    const coursesUrl = 'https://www.fh-kufstein.ac.at/eng/';
+    const eventsUrl = 'https://www.fh-kufstein.ac.at/eng/Events';
 
     useEffect(() => {
-        axios.get('http://localhost:8000/courses/')
+        axios.get('http://localhost:8000/courses/', { params: { url: coursesUrl } })
             .then(response => setCourses(response.data.courses))  
             .catch(error => console.log(error));
 
-        axios.get('http://localhost:8000/events/')
+        axios.get('http://localhost:8000/events/', { params: { url: eventsUrl } })
             .then(response => setEvents(response.data.events))
             .catch(error => console.log(error));
     }, []);
