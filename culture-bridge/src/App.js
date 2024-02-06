@@ -38,7 +38,7 @@ export default function App() {
         <Route path="/Grimstad" element={<Grimstad/>}/>
         <Route path="/Kufstein" element={<Kufstein/>}/>
         <Route path="/Zagreb" element={<Zagreb/>}/>
-        <Route path="/Ljubjana" element={<Ljubljana/>}/>
+        <Route path="/Ljubljana" element={<Ljubljana/>}/>
         <Route path="/Zilina" element={<Zilina/>}/>
         <Route path="/Perugia" element={<Perugia/>}/>
         <Route path="/Catalonia" element={<Catalonia/>}/>
