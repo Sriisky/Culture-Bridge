@@ -8,8 +8,13 @@ import axios from 'axios';
 function LjubljanaContent() {
     const [courses, setCourses] = useState([]);
     const [events, setEvents] = useState([]);
+    const [playlist, setPlaylist] = useState([]);
+    const [museums, setMuseums] = useState([]);
+    const [liveEvents, setLiveEvents] = useState([]);
     const coursesUrl = 'https://www.uni-lj.si/study/eng/subjects-bachelor/#University%20of%20Ljubljana%20BIOTECHNICAL%20FACULTY';
     const eventsUrl = 'https://www.uni-lj.si/news/events_calendar/';
+    const countryCode = 'SI';
+    const searchCity = 'Ljubljana';
 
     useEffect(() => {
         axios.get('http://localhost:8000/courses/', { params: { url: coursesUrl } })
@@ -19,26 +24,129 @@ function LjubljanaContent() {
         axios.get('http://localhost:8000/events/', { params: { url: eventsUrl } })
             .then(response => setEvents(response.data.events))
             .catch(error => console.log(error));
+
+        fetchPlaylistInformation();
+        handleSearch();
+        fetchLiveEvents();
     }, []);
+
+    const fetchPlaylistInformation = async () => {
+        try {
+            const response = await axios.get('http://localhost:8000/api/authenticate/', { params: { countryCode: countryCode }});
+            console.log('Playlist response:', response.data); // Log the response for debugging
+            setPlaylist(response.data.playlist);
+        } catch (error) {
+            console.error('Error fetching playlist data: ', error);
+        }
+    };
+
+    const handleSearch = async () => {
+        try {
+            const response = await axios.get('http://localhost:8000/api/search_europeana/', { params: { cityName: searchCity }});
+            console.log('Museums response:', response.data);
+            setMuseums(response.data.museums);
+        } catch (error) {
+            console.error('Error fetching artworks data: ', error);
+        }
+    };
+
+    const fetchLiveEvents = async () => {
+        try {
+            const response = await axios.get('http://localhost:8000/api/get_live_events/', { params: { countryCode: countryCode }});
+            console.log('Ticketmasters response:', response.data);
+            setLiveEvents(response.data.liveEvents);
+        } catch (error) {
+            console.error('Error fetching live events data: ', error);
+        }
+    };
 
     return (
         <div className="ljubljana-container">
-            <h1>Available Courses</h1>
-            <ul>
-                {courses.map((course, index) => (
-                    <li key={index}>{course['Course Name']}</li> 
-                ))}
-            </ul>
-            <h1>Upcoming Events</h1>
-            <ul>
-                {events.map((event, index) => (
-                    <li key={index}>
-                        <strong>{event.title}</strong><br />
-                        {event.description}<br />
-                        <em>{event.date}</em>
-                    </li> 
-                ))}
-            </ul>
+           <p>Welcome to Darmstadt! On this page you will find information on Hochschule Darmstadt
+                which is the university you will be studying at if you choose to study in this city.Take a look at the courses on offer
+                to see what is on offer at this university. The upcoming events will show you the events taking place at H-DA which may give you some insight
+                into a studen's life at this university.
+                The "Top 50 - Germany" playlist will give you insight into the music that is trending among Germans."
+            </p>
+            <div className="section-wrapper">
+                <div className="content-section">
+                    <h1>Available Courses</h1>
+                    <ul className="scrollable-list">
+                        {courses.map((course, index) => (
+                            <li key={index}>{course['Course Name']}</li> 
+                        ))}
+                    </ul>
+                </div>
+                <div className="content-section">
+                    <h1>Upcoming Events</h1>
+                    <ul className="scrollable-list">
+                        {events.map((event, index) => (
+                            <li key={index}>
+                                <strong>{event.title}</strong><br />
+                                {event.description}<br />
+                                <em>{event.date}</em>
+                            </li> 
+                        ))}
+                    </ul>
+                </div>
+            </div>
+            <div className="content-section">
+                <h1>Playlist</h1>
+                <p>The following tracks are trending in Germany today! If you click on any song you will be redirected to Spotify where you can listen to the song or add it to your playlist</p>
+                <ul className="scrollable-list">
+                    {playlist.map((song, index) => (
+                        <li key={index} className="playlist-item">
+                            <img src={song.thumbnail} alt="Thumbnail" className="playlist-thumbnail" />
+                            <div className="playlist-details">
+                                {song.spotify_url ? (
+                                    <strong><a href={song.spotify_url} target="_blank" rel="noopener noreferrer">{song.title}</a></strong>
+                                ) : (
+                                    <strong>{song.title}</strong>
+                                )}
+                                <br />
+                                {song.artist}<br />
+                                Length: {Math.floor(song.length / 60000)}:{(song.length % 60000 / 1000).toFixed(0)} minutes
+                            </div>
+                        </li> 
+                    ))}
+                </ul>
+            </div>
+            <div className="content-section">
+                <h1>Artworks from Ljubljana</h1>
+                <p>Here are some artworks from Ljublana:</p>
+                <ul className="museum_scrollable-list">
+                    {museums.map((art, index) => (
+                        <li key={index} className="museum-item">
+                            <img src={art.thumbnail} alt="Thumbnail" className="museum-thumbnail" />
+                            <div className="museum-details">
+                                <strong>{art.title}</strong>
+                                <span>{art.location}</span>
+                            </div>
+                        </li> 
+                    ))}
+                </ul>
+            </div>
+            <div className="content-section">
+                <h1>Live Music Events in Slovenia</h1>
+                <p>Here are some events taking place across Slovenia:</p>
+                <ul className="museum_scrollable-list">
+                    {liveEvents.map((event, index) => (
+                        <li key={index} className="museum-item">
+                            <img src={event.image_url} alt="Thumbnail" className="museum-thumbnail" />
+                            <div className="museum-details">
+                            {event.url ? (
+                                    <strong><a href={event.url} target="_blank" rel="noopener noreferrer">{event.name}</a></strong>
+                                ) : (
+                                    <strong>{event.name}</strong>
+                                )}
+                                <span>{event.date}</span>
+                                <span>{event.genre}</span>
+                                <span>{event.subgenre}</span>
+                            </div>
+                        </li> 
+                    ))}
+                </ul>
+            </div>
         </div>
     );
 }

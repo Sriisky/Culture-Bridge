@@ -11,7 +11,7 @@ function Catalonia (){
             <Hero
             cName="hero-benefits"
             heroImg={cataloniaImg}
-            title="Catalonia, Spain"
+            title="Barcelona, Spain"
             btnClass="hide"
             />
         <CataloniaContent/>

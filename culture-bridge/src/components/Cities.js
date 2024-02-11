@@ -126,7 +126,7 @@ function Cities(){
 
                 <CityData 
                     image={Catalonia}
-                    heading = "Catalonia, Spain"
+                    heading = "Barcelona, Spain"
                     text = "Catalonia, Spain, is a captivating destination that beckons students with its unique blend of culture, history, and modern flair. Whether exploring the vibrant streets of Barcelona, delving into Catalonia's rich artistic legacy, or savoring the culinary delights, 
                     students find an inspiring backdrop for academic growth and cultural immersion in this dynamic region."
                     path="../Catalonia"
