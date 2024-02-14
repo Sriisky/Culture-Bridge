@@ -14,6 +14,7 @@ function KufsteinContent() {
     const coursesUrl = 'https://www.fh-kufstein.ac.at/eng/';
     const eventsUrl = 'https://www.fh-kufstein.ac.at/eng/Events';
     const countryCode = 'AT';
+    const uniName = 'FH';
     const searchCity = 'Tyrol';
 
     useEffect(() => {
@@ -21,7 +22,7 @@ function KufsteinContent() {
             .then(response => setCourses(response.data.courses))  
             .catch(error => console.log(error));
 
-        axios.get('http://localhost:8000/events/', { params: { url: eventsUrl } })
+        axios.get('http://localhost:8000/events/', { params: { url: eventsUrl, uniName: uniName } })
             .then(response => setEvents(response.data.events))
             .catch(error => console.log(error));
 

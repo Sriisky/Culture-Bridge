@@ -11,6 +11,7 @@ function DarmstadtContent() {
     const coursesUrl = 'https://h-da.de/studium/studienangebot/studiengaenge';
     const eventsUrl = 'https://h-da.de/veranstaltungsliste';
     const countryCode = 'DE';
+    const uniName = 'HDA';
     const searchCity = 'Darmstadt';
 
     useEffect(() => {
@@ -18,7 +19,7 @@ function DarmstadtContent() {
             .then(response => setCourses(response.data.courses))  
             .catch(error => console.log('Error fetching courses:', error));
 
-        axios.get('http://localhost:8000/events/', { params: { url: eventsUrl } })
+        axios.get('http://localhost:8000/events/', { params: { url: eventsUrl, uniName: uniName } })
             .then(response => setEvents(response.data.events))
             .catch(error => console.log('Error fetching events:', error));
 

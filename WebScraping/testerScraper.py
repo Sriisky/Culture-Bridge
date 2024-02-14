@@ -31,9 +31,9 @@ def parse_page(url):
         return None
 
 # URLs for Hochschule Darmstadt Germany
-base_url = 'https://www.uia.no'
-study_programs_URL = f'{base_url}/index.php/en/study/study-options/programmes-2024-2025'
-events_URL = f'{base_url}/arrangementer'
+base_url = 'https://www.uni-lj.si/study/eng/subjects-bachelor/#University%20of%20Ljubljana%20BIOTECHNICAL%20FACULTY'
+study_programs_URL = f'{base_url}'
+events_URL = f'{base_url}'
 course_parse = parse_page(study_programs_URL)
 events_parse = parse_page(events_URL)
 
@@ -41,14 +41,14 @@ events_parse = parse_page(events_URL)
 extracted_courses = []
 extracted_events = []
 
-'''
+
 if course_parse:
     # Find the elements containing course names
-    courses = course_parse.find_all('div', {'itemprop': 'articleBody'})
+    courses = course_parse.find_all('div', {'class': 'accordion'})
     # Extract and print course titles
     for course in courses:
         # Use course to find the <a> tag within each element of the ResultSet
-        course_name = course.find('li')
+        course_name = course.find('h2')
         if course_name:
             # Extract the text and strip whitespace from the course title
             course_title = course_name.get_text().strip()
@@ -64,19 +64,19 @@ else:
 
 for course in extracted_courses:
     print(course['Course Name'])
-'''
 
-events = events_parse.find_all('div', attrs={'class': 'class-event float-break'})
+'''
+events = events_parse.find_all('div', attrs={'class': 'col-xs-12 col-sm-9 no-padding'})
 print(events)
 for event in events:
-    title = event.find('h3')
-    description = event.find('label', attrs={'class': 'place'})
-    date = event.find('div', attrs={'class': 'attribute-date'})
+    title = event.find('a', attrs={'class': 'summary'})
+    
+    date = event.find('span', attrs={'class': 'calendar-date'})
 
-    if title and description and date:
+    if title  and date:
         event_info = {
             'title': title.text.strip(),
-            'description': description.text.strip() if description else '',
+           
             'date': date.text.strip()
         }
         extracted_events.append(event_info)
@@ -85,6 +85,7 @@ for event in events:
 
 for event in extracted_events:
     print("Title:", event['title'])
-    print("Description:", event['description'])
+
     print("Date:", event['date'])
     print()
+'''

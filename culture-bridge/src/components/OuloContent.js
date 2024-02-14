@@ -71,7 +71,23 @@ function OuloContent() {
                         ))}
                     </ul>
                 </div>
+                <div className="content-section">
+                    <h1>About OAMK</h1>
+                    <ul className="scrollable-list">
+                        <p>Oulu University of Applied Sciences educates successful 
+                            experts and promotes well-being to the northern region.
+                            We succeed because we are not afraid to try new things. 
+                            We learn and challenge ourselves every day. At Oamk no one 
+                            is left alone and we work together for our success. 
+                            We believe in our dreams and make them a reality. 
+                            We offer versatile, forward-thinking education and 
+                            support the development of Oulu and Northern Finland with 
+                            our research, development and innovation work. Our main 
+                            campus, the Oulu Campus Linnanmaa, 
+                            is the biggest campus in Europe operating under one roof</p>
+                    </ul>
                 </div>
+            </div>
             <div className="content-section">
                 <h1>Playlist</h1>
                 <p>The following tracks are trending in Germany today! If you click on any song you will be redirected to Spotify where you can listen to the song or add it to your playlist</p>

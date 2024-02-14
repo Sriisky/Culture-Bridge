@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 // Uni of App sciences and arts Northwestern courses url - https://www.fhnw.ch/en/degree-programmes/undergraduate-programmes
-// Uni of App sciences and arts Northwestern events url - https://www.fhnw.ch/en/startseite
 
 function ZurichContent() {
     const [courses, setCourses] = useState([]);
@@ -12,17 +11,12 @@ function ZurichContent() {
     const [museums, setMuseums] = useState([]);
     const [liveEvents, setLiveEvents] = useState([]);
     const coursesUrl = 'https://www.fhnw.ch/en/degree-programmes/undergraduate-programmes';
-    const eventsUrl = 'https://www.fhnw.ch/en/startseite';
     const countryCode = 'CH';
     const searchCity = 'Zurich';
 
     useEffect(() => {
         axios.get('http://localhost:8000/courses/', { params: { url: coursesUrl } })
             .then(response => setCourses(response.data.courses))  
-            .catch(error => console.log(error));
-
-        axios.get('http://localhost:8000/events/', { params: { url: eventsUrl } })
-            .then(response => setEvents(response.data.events))
             .catch(error => console.log(error));
 
         fetchPlaylistInformation();
@@ -80,13 +74,13 @@ function ZurichContent() {
                 <div className="content-section">
                     <h1>Upcoming Events</h1>
                     <ul className="scrollable-list">
-                        {events.map((event, index) => (
-                            <li key={index}>
-                                <strong>{event.title}</strong><br />
-                                {event.description}<br />
-                                <em>{event.date}</em>
-                            </li> 
-                        ))}
+                        <p>FHNW is one of Switzerland’s leading universities of applied sciences and arts, 
+                            actively involved in teaching, research, continuing education and service provision – 
+                            both innovative and practice-oriented. Its broad range of degree programmes, 
+                            hands-on concept, innovative, application-oriented research and global network 
+                            make FHNW a diversified and appealing educational institution, a sought-after 
+                            partner to industry and an attractive employer in northwestern Switzerland.
+                        </p>
                     </ul>
                 </div>
             </div>

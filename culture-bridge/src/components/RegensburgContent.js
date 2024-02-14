@@ -2,8 +2,8 @@ import "./RegensburgContent.css";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-// Regensburg OTH Course URL - https://www.oth-regensburg.de/studieren/studienganguebersicht
-// Regensburg OTH Events URL - https://www.oth-regensburg.de/termine
+// Regensburg OTH Course URL - https://www.oth-regensburg.de/en/study/international-office/studying-in-regensburg/courses-in-english
+// Regensburg OTH Events URL - https://alumni.oth-regensburg.de/termine/
 
 function RegensburgContent() {
     const [courses, setCourses] = useState([]);
@@ -11,9 +11,10 @@ function RegensburgContent() {
     const [playlist, setPlaylist] = useState([]);
     const [museums, setMuseums] = useState([]);
     const [liveEvents, setLiveEvents] = useState([]);
-    const coursesUrl = 'https://www.oth-regensburg.de/studieren/studienganguebersicht';
-    const eventsUrl = 'https://www.oth-regensburg.de/termine';
+    const coursesUrl = 'https://www.oth-regensburg.de/en/study/international-office/studying-in-regensburg/courses-in-english';
+    const eventsUrl = 'https://alumni.oth-regensburg.de/termine/';
     const countryCode = 'DE';
+    const uniName ='OTH';
     const searchCity = 'Walhalla';
 
     useEffect(() => {
@@ -21,7 +22,7 @@ function RegensburgContent() {
             .then(response => setCourses(response.data.courses))  
             .catch(error => console.log(error));
 
-        axios.get('http://localhost:8000/events/', { params: { url: eventsUrl } })
+        axios.get('http://localhost:8000/events/', { params: { url: eventsUrl, uniName: uniName } })
             .then(response => setEvents(response.data.events))
             .catch(error => console.log(error));
 

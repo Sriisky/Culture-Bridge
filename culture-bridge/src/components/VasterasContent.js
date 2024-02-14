@@ -2,7 +2,7 @@ import "./VasterasContent.css";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-// Uni of Malardalen courses url - https://www.mdu.se/utbildning/sok-utbildning?query=&page=0&educationType=courses
+// Uni of Malardalen courses url - https://www.mdu.se/international/programme
 // Uni of Malardalen events url - https://www.mdu.se/kalender
 
 function VasterasContent() {
@@ -11,9 +11,10 @@ function VasterasContent() {
     const [playlist, setPlaylist] = useState([]);
     const [museums, setMuseums] = useState([]);
     const [liveEvents, setLiveEvents] = useState([]);
-    const coursesUrl = 'https://www.mdu.se/utbildning/sok-utbildning?query=&page=0&educationType=courses';
+    const coursesUrl = 'https://www.mdu.se/international/programme';
     const eventsUrl = 'https://www.mdu.se/kalender';
     const countryCode = 'SE';
+    const uniName = 'MDU';
     const searchCity = 'Sweden';
 
     useEffect(() => {
@@ -21,7 +22,7 @@ function VasterasContent() {
             .then(response => setCourses(response.data.courses))  
             .catch(error => console.log(error));
 
-        axios.get('http://localhost:8000/events/', { params: { url: eventsUrl } })
+        axios.get('http://localhost:8000/events/', { params: { url: eventsUrl, uniName: uniName } })
             .then(response => setEvents(response.data.events))
             .catch(error => console.log(error));
 

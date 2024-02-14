@@ -14,6 +14,7 @@ function LjubljanaContent() {
     const coursesUrl = 'https://www.uni-lj.si/study/eng/subjects-bachelor/#University%20of%20Ljubljana%20BIOTECHNICAL%20FACULTY';
     const eventsUrl = 'https://www.uni-lj.si/news/events_calendar/';
     const countryCode = 'SI';
+    const uniName = 'LJ';
     const searchCity = 'Ljubljana';
 
     useEffect(() => {
@@ -21,7 +22,7 @@ function LjubljanaContent() {
             .then(response => setCourses(response.data.courses))  
             .catch(error => console.log(error));
 
-        axios.get('http://localhost:8000/events/', { params: { url: eventsUrl } })
+        axios.get('http://localhost:8000/events/', { params: { url: eventsUrl, uniName: uniName } })
             .then(response => setEvents(response.data.events))
             .catch(error => console.log(error));
 
@@ -72,21 +73,52 @@ function LjubljanaContent() {
                 <div className="content-section">
                     <h1>Available Courses</h1>
                     <ul className="scrollable-list">
-                        {courses.map((course, index) => (
-                            <li key={index}>{course['Course Name']}</li> 
-                        ))}
+                        <p>
+                        ACADEMY OF FINE ARTS AND DESIGN <br></br>
+                        ACADEMY OF MUSIC <br></br>
+                        BIOTECHNICAL FACULTY <br></br>
+                        FACULTY OF PUBLIC ADMINISTRATION <br></br>
+                        FACULTY OF ARHITECTURE <br></br>
+                        FACULTY OF ARTS <br></br>
+                        FACULTY OF CIVIL AND GEODETIC ENGINEERING <br></br>
+                        FACULTY OF COMPUTER AND INFORMATION SCIENCE <br></br>
+                        SCHOOL OF ECONOMICS AND BUSINESS <br></br>
+                        FACULTY OF EDUCATION <br></br>
+                        FACULTY OF HEALTH SCIENCES <br></br>
+                        FACULTY OF LAW <br></br>
+                        FACULTY OF MARITIME STUDIES AND TRANSPORT <br></br> 
+                        FACULTY OF MEDICINE <br></br>
+                        FACULTY OF NATURAL SCIENCES AND ENGINEERING <br></br>
+                        FACULTY OF PHARMACY <br></br>
+                        FACULTY OF SOCIAL SCIENCES <br></br>
+                        FACULTY OF SOCIAL WORK <br></br>
+                        FACULTY OF SPORT <br></br>
+                        FACULTY OF THEOLOGY <br></br>
+                        </p>
                     </ul>
                 </div>
                 <div className="content-section">
-                    <h1>Upcoming Events</h1>
+                    <h1>Information on UNILJ</h1>
                     <ul className="scrollable-list">
-                        {events.map((event, index) => (
-                            <li key={index}>
-                                <strong>{event.title}</strong><br />
-                                {event.description}<br />
-                                <em>{event.date}</em>
-                            </li> 
-                        ))}
+                        <p>
+                        University of Ljubljana is the oldest and largest higher 
+                        education and scientific research institution in Slovenia. 
+                        University with its rich tradition was founded in 1919. 
+                        It has approximately 40,000 undergraduate and 
+                        postgraduate students and employs approximately 6,000 higher
+                         education teachers, researchers, assistants and 
+                         administrative staff in 23 faculties and three arts 
+                         academies. The central building, all three academies and 
+                         faculties are located in the centre. Some of the most recent 
+                         and modern buildings were constructed on the outskirts of 
+                         Ljubljana, giving the university and its students a 
+                         ubiquitous presence in the city. 
+                        The University of Ljubljana is renowned for its quality 
+                        social and natural sciences and technical study 
+                        programmes, structured in accordance with the Bologna 
+                        Declaration. Our projects keep pace with the latest 
+                        developments in the areas of arts, sciences and technology at home and abroad. 
+                        </p>
                     </ul>
                 </div>
             </div>

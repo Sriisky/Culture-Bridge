@@ -12,8 +12,9 @@ function ZwolleContent() {
     const [museums, setMuseums] = useState([]);
     const [liveEvents, setLiveEvents] = useState([]);
     const coursesUrl = 'https://www.windesheim.com/study-programmes/exchange-programmes';
-    const eventsUrl = 'https://www.windesheim.com/news';
+    const eventsUrl = 'https://www.windesheim.com';
     const countryCode = 'NL';
+    const uniName = 'WINDESHEIM'
     const searchCity = 'vincent van gogh';
 
     useEffect(() => {
@@ -21,7 +22,7 @@ function ZwolleContent() {
             .then(response => setCourses(response.data.courses))  
             .catch(error => console.log(error));
 
-        axios.get('http://localhost:8000/events/', { params: { url: eventsUrl } })
+        axios.get('http://localhost:8000/events/', { params: { url: eventsUrl, uniName: uniName } })
             .then(response => setEvents(response.data.events))
             .catch(error => console.log(error));
 

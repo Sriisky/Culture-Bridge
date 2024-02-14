@@ -14,6 +14,7 @@ function ZagrebContent() {
     const coursesUrl = 'https://www.rit.edu/croatia/overview-programs';
     const eventsUrl = 'https://www.rit.edu/croatia/events-0';
     const countryCode = 'HR';
+    const uniName = 'RIT';
     const searchCity = 'Dubrovnik';
 
     useEffect(() => {
@@ -21,7 +22,7 @@ function ZagrebContent() {
             .then(response => setCourses(response.data.courses))  
             .catch(error => console.log(error));
 
-        axios.get('http://localhost:8000/events/', { params: { url: eventsUrl } })
+        axios.get('http://localhost:8000/events/', { params: { url: eventsUrl, uniName: uniName } })
             .then(response => setEvents(response.data.events))
             .catch(error => console.log(error));
 
@@ -72,9 +73,14 @@ function ZagrebContent() {
                 <div className="content-section">
                     <h1>Available Courses</h1>
                     <ul className="scrollable-list">
-                        {courses.map((course, index) => (
-                            <li key={index}>{course['Course Name']}</li> 
-                        ))}
+                        <p>
+                        Global Business Management, BS <br></br>
+                        Hospitality and Tourism Management, BS <br></br>
+                        New Media Design, BFA <br></br>
+                        Web and Mobile Computing/IT, BS <br></br>
+                        Information Technology and Analytics, MS <br></br>
+                        Organizational Leadership and Innovation, MS <br></br>
+                        </p>
                     </ul>
                 </div>
                 <div className="content-section">

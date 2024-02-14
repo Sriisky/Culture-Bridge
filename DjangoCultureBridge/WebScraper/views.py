@@ -11,8 +11,9 @@ def courses_view(request):
 
 def events_view(request):
     url = request.GET.get('url')
-    if not url:
-        return JsonResponse({'error': 'URL parameter is missing'})
+    uniName = request.GET.get('uniName')  # Extracting uniName parameter
+    if not url or not uniName:
+        return JsonResponse({'error': 'URL or uniName parameter is missing'})
 
-    events = get_events(url)  # Use the scraper to get event data
+    events = get_events(url, uniName)  # Passing uniName to the function
     return JsonResponse({'events': events})

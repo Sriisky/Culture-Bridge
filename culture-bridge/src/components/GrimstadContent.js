@@ -14,6 +14,7 @@ function GrimstadContent() {
     const coursesUrl = 'https://www.uia.no/study/search';
     const eventsUrl = 'https://www.uia.no/arrangementer';
     const countryCode = 'NO';
+    const uniName = 'UIA';
     const searchCity = 'Norway';
 
     useEffect(() => {
@@ -21,7 +22,7 @@ function GrimstadContent() {
             .then(response => setCourses(response.data.courses))  
             .catch(error => console.log(error));
 
-        axios.get('http://localhost:8000/events/', { params: { url: eventsUrl } })
+        axios.get('http://localhost:8000/events/', { params: { url: eventsUrl, uniName: uniName } })
             .then(response => setEvents(response.data.events))
             .catch(error => console.log(error));
 
