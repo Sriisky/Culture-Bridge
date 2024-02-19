@@ -23,7 +23,8 @@ from RecommenderSystem.views import (
 )
 from WebScraper.views import (
     courses_view, 
-    events_view
+    events_view,
+    concerts_view
 )
 from SpotifyAPI.views import PlaylistView
 from EuropeanaAPI.views import MuseumView
@@ -37,6 +38,7 @@ urlpatterns = [
     path('api/university-recommender/', UniversityRecommenderView.as_view(), name='university-recommender'),
     path('courses/', courses_view, name='get_courses'),
     path('events/', events_view, name='get_events'),
+    path('concerts/', concerts_view, name='get_concerts'),
     path('api/authenticate/', PlaylistView.as_view(), name='authenticate'),
     path('api/search_europeana/', MuseumView.as_view(), name='search_europeana'),
     path('api/get_live_events/', EventsView.as_view(), name='get_live_events'),

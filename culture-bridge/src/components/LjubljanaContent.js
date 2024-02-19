@@ -6,29 +6,20 @@ import axios from 'axios';
 // University of Ljublana events url - https://www.uni-lj.si/news/events_calendar/
 
 function LjubljanaContent() {
-    const [courses, setCourses] = useState([]);
-    const [events, setEvents] = useState([]);
     const [playlist, setPlaylist] = useState([]);
     const [museums, setMuseums] = useState([]);
-    const [liveEvents, setLiveEvents] = useState([]);
+    const [concerts, setLiveEvents] = useState([]);
     const coursesUrl = 'https://www.uni-lj.si/study/eng/subjects-bachelor/#University%20of%20Ljubljana%20BIOTECHNICAL%20FACULTY';
     const eventsUrl = 'https://www.uni-lj.si/news/events_calendar/';
+    const songkickUrl = 'https://www.songkick.com/metro-areas/32259-slovenia-ljubljana?utf8=%E2%9C%93&filters%5BminDate%5D=03%2F11%2F2024&filters%5BmaxDate%5D=12%2F31%2F2024';
     const countryCode = 'SI';
     const uniName = 'LJ';
     const searchCity = 'Ljubljana';
 
     useEffect(() => {
-        axios.get('http://localhost:8000/courses/', { params: { url: coursesUrl } })
-            .then(response => setCourses(response.data.courses))  
-            .catch(error => console.log(error));
-
-        axios.get('http://localhost:8000/events/', { params: { url: eventsUrl, uniName: uniName } })
-            .then(response => setEvents(response.data.events))
-            .catch(error => console.log(error));
-
         fetchPlaylistInformation();
         handleSearch();
-        fetchLiveEvents();
+        fetchLiveConcerts();
     }, []);
 
     const fetchPlaylistInformation = async () => {
@@ -51,11 +42,11 @@ function LjubljanaContent() {
         }
     };
 
-    const fetchLiveEvents = async () => {
+    const fetchLiveConcerts = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/api/get_live_events/', { params: { countryCode: countryCode }});
-            console.log('Ticketmasters response:', response.data);
-            setLiveEvents(response.data.liveEvents);
+            const response = await axios.get('http://localhost:8000/concerts/', { params: { url: songkickUrl} });
+            console.log('SongKicks response:', response.data);
+            setLiveEvents(response.data.concerts);
         } catch (error) {
             console.error('Error fetching live events data: ', error);
         }
@@ -63,11 +54,9 @@ function LjubljanaContent() {
 
     return (
         <div className="ljubljana-container">
-           <p>Welcome to Darmstadt! On this page you will find information on Hochschule Darmstadt
+           <p>Welcome to Ljubljana! On this page you will find information on the University of Ljubljana
                 which is the university you will be studying at if you choose to study in this city.Take a look at the courses on offer
-                to see what is on offer at this university. The upcoming events will show you the events taking place at H-DA which may give you some insight
-                into a studen's life at this university.
-                The "Top 50 - Germany" playlist will give you insight into the music that is trending among Germans."
+                to see what is available at this university. The 'about' section will give you insight into life at UL.
             </p>
             <div className="section-wrapper">
                 <div className="content-section">
@@ -123,8 +112,8 @@ function LjubljanaContent() {
                 </div>
             </div>
             <div className="content-section">
-                <h1>Playlist</h1>
-                <p>The following tracks are trending in Germany today! If you click on any song you will be redirected to Spotify where you can listen to the song or add it to your playlist</p>
+                <h1>Top 50 - Slovenia Playlist</h1>
+                <p>The following tracks are trending in Slovenia today! If you click on any song you will be redirected to Spotify where you can listen to the song or add it to your playlist</p>
                 <ul className="scrollable-list">
                     {playlist.map((song, index) => (
                         <li key={index} className="playlist-item">
@@ -159,21 +148,24 @@ function LjubljanaContent() {
                 </ul>
             </div>
             <div className="content-section">
-                <h1>Live Music Events in Slovenia</h1>
+                <h1>Live Concerts across Slovenia</h1>
                 <p>Here are some events taking place across Slovenia:</p>
                 <ul className="museum_scrollable-list">
-                    {liveEvents.map((event, index) => (
+                    {concerts.map((liveEvent, index) => (
                         <li key={index} className="museum-item">
-                            <img src={event.image_url} alt="Thumbnail" className="museum-thumbnail" />
+
                             <div className="museum-details">
-                            {event.url ? (
-                                    <strong><a href={event.url} target="_blank" rel="noopener noreferrer">{event.name}</a></strong>
+                                {liveEvent.event_url ? (
+                                    <strong>
+                                        <a href={`https://www.songkick.com/${liveEvent.event_url}`} target="_blank" rel="noopener noreferrer">
+                                            {liveEvent.title}
+                                        </a>
+                                    </strong>
                                 ) : (
-                                    <strong>{event.name}</strong>
+                                    <strong>{liveEvent.title}</strong>
                                 )}
-                                <span>{event.date}</span>
-                                <span>{event.genre}</span>
-                                <span>{event.subgenre}</span>
+                                <span>{liveEvent.date}</span>
+                                <span>{liveEvent.location}</span>
                             </div>
                         </li> 
                     ))}

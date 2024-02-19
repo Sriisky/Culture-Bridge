@@ -31,7 +31,7 @@ def parse_page(url):
         return None
 
 # URLs for Hochschule Darmstadt Germany
-base_url = 'https://www.uni-lj.si/study/eng/subjects-bachelor/#University%20of%20Ljubljana%20BIOTECHNICAL%20FACULTY'
+base_url = 'https://www.upc.edu/ca/agenda'
 study_programs_URL = f'{base_url}'
 events_URL = f'{base_url}'
 course_parse = parse_page(study_programs_URL)
@@ -41,14 +41,14 @@ events_parse = parse_page(events_URL)
 extracted_courses = []
 extracted_events = []
 
-
+'''
 if course_parse:
     # Find the elements containing course names
-    courses = course_parse.find_all('div', {'class': 'accordion'})
+    courses = course_parse.find_all('h2', {'class': 'h4 panel-title'})
     # Extract and print course titles
     for course in courses:
         # Use course to find the <a> tag within each element of the ResultSet
-        course_name = course.find('h2')
+        course_name = course.find('collapsible')
         if course_name:
             # Extract the text and strip whitespace from the course title
             course_title = course_name.get_text().strip()
@@ -66,17 +66,17 @@ for course in extracted_courses:
     print(course['Course Name'])
 
 '''
-events = events_parse.find_all('div', attrs={'class': 'col-xs-12 col-sm-9 no-padding'})
+events = events_parse.find_all('section', attrs={'id': 'main-content'})
 print(events)
 for event in events:
-    title = event.find('a', attrs={'class': 'summary'})
-    
-    date = event.find('span', attrs={'class': 'calendar-date'})
+    title = event.find('h2', attrs={'class': 'event-title'})
+    description = event.find('span', attrs={'p': 'event-place'})
+    date = event.find('span', attrs={'class': 'event-time--wrap'})
 
-    if title  and date:
+    if title and description and date:
         event_info = {
             'title': title.text.strip(),
-           
+            'description': description.text.strip(),
             'date': date.text.strip()
         }
         extracted_events.append(event_info)
@@ -85,7 +85,7 @@ for event in events:
 
 for event in extracted_events:
     print("Title:", event['title'])
-
+    print("Description:", event['description'])
     print("Date:", event['date'])
     print()
-'''
+    

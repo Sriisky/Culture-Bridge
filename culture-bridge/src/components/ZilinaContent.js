@@ -7,13 +7,14 @@ import axios from 'axios';
 
 function ZilinaContent() {
     const [courses, setCourses] = useState([]);
-    const [events, setEvents] = useState([]);
     const [playlist, setPlaylist] = useState([]);
     const [museums, setMuseums] = useState([]);
-    const [liveEvents, setLiveEvents] = useState([]);
+    const [concerts, setLiveEvents] = useState([]);
     const coursesUrl = 'https://www.uniza.sk/index.php/en/study/study-options/programmes-2024-2025';
     const eventsUrl = 'https://www.uniza.sk/index.php/en/';
+    const songkickUrl = 'https://www.songkick.com/metro-areas/32271-slovakia-zilina?utf8=%E2%9C%93&filters%5BminDate%5D=03%2F11%2F2024&filters%5BmaxDate%5D=12%2F31%2F2024';
     const countryCode = 'SK';
+    const uniName = 'UNIZA';
     const searchCity = 'Slovak';
 
     useEffect(() => {
@@ -21,13 +22,9 @@ function ZilinaContent() {
             .then(response => setCourses(response.data.courses))  
             .catch(error => console.log(error));
 
-        axios.get('http://localhost:8000/events/', { params: { url: eventsUrl } })
-            .then(response => setEvents(response.data.events))
-            .catch(error => console.log(error));
-
         fetchPlaylistInformation();
         handleSearch();
-        fetchLiveEvents();
+        fetchLiveConcerts();
     }, []);
 
     const fetchPlaylistInformation = async () => {
@@ -50,11 +47,11 @@ function ZilinaContent() {
         }
     };
 
-    const fetchLiveEvents = async () => {
+    const fetchLiveConcerts = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/api/get_live_events/', { params: { countryCode: countryCode }});
-            console.log('Ticketmasters response:', response.data);
-            setLiveEvents(response.data.liveEvents);
+            const response = await axios.get('http://localhost:8000/concerts/', { params: { url: songkickUrl} });
+            console.log('SongKicks response:', response.data);
+            setLiveEvents(response.data.concerts);
         } catch (error) {
             console.error('Error fetching live events data: ', error);
         }
@@ -62,11 +59,9 @@ function ZilinaContent() {
 
     return (
         <div className="zilina-container">
-            <p>Welcome to Darmstadt! On this page you will find information on Hochschule Darmstadt
+            <p>Welcome to Zilina! On this page you will find information on the University of Žilina
                 which is the university you will be studying at if you choose to study in this city.Take a look at the courses on offer
-                to see what is on offer at this university. The upcoming events will show you the events taking place at H-DA which may give you some insight
-                into a studen's life at this university.
-                The "Top 50 - Germany" playlist will give you insight into the music that is trending among Germans."
+                to see what is available at this university. The 'about' section will give you some information about UNIZA.
             </p>
             <div className="section-wrapper">
                 <div className="content-section">
@@ -78,21 +73,31 @@ function ZilinaContent() {
                     </ul>
                 </div>
                 <div className="content-section">
-                    <h1>Upcoming Events</h1>
+                    <h1>Information on UNIZA</h1>
                     <ul className="scrollable-list">
-                        {events.map((event, index) => (
-                            <li key={index}>
-                                <strong>{event.title}</strong><br />
-                                {event.description}<br />
-                                <em>{event.date}</em>
-                            </li> 
-                        ))}
+                        At present there are about 8,000 students being educated at seven faculties in 172 
+                        accredited fields of study in all forms and degrees of university studies at the 
+                        University. In its over 70 years of successful existence it has become the alma mater for 
+                        more than 88,000 graduates, highly skilled professionals specialising mostly in transport 
+                        and technical fields as well as in management, marketing or humanities. The quality and 
+                        readiness of our graduates for the needs of practice is proved by long-term high interest 
+                        in hiring them 
+                        by employers that cooperate with the University in the recruitment process.
+                        In the field of science and research, our University participates in 200 national and 41 international scientific projects and 
+                        organises about 60 scientific and professional events annually. There were two new 
+                        significant work places established within the Operational Programme Research and 
+                        Development in 2013 – University Science Park and Research Centre. Results of science and 
+                        research activities of the University have an important influence not only on the 
+                        educational activities but also on the development of international cooperation or 
+                        interconnection with practice. One of the proofs of successful transfer of science and 
+                        research results into practice is the Award for Technology Transfer for the team of 
+                        authors from the Faculty of Mechanical Engineering at the University of Žilina.
                     </ul>
                 </div>
             </div>
             <div className="content-section">
-                <h1>Playlist</h1>
-                <p>The following tracks are trending in Germany today! If you click on any song you will be redirected to Spotify where you can listen to the song or add it to your playlist</p>
+                <h1>Top 50 - Slovakia Playlist</h1>
+                <p>The following tracks are trending in Slovakia today! If you click on any song you will be redirected to Spotify where you can listen to the song or add it to your playlist</p>
                 <ul className="scrollable-list">
                     {playlist.map((song, index) => (
                         <li key={index} className="playlist-item">
@@ -127,21 +132,24 @@ function ZilinaContent() {
                 </ul>
             </div>
             <div className="content-section">
-                <h1>Live Music Events in Slovakia</h1>
-                <p>Here are some events taking place across Slovakia:</p>
+                <h1>Live Concerts across Zilina</h1>
+                <p>Here are some events taking place across Zilina:</p>
                 <ul className="museum_scrollable-list">
-                    {liveEvents.map((event, index) => (
+                    {concerts.map((liveEvent, index) => (
                         <li key={index} className="museum-item">
-                            <img src={event.image_url} alt="Thumbnail" className="museum-thumbnail" />
+
                             <div className="museum-details">
-                            {event.url ? (
-                                    <strong><a href={event.url} target="_blank" rel="noopener noreferrer">{event.name}</a></strong>
+                                {liveEvent.event_url ? (
+                                    <strong>
+                                        <a href={`https://www.songkick.com/${liveEvent.event_url}`} target="_blank" rel="noopener noreferrer">
+                                            {liveEvent.title}
+                                        </a>
+                                    </strong>
                                 ) : (
-                                    <strong>{event.name}</strong>
+                                    <strong>{liveEvent.title}</strong>
                                 )}
-                                <span>{event.date}</span>
-                                <span>{event.genre}</span>
-                                <span>{event.subgenre}</span>
+                                <span>{liveEvent.date}</span>
+                                <span>{liveEvent.location}</span>
                             </div>
                         </li> 
                     ))}

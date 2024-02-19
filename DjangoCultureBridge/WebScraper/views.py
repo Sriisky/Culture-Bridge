@@ -1,4 +1,5 @@
 from django.http import JsonResponse
+from .liveEventsScraper import get_concerts
 from .scraper import get_courses, get_events  # Functions i'll create in scraper_utils.py
 
 def courses_view(request):
@@ -17,3 +18,11 @@ def events_view(request):
 
     events = get_events(url, uniName)  # Passing uniName to the function
     return JsonResponse({'events': events})
+
+def concerts_view(request):
+    url = request.GET.get('url')
+    if not url:
+        return JsonResponse({'error': 'URL parameter is missing'})
+
+    concerts = get_concerts(url)  # Passing uniName to the function
+    return JsonResponse({'concerts': concerts})

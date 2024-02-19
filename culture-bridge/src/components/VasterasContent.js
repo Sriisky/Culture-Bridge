@@ -63,11 +63,10 @@ function VasterasContent() {
 
     return (
         <div className="vasteras-container">
-           <p>Welcome to Darmstadt! On this page you will find information on Hochschule Darmstadt
+           <p>Welcome to Vasteras! On this page you will find information on Mälardalens University
                 which is the university you will be studying at if you choose to study in this city.Take a look at the courses on offer
-                to see what is on offer at this university. The upcoming events will show you the events taking place at H-DA which may give you some insight
-                into a studen's life at this university.
-                The "Top 50 - Germany" playlist will give you insight into the music that is trending among Germans."
+                to see what is on offer at this university. The upcoming events will show you the events taking place at MDU which wll give you some insight
+                into a student's life at this university.
             </p>
             <div className="section-wrapper">
                 <div className="content-section">
@@ -92,8 +91,8 @@ function VasterasContent() {
                 </div>
             </div>
             <div className="content-section">
-                <h1>Playlist</h1>
-                <p>The following tracks are trending in Germany today! If you click on any song you will be redirected to Spotify where you can listen to the song or add it to your playlist</p>
+                <h1>Top 50 - Sweden Playlist</h1>
+                <p>The following tracks are trending in Sweden today! If you click on any song you will be redirected to Spotify where you can listen to the song or add it to your playlist</p>
                 <ul className="scrollable-list">
                     {playlist.map((song, index) => (
                         <li key={index} className="playlist-item">

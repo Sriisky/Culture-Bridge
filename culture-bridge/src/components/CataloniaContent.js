@@ -14,6 +14,7 @@ function CataloniaContent() {
     const coursesUrl = 'https://www.upc.edu/ca/graus/';
     const eventsUrl = 'https://www.upc.edu/ca/agenda';
     const countryCode = 'ES';
+    const uniName = 'UPC';
     const searchCity = 'Barcelona';
 
     useEffect(() => {
@@ -21,7 +22,7 @@ function CataloniaContent() {
             .then(response => setCourses(response.data.courses))  
             .catch(error => console.log(error));
 
-        axios.get('http://localhost:8000/events/', { params: { url: eventsUrl } })
+        axios.get('http://localhost:8000/events/', { params: { url: eventsUrl, uniName: uniName } })
             .then(response => setEvents(response.data.events))
             .catch(error => console.log(error));
         
@@ -62,11 +63,9 @@ function CataloniaContent() {
 
     return (
         <div className="catalonia-container">
-             <p>Welcome to Catalonia! On this page you will find information on Hochschule Darmstadt
+             <p>Welcome to Barcelona! On this page you will find information on the University Polytechnica Cataluyna
                 which is the university you will be studying at if you choose to study in this city.Take a look at the courses on offer
-                to see what is on offer at this university. The upcoming events will show you the events taking place at H-DA which may give you some insight
-                into a studen's life at this university.
-                The "Top 50 - Germany" playlist will give you insight into the music that is trending among Germans."
+                to see what is available at this university. The 'about' section will give some information about UPC.
             </p>
             <div className="section-wrapper">
                 <div className="content-section">
@@ -78,21 +77,24 @@ function CataloniaContent() {
                     </ul>
                 </div>
                 <div className="content-section">
-                    <h1>Upcoming Events</h1>
+                    <h1>About UPC</h1>
                     <ul className="scrollable-list">
-                        {events.map((event, index) => (
-                            <li key={index}>
-                                <strong>{event.title}</strong><br />
-                                {event.description}<br />
-                                <em>{event.date}</em>
-                            </li> 
-                        ))}
+                    A key focus of UPC is its commitment to internationalization, 
+                    evident in its status as one of Europe's technical universities with
+                     the highest number of international PhD students and the most 
+                     significant proportion of international students in its master's programs. 
+                    UPC prioritizes achieving top-tier engineering and technical expertise and maintains bilateral agreements with numerous renowned European universities.
+                    As a premie public institution in Barcelona, Spain, 
+                    UPC holds the #354 spot in the QS World University Rankings for 2024. 
+                    It is consistently recognized among the top European universities in 
+                    technology and engineering. For example, U.S. News & World Report ranks
+                     it 36th globally in Computer Science and 60th in Engineering.
                     </ul>
                 </div>
             </div>
             <div className="content-section">
-                <h1>Playlist</h1>
-                <p>The following tracks are trending in Germany today! If you click on any song you will be redirected to Spotify where you can listen to the song or add it to your playlist</p>
+                <h1>Top 50 - Spain Playlist</h1>
+                <p>The following tracks are trending in Spain today! If you click on any song you will be redirected to Spotify where you can listen to the song or add it to your playlist</p>
                 <ul className="scrollable-list">
                     {playlist.map((song, index) => (
                         <li key={index} className="playlist-item">

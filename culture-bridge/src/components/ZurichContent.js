@@ -6,7 +6,6 @@ import axios from 'axios';
 
 function ZurichContent() {
     const [courses, setCourses] = useState([]);
-    const [events, setEvents] = useState([]);
     const [playlist, setPlaylist] = useState([]);
     const [museums, setMuseums] = useState([]);
     const [liveEvents, setLiveEvents] = useState([]);
@@ -56,11 +55,9 @@ function ZurichContent() {
 
     return (
         <div className="zurich-container">
-            <p>Welcome to Darmstadt! On this page you will find information on Hochschule Darmstadt
+            <p>Welcome to Zurich! On this page you will find information on University of Applied Sciences and Arts Northwestern Switzerland
                 which is the university you will be studying at if you choose to study in this city.Take a look at the courses on offer
-                to see what is on offer at this university. The upcoming events will show you the events taking place at H-DA which may give you some insight
-                into a studen's life at this university.
-                The "Top 50 - Germany" playlist will give you insight into the music that is trending among Germans."
+                to see what is available at this university. The 'about' section gives you a description of FHNW which may give you some insight into what the university is like.
             </p>
             <div className="section-wrapper">
                 <div className="content-section">
@@ -72,7 +69,7 @@ function ZurichContent() {
                     </ul>
                 </div>
                 <div className="content-section">
-                    <h1>Upcoming Events</h1>
+                    <h1>About FHNW</h1>
                     <ul className="scrollable-list">
                         <p>FHNW is one of Switzerland’s leading universities of applied sciences and arts, 
                             actively involved in teaching, research, continuing education and service provision – 
@@ -85,8 +82,8 @@ function ZurichContent() {
                 </div>
             </div>
             <div className="content-section">
-                <h1>Playlist</h1>
-                <p>The following tracks are trending in Germany today! If you click on any song you will be redirected to Spotify where you can listen to the song or add it to your playlist</p>
+                <h1>Top 50 - SwitzerlandPlaylist</h1>
+                <p>The following tracks are trending in Switzerland today! If you click on any song you will be redirected to Spotify where you can listen to the song or add it to your playlist</p>
                 <ul className="scrollable-list">
                     {playlist.map((song, index) => (
                         <li key={index} className="playlist-item">
@@ -122,7 +119,7 @@ function ZurichContent() {
             </div>
             <div className="content-section">
                 <h1>Live Music Events in Switzerland</h1>
-                <p>Here are some events taking place across Switzerland:</p>
+                <p>Here are some events taking place across Switzerland.</p>
                 <ul className="museum_scrollable-list">
                     {liveEvents.map((event, index) => (
                         <li key={index} className="museum-item">

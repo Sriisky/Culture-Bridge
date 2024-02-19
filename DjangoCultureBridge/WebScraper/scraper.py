@@ -34,7 +34,6 @@ def get_courses(url):
     else:
         print("Failed to parse the study programmes page url")
 
-    print(extracted_courses)
     return extracted_courses
 
 # function to get events
@@ -95,7 +94,7 @@ def get_events(url, uniName):
 
 # Configuration for course scraping
 course_configs = {
-    'url_tag': {'div', 'td', 'h2', 'span', 'li'},
+    'url_tag': {'div', 'td', 'h2', 'ul', 'span', 'li'},
     'url_attrs': [
         {'data-title': 'Studiengang', 'class': 'a1'},
         {'class': 'c-teaserbox-studycourse__headline'},
@@ -110,9 +109,10 @@ course_configs = {
         {'class': 'mdh-infopage-card__info'},
         {'class': 'widg_teaser__col2'},
         {'class': 'accordion'},
+        {'type': 'square'},
+        {'class': 'h4 panel-title'},
     ],
-    'course_name_tag': ['a', 'h3', 'h2', 'li', 'p', ('span', 'study-unbold'), 
-                        ],
+    'course_name_tag': ['a', 'h3', 'h2', 'li', 'p', 'collapsible'],
 }
 
 # Configuration for events scraping

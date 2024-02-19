@@ -62,9 +62,8 @@ function DarmstadtContent() {
         <div className="darmstadt-container">
             <p>Welcome to Darmstadt! On this page you will find information on Hochschule Darmstadt
                 which is the university you will be studying at if you choose to study in this city.Take a look at the courses on offer
-                to see what is on offer at this university. The upcoming events will show you the events taking place at H-DA which may give you some insight
-                into a studen's life at this university.
-                The "Top 50 - Germany" playlist will give you insight into the music that is trending among Germans."
+                to see what is available to study at this university. The upcoming events will show you the events taking place at H-DA which will give you some insight
+                into a student's life at this university.
             </p>
             <div className="section-wrapper">
                 <div className="content-section">
@@ -76,7 +75,7 @@ function DarmstadtContent() {
                     </ul>
                 </div>
                 <div className="content-section">
-                    <h1>Upcoming Events</h1>
+                    <h1>Upcoming Events at H-DA</h1>
                     <ul className="scrollable-list">
                         {events.map((event, index) => (
                             <li key={index}>
@@ -89,8 +88,8 @@ function DarmstadtContent() {
                 </div>
             </div>
             <div className="content-section">
-                <h1>Playlist</h1>
-                <p>The following tracks are trending in Germany today! If you click on any song you will be redirected to Spotify where you can listen to the song or add it to your playlist</p>
+                <h1>Top 50 - Germany Playlist</h1>
+                <p>The following tracks are trending in Germany today! If you click on any song you will be redirected to Spotify where you can listen to the song or add it to your playlist.</p>
                 <ul className="scrollable-list">
                     {playlist.map((song, index) => (
                         <li key={index} className="playlist-item">
@@ -111,13 +110,13 @@ function DarmstadtContent() {
             </div>
             <div className="content-section">
                 <h1>Artworks from Darmstadt</h1>
-                <p>Here are some artworks from Darmstadt:</p>
+                <p>Here are some artworks from Darmstadt that show different pieces and architectures from the area:</p>
                 <ul className="museum_scrollable-list">
                     {museums.map((art, index) => (
                         <li key={index} className="museum-item">
                             <img src={art.thumbnail} alt="Thumbnail" className="museum-thumbnail" />
                             <div className="museum-details">
-                                <strong>{art.title}</strong>
+                                <span>{art.title}</span>
                                 <span>{art.location}</span>
                             </div>
                         </li> 
@@ -126,7 +125,8 @@ function DarmstadtContent() {
             </div>
             <div className="content-section">
                 <h1>Live Music Events in Germany</h1>
-                <p>Here are some events taking place across Germany:</p>
+                <p>Here are some live music events taking place. Click on the title of the event to be redirected to the Ticketmaster website
+                    to find more information and to buy tickets.</p>
                 <ul className="museum_scrollable-list">
                     {liveEvents.map((event, index) => (
                         <li key={index} className="museum-item">

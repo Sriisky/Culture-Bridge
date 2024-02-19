@@ -56,11 +56,10 @@ function OuloContent() {
 
     return (
         <div className="oulo-container">
-            <p>Welcome to Darmstadt! On this page you will find information on Hochschule Darmstadt
+            <p>Welcome to Oulo! On this page you will find information on Oulo University of Applied Sciences
                 which is the university you will be studying at if you choose to study in this city.Take a look at the courses on offer
-                to see what is on offer at this university. The upcoming events will show you the events taking place at H-DA which may give you some insight
-                into a studen's life at this university.
-                The "Top 50 - Germany" playlist will give you insight into the music that is trending among Germans."
+                to see what is on offer at this university. The 'about' section will provide some insight into what OAMK values which may help your decision making process
+                for choosing where to study.
             </p>
             <div className="section-wrapper">
                 <div className="content-section">
@@ -89,8 +88,8 @@ function OuloContent() {
                 </div>
             </div>
             <div className="content-section">
-                <h1>Playlist</h1>
-                <p>The following tracks are trending in Germany today! If you click on any song you will be redirected to Spotify where you can listen to the song or add it to your playlist</p>
+                <h1>Top 50 - Finland Playlist</h1>
+                <p>The following tracks are trending in Finland today! If you click on any song you will be redirected to Spotify where you can listen to the song or add it to your playlist</p>
                 <ul className="scrollable-list">
                     {playlist.map((song, index) => (
                         <li key={index} className="playlist-item">

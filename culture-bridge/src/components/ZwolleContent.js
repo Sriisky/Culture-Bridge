@@ -63,19 +63,60 @@ function ZwolleContent() {
 
     return (
         <div className="zwolle-container">
-           <p>Welcome to Darmstadt! On this page you will find information on Hochschule Darmstadt
+           <p>Welcome to Zwolle! On this page you will find information on the University of Applied Sciences Windesheim
                 which is the university you will be studying at if you choose to study in this city.Take a look at the courses on offer
-                to see what is on offer at this university. The upcoming events will show you the events taking place at H-DA which may give you some insight
-                into a studen's life at this university.
-                The "Top 50 - Germany" playlist will give you insight into the music that is trending among Germans."
+                to see what is available at this university. The upcoming events will show you the events taking place at Windesheim which will give you some insight
+                into a student's life at this university.
             </p>
             <div className="section-wrapper">
                 <div className="content-section">
                     <h1>Available Courses</h1>
                     <ul className="scrollable-list">
-                        {courses.map((course, index) => (
-                            <li key={index}>{course['Course Name']}</li> 
-                        ))}
+                        International Business Studies (autumn and spring)
+                        <br></br>
+                        International Relations (autumn and spring)
+                        <br></br>
+                        Managing Projects in a Globalized World (autumn and spring)
+                        <br></br>
+                        People, Planet and Prosperity (autumn and spring)
+                        <br></br>
+                        Value Creators (autumn and spring)
+                        <br></br>
+                        Primary and Secondary Education 
+                        <br></br>
+                        International LivingLab: Good Life, Health and Wellbeing
+                        <br></br>
+                        Concept and Creation (autumn and spring)
+                        <br></br>
+                        Data-driven Innovation (autumn and spring)
+                        <br></br>
+                        Future Technology (autumn and spring)
+                        <br></br>
+                        Game Studio (autumn and spring)
+                        <br></br>
+                        Games Programming (spring)
+                        <br></br>
+                        Mobile Solutions (autumn and spring)
+                        <br></br>
+                        Security Engineering (autumn and spring)
+                        <br></br>
+                        Web and Analytics (autumn and spring)
+                        <br></br>
+                        All-round Designer (autumn and spring)
+                        <br></br>
+                        Applied Mechanics (autumn)
+                        <br></br>
+                        Circular Housing (autumn)
+                        <br></br>
+                        Future Cities (autumn)
+                        <br></br>
+                        Operational Management in Industry (autumn and spring)
+                        <br></br>
+                        Process Optimization (autumn and spring)
+                        <br></br>
+                        Supply Chain Engineering (autumn and spring)
+                        <br></br>
+                        Water Management (autumn)
                     </ul>
                 </div>
                 <div className="content-section">
@@ -92,8 +133,8 @@ function ZwolleContent() {
                 </div>
             </div>
             <div className="content-section">
-                <h1>Playlist</h1>
-                <p>The following tracks are trending in Germany today! If you click on any song you will be redirected to Spotify where you can listen to the song or add it to your playlist</p>
+                <h1>Top 50 - The Netherlands Playlist</h1>
+                <p>The following tracks are trending in the Netherlands today! If you click on any song you will be redirected to Spotify where you can listen to the song or add it to your playlist</p>
                 <ul className="scrollable-list">
                     {playlist.map((song, index) => (
                         <li key={index} className="playlist-item">
@@ -114,7 +155,7 @@ function ZwolleContent() {
             </div>
             <div className="content-section">
                 <h1>Artworks from Zwolle</h1>
-                <p>Here are some artworks from Zwolle:</p>
+                <p>Here are some artworks from the Netherlands:</p>
                 <ul className="museum_scrollable-list">
                     {museums.map((art, index) => (
                         <li key={index} className="museum-item">
