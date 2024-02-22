@@ -4,10 +4,11 @@ from .scraper import get_courses, get_events  # Functions i'll create in scraper
 
 def courses_view(request):
     url = request.GET.get('url')
-    if not url:
-        return JsonResponse({'error': 'URL parameter is missing'})
+    uniName = request.GET.get('uniName')  # Extracting uniName parameter
+    if not url or not uniName:
+        return JsonResponse({'error': 'URL or Uniname parameter is missing'})
 
-    courses = get_courses(url)  # Use the scraper to get course data
+    courses = get_courses(url, uniName)  # Use the scraper to get course data
     return JsonResponse({'courses': courses})
 
 def events_view(request):
@@ -21,8 +22,9 @@ def events_view(request):
 
 def concerts_view(request):
     url = request.GET.get('url')
-    if not url:
-        return JsonResponse({'error': 'URL parameter is missing'})
+    countryCode = request.GET.get('countryCode')
+    if not url or not countryCode:
+        return JsonResponse({'error': 'URL or country code parameter is missing'})
 
-    concerts = get_concerts(url)  # Passing uniName to the function
+    concerts = get_concerts(url, countryCode)  # Passing uniName to the function
     return JsonResponse({'concerts': concerts})

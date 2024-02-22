@@ -1,6 +1,36 @@
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
+import json
+import os
 
+# Define the path to the JSON file
+json_file_path = r"C:\Users\srisk\OneDrive - Technological University Dublin\Documents\YEAR 4 SEM 1\Final Year Project\Coding\Culture-Bridge\DjangoCultureBridge\DataFiles\spotifyPlaylist_data.json"
+
+def save_to_json_file(new_data, countryCode):
+    existing_data = read_existing_data(json_file_path)
+    if not is_duplicate(countryCode, existing_data):
+        with open(json_file_path, 'a') as file:
+            for entry in new_data:
+                # Prepare entry for JSON file (if needed, modify here)
+                entry_to_save = {
+                    'title': entry['title'],
+                    'artist': entry['artist'],
+                    'countryCode': countryCode
+                }
+                json.dump(entry_to_save, file)
+                file.write('\n')
+
+def read_existing_data(file_path):
+    if not os.path.exists(file_path):
+        return []
+    with open(file_path, 'r') as file:
+        return [json.loads(line) for line in file]
+
+def is_duplicate(countryCode, existing_data):
+    for existing_song in existing_data:
+        if existing_song['countryCode'] == countryCode:
+            return True
+    return False
 # Dictionary of all playlist ID's for the top-50 tracks of a country
 playlist_configs = {
     'US': '37i9dQZEVXbLRQDuF5jeBp',  
@@ -43,4 +73,6 @@ def authenticate(countryCode):
         }
         playlist.append(track_info)
     
+    # Save to JSON file
+    save_to_json_file(playlist, countryCode)
     return playlist

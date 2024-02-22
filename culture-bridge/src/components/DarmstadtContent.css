@@ -7,12 +7,14 @@
 
 .section-wrapper {
     display: flex;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
+    padding-top: 2rem;
 }
 
 .content-section {
     flex: 1;
     margin-right: 2rem;
+    padding-top: 2rem;
 }
 
 .darmstadt-container h1 {
@@ -32,12 +34,14 @@
 .museum-details {
     display: flex; /* Use flexbox */
     flex-direction: column; /* Arrange children vertically */
+    padding-bottom: 2rem;
+    padding-top: 2rem;
 }
 
 .museum-item {
     display: flex; /* Use flexbox */
     align-items: center; /* Align items vertically */
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 
 
@@ -52,6 +56,15 @@
     .content-section {
         margin-right: 0;
         margin-bottom: 2rem;
+    }
+    input, textarea, form button {
+        width: 100%; /* Full width on smaller screens for better visibility */
+        margin-left: auto; /* Keep auto margins for centering */
+        margin-right: auto; /* Keep auto margins for centering */
+    }
+
+    ul.reviews-list li {
+        width: 100%; /* Full width on smaller screens */
     }
 }
 
@@ -86,4 +99,49 @@
     flex: 1;
 }
 
+input, textarea {
+    display: block;
+    margin-bottom: 1rem;
+    width: 50%; /* Set width to 50% */
+    margin-left: auto; /* Auto margins for centering */
+    margin-right: auto; /* Auto margins for centering */
+    font-size: 1.05em; /* Increase font size */
+    padding: 10px; /* Add more padding for larger boxes */
+}
 
+/* Additional styles for the form to align items properly */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally in the column */
+}
+
+/* Style for the submit button to make it align with the input fields */
+form button {
+    width: 50%; /* Match the width of input and textarea */
+    margin-bottom: 1rem;
+    margin-left: auto; /* Auto margins for centering */
+    margin-right: auto; /* Auto margins for centering */
+    font-size: 1.1em; /* Increase font size */
+    padding: 10px; /* Add more padding for a larger button */
+}
+
+ul.reviews-list {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove default padding */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 0;
+}
+
+/* Card Style for Each Review */
+ul.reviews-list li {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 15px; /* Increased border-radius for more rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 45%; /* Adjust width to fit two cards per line */
+    margin-bottom: 20px;
+}

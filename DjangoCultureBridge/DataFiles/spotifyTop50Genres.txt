@@ -1,0 +1,12 @@
+{"countryCode": "DE", "Hip hop/Rap/R&b": "41", "EDM": "18.0", "Pop": "33", "Rock/Metal": "3.0", "Latin/Reggaeton": "2.0", "Other": "12"}
+{"countryCode": "ES", "Hip hop/Rap/R&b": "54", "EDM": "0.0", "Pop": "22", "Rock/Metal": "0.0", "Latin/Reggaeton": "38.0", "Other": "18"}
+{"countryCode": "IT", "Hip hop/Rap/R&b": "47", "EDM": "7.0", "Pop": "35", "Rock/Metal": "2.0", "Latin/Reggaeton": "0.0", "Other": "9"}
+{"countryCode": "SK", "Hip hop/Rap/R&b": "18", "EDM": "21.0", "Pop": "33", "Rock/Metal": "9.0", "Latin/Reggaeton": "2.0", "Other": "8"}
+{"countryCode": "SI", "Hip hop/Rap/R&b": "38", "EDM": "9.0", "Pop": "21", "Rock/Metal": "6.0", "Latin/Reggaeton": "0.0", "Other": "5"}
+{"countryCode": "HR", "Hip hop/Rap/R&b": "47", "EDM": "0.0", "Pop": "10", "Rock/Metal": "0.0", "Latin/Reggaeton": "0.0", "Other": "10"}
+{"countryCode": "NL", "Hip hop/Rap/R&b": "13", "EDM": "39.0", "Pop": "63", "Rock/Metal": "7.0", "Latin/Reggaeton": "0.0", "Other": "12"}
+{"countryCode": "SE", "Hip hop/Rap/R&b": "31", "EDM": "17.0", "Pop": "61", "Rock/Metal": "4.0", "Latin/Reggaeton": "0.0", "Other": "10"}
+{"countryCode": "CH", "Hip hop/Rap/R&b": "39", "EDM": "25.0", "Pop": "59", "Rock/Metal": "6.0", "Latin/Reggaeton": "2.0", "Other": "13"}
+{"countryCode": "NO", "Hip hop/Rap/R&b": "13", "EDM": "18.0", "Pop": "44", "Rock/Metal": "5.0", "Latin/Reggaeton": "0.0", "Other": "12"}
+{"countryCode": "AT", "Hip hop/Rap/R&b": "28", "EDM": "17.0", "Pop": "28", "Rock/Metal": "6.0", "Latin/Reggaeton": "2.0", "Other": "12"}
+{"countryCode": "FI",  "Hip hop/Rap/R&b": "27", "EDM": "5.0", "Pop": "53", "Rock/Metal": "7.0", "Latin/Reggaeton": "0.0", "Other": "4"}

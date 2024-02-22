@@ -29,6 +29,7 @@ from WebScraper.views import (
 from SpotifyAPI.views import PlaylistView
 from EuropeanaAPI.views import MuseumView
 from TicketmasterAPI.views import EventsView
+from CityReviews.views import ReviewsView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -42,4 +43,6 @@ urlpatterns = [
     path('api/authenticate/', PlaylistView.as_view(), name='authenticate'),
     path('api/search_europeana/', MuseumView.as_view(), name='search_europeana'),
     path('api/get_live_events/', EventsView.as_view(), name='get_live_events'),
+    path('api/get_reviews/', ReviewsView.as_view(), name='get_reviews'),
+    path('api/save_reviews/', ReviewsView.as_view(), name='save_reviews'),
 ]

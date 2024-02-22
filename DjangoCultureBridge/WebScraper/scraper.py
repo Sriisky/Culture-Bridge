@@ -1,5 +1,31 @@
 from bs4 import BeautifulSoup
 import requests
+import json
+import os
+
+
+json_file_path = r"C:\Users\srisk\OneDrive - Technological University Dublin\Documents\YEAR 4 SEM 1\Final Year Project\Coding\Culture-Bridge\DjangoCultureBridge\DataFiles\uniCourses_data.json"
+
+def save_to_json_file(new_data, uniName):
+    existing_data = read_existing_data(json_file_path)
+    if not is_duplicate(uniName, existing_data):
+        with open(json_file_path, 'a') as file:
+            # Create a dictionary with uniName and courses
+            entry_to_save = {'uniName': uniName, 'courses': new_data}
+            json.dump(entry_to_save, file)
+            file.write('\n')
+
+def read_existing_data(file_path):
+    if not os.path.exists(file_path):
+        return []
+    with open(file_path, 'r') as file:
+        return [json.loads(line) for line in file]
+
+def is_duplicate(uniName, existing_data):
+    for existing_entry in existing_data:
+        if existing_entry['uniName'] == uniName:
+            return True
+    return False
 
 # parse a single page
 def parse_page(url):
@@ -11,7 +37,7 @@ def parse_page(url):
         return None
 
 # function to get courses
-def get_courses(url):
+def get_courses(url, uniName):
     course_parse = parse_page(url)
     extracted_courses = []
 
@@ -34,6 +60,8 @@ def get_courses(url):
     else:
         print("Failed to parse the study programmes page url")
 
+    # Call save_to_json_file after retrieving all data
+    save_to_json_file(extracted_courses, uniName)
     return extracted_courses
 
 # function to get events

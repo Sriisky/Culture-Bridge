@@ -9,14 +9,28 @@ function PerugiaContent() {
     const [playlist, setPlaylist] = useState([]);
     const [museums, setMuseums] = useState([]);
     const [concerts, setLiveEvents] = useState([]);
-    const coursesUrl = 'https://www.unipg.it/didattica/corsi-di-laurea-e-laurea-magistrale/area-tecnologica';
-    const eventsUrl = 'https://www.unipg.it/eventi?view=elenco';
+    const [reviews, setReviews] = useState([]);
+    //const coursesUrl = 'https://www.unipg.it/didattica/corsi-di-laurea-e-laurea-magistrale/area-tecnologica';
+    //const eventsUrl = 'https://www.unipg.it/eventi?view=elenco';
     const songkickUrl = 'https://www.songkick.com/metro-areas/30351-italy-perugia?utf8=%E2%9C%93&filters%5BminDate%5D=03%2F11%2F2024&filters%5BmaxDate%5D=12%2F31%2F2024';
     const countryCode = 'IT';
     const uniName = 'UNIPG';
     const searchCity = 'Pietro Vanucci';
+    const [userReview, setUserReview] = useState({
+        timeSpent: '',
+        description: ''
+    });
 
     useEffect(() => {
+        // Fetch reviews
+        axios.get('http://localhost:8000/api/get_reviews/', { params: { uniName: uniName } })
+        .then(response => {
+            setReviews(response.data.reviews);
+        })
+        .catch(error => {
+            console.error('Error fetching reviews:', error);
+        });
+
         fetchPlaylistInformation();
         handleSearch();
         fetchLiveConcerts();
@@ -44,11 +58,33 @@ function PerugiaContent() {
 
     const fetchLiveConcerts = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/concerts/', { params: { url: songkickUrl} });
+            const response = await axios.get('http://localhost:8000/concerts/', { params: { url: songkickUrl, countryCode: countryCode} });
             console.log('SongKicks response:', response.data);
             setLiveEvents(response.data.concerts);
         } catch (error) {
             console.error('Error fetching live events data: ', error);
+        }
+    };
+
+    const handleChange = (e) => {
+        setUserReview({...userReview, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const reviewData = {
+                review: {
+                    timeSpent: userReview.timeSpent,
+                    description: userReview.description
+                },
+                uniName: uniName
+            };
+            const response = await axios.post('http://localhost:8000/api/save_reviews/', reviewData);
+            setReviews([...reviews, reviewData.review]);
+            setUserReview({ timeSpent: '', description: '' });
+        } catch (error) {
+            console.error('Error submitting review:', error);
         }
     };
 
@@ -162,6 +198,33 @@ function PerugiaContent() {
                                 <span>{liveEvent.location}</span>
                             </div>
                         </li> 
+                    ))}
+                </ul>
+            </div>
+            <div className="content-section">
+                <h1>Reviews of Perugia From Other Students:</h1>
+                <form onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        name="timeSpent"
+                        placeholder="How long did you live here for?"
+                        value={userReview.timeSpent}
+                        onChange={handleChange}
+                    />
+                    <textarea
+                        name="description"
+                        placeholder="How did you find living here?"
+                        value={userReview.description}
+                        onChange={handleChange}
+                    ></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+                <ul class="reviews-list">
+                    {reviews.map((review, index) => (
+                        <li key={index}>
+                            <strong>Length of Stay: </strong> {review.timeSpent}<br />
+                            <strong>Review of city: </strong> {review.description}
+                        </li>
                     ))}
                 </ul>
             </div>

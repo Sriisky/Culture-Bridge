@@ -10,17 +10,30 @@ function ZilinaContent() {
     const [playlist, setPlaylist] = useState([]);
     const [museums, setMuseums] = useState([]);
     const [concerts, setLiveEvents] = useState([]);
+    const [reviews, setReviews] = useState([]);
     const coursesUrl = 'https://www.uniza.sk/index.php/en/study/study-options/programmes-2024-2025';
-    const eventsUrl = 'https://www.uniza.sk/index.php/en/';
     const songkickUrl = 'https://www.songkick.com/metro-areas/32271-slovakia-zilina?utf8=%E2%9C%93&filters%5BminDate%5D=03%2F11%2F2024&filters%5BmaxDate%5D=12%2F31%2F2024';
     const countryCode = 'SK';
     const uniName = 'UNIZA';
     const searchCity = 'Slovak';
+    const [userReview, setUserReview] = useState({
+        timeSpent: '',
+        description: ''
+    });
 
     useEffect(() => {
-        axios.get('http://localhost:8000/courses/', { params: { url: coursesUrl } })
+        axios.get('http://localhost:8000/courses/', { params: { url: coursesUrl, uniName: uniName }  })
             .then(response => setCourses(response.data.courses))  
             .catch(error => console.log(error));
+
+        // Fetch reviews
+        axios.get('http://localhost:8000/api/get_reviews/', { params: { uniName: uniName } })
+        .then(response => {
+            setReviews(response.data.reviews);
+        })
+        .catch(error => {
+            console.error('Error fetching reviews:', error);
+        });
 
         fetchPlaylistInformation();
         handleSearch();
@@ -49,11 +62,33 @@ function ZilinaContent() {
 
     const fetchLiveConcerts = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/concerts/', { params: { url: songkickUrl} });
+            const response = await axios.get('http://localhost:8000/concerts/', { params: { url: songkickUrl, countryCode: countryCode} });
             console.log('SongKicks response:', response.data);
             setLiveEvents(response.data.concerts);
         } catch (error) {
             console.error('Error fetching live events data: ', error);
+        }
+    };
+
+    const handleChange = (e) => {
+        setUserReview({...userReview, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const reviewData = {
+                review: {
+                    timeSpent: userReview.timeSpent,
+                    description: userReview.description
+                },
+                uniName: uniName
+            };
+            const response = await axios.post('http://localhost:8000/api/save_reviews/', reviewData);
+            setReviews([...reviews, reviewData.review]);
+            setUserReview({ timeSpent: '', description: '' });
+        } catch (error) {
+            console.error('Error submitting review:', error);
         }
     };
 
@@ -152,6 +187,33 @@ function ZilinaContent() {
                                 <span>{liveEvent.location}</span>
                             </div>
                         </li> 
+                    ))}
+                </ul>
+            </div>
+            <div className="content-section">
+                <h1>Reviews of Darmstadt From Other Students:</h1>
+                <form onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        name="timeSpent"
+                        placeholder="How long did you live here for?"
+                        value={userReview.timeSpent}
+                        onChange={handleChange}
+                    />
+                    <textarea
+                        name="description"
+                        placeholder="How did you find living here?"
+                        value={userReview.description}
+                        onChange={handleChange}
+                    ></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+                <ul class="reviews-list">
+                    {reviews.map((review, index) => (
+                        <li key={index}>
+                            <strong>Length of Stay: </strong> {review.timeSpent}<br />
+                            <strong>Review of city: </strong> {review.description}
+                        </li>
                     ))}
                 </ul>
             </div>

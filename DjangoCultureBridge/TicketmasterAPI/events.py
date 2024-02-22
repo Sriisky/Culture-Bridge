@@ -1,4 +1,21 @@
 import requests
+import json
+import os
+
+# Define the path to the JSON file
+json_file_path = r"C:\Users\srisk\OneDrive - Technological University Dublin\Documents\YEAR 4 SEM 1\Final Year Project\Coding\Culture-Bridge\DjangoCultureBridge\DataFiles\liveEvents_data.json"
+
+def save_to_json_file(new_data, country_code):
+    existing_data = read_existing_data(json_file_path)
+    if not is_duplicate(country_code, existing_data):
+        with open(json_file_path, 'a') as file:
+            for entry in new_data:
+                # Create a copy of entry excluding 'url' and 'image_url'
+                entry_to_save = {key: value for key, value in entry.items() if key not in ['url', 'image_url']}
+                json.dump(entry_to_save, file)
+                file.write('\n')
+
+
 
 def get_live_events(api_key, countryCode, page=0, size=200):
     # Construct API request URL
@@ -47,9 +64,13 @@ def get_live_events(api_key, countryCode, page=0, size=200):
                         "subgenre": subgenre,
                         "image_url": image_url
                     }
+                    event_detail["countryCode"] = countryCode  # Add countryCode to each event detail
                     event_details.append(event_detail)
                     unique_event_names.add(event_name)
-
+            
+            # Call save_to_json_file after retrieving all data
+            save_to_json_file(event_details, countryCode)
+            
             return event_details
         else:
             print("No events found.")
@@ -58,3 +79,17 @@ def get_live_events(api_key, countryCode, page=0, size=200):
         # Handle errors
         print(f"Error fetching events: {e}")
         return []
+    
+
+def read_existing_data(file_path):
+    if not os.path.exists(file_path):
+        return []
+    with open(file_path, 'r') as file:
+        return [json.loads(line) for line in file]
+
+def is_duplicate(country_code, existing_data):
+    for existing_event in existing_data:
+        if existing_event['countryCode'] == country_code:
+            return True
+    return False
+

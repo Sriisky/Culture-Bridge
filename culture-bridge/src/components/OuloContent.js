@@ -9,14 +9,29 @@ function OuloContent() {
     const [playlist, setPlaylist] = useState([]);
     const [museums, setMuseums] = useState([]);
     const [liveEvents, setLiveEvents] = useState([]);
+    const [reviews, setReviews] = useState([]);
     const coursesUrl = 'https://oamk.fi/en/study-at-oamk/bachelor-s-degrees/';
     const countryCode = 'FI';
+    const uniName = 'OAMK';
     const searchCity = 'Northern Ostrobothnia Museum';
+    const [userReview, setUserReview] = useState({
+        timeSpent: '',
+        description: ''
+    });
 
     useEffect(() => {
-        axios.get('http://localhost:8000/courses/', { params: { url: coursesUrl } })
+        axios.get('http://localhost:8000/courses/', { params: { url: coursesUrl, uniName: uniName }  })
             .then(response => setCourses(response.data.courses))  
             .catch(error => console.log(error));
+
+        // Fetch reviews
+        axios.get('http://localhost:8000/api/get_reviews/', { params: { uniName: uniName } })
+        .then(response => {
+            setReviews(response.data.reviews);
+        })
+        .catch(error => {
+            console.error('Error fetching reviews:', error);
+        });
 
         fetchPlaylistInformation(); 
         handleSearch();  
@@ -50,6 +65,28 @@ function OuloContent() {
             setLiveEvents(response.data.liveEvents);
         } catch (error) {
             console.error('Error fetching live events data: ', error);
+        }
+    };
+
+    const handleChange = (e) => {
+        setUserReview({...userReview, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const reviewData = {
+                review: {
+                    timeSpent: userReview.timeSpent,
+                    description: userReview.description
+                },
+                uniName: uniName
+            };
+            const response = await axios.post('http://localhost:8000/api/save_reviews/', reviewData);
+            setReviews([...reviews, reviewData.review]);
+            setUserReview({ timeSpent: '', description: '' });
+        } catch (error) {
+            console.error('Error submitting review:', error);
         }
     };
 
@@ -141,6 +178,33 @@ function OuloContent() {
                                 <span>{event.subgenre}</span>
                             </div>
                         </li> 
+                    ))}
+                </ul>
+            </div>
+            <div className="content-section">
+                <h1>Reviews of Oulo From Other Students:</h1>
+                <form onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        name="timeSpent"
+                        placeholder="How long did you live here for?"
+                        value={userReview.timeSpent}
+                        onChange={handleChange}
+                    />
+                    <textarea
+                        name="description"
+                        placeholder="How did you find living here?"
+                        value={userReview.description}
+                        onChange={handleChange}
+                    ></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+                <ul class="reviews-list">
+                    {reviews.map((review, index) => (
+                        <li key={index}>
+                            <strong>Length of Stay: </strong> {review.timeSpent}<br />
+                            <strong>Review of city: </strong> {review.description}
+                        </li>
                     ))}
                 </ul>
             </div>
