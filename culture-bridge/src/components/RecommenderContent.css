@@ -1,18 +1,72 @@
-.recommend-container{
+.recommend-container {
     margin: 4rem 6rem;
     text-align: start;
 }
 
-.recommend-container h1{
+.recommend-container h1 {
     padding-bottom: 1rem;
+    text-align: center; /* Center the h1 */
 }
 
-.recommend-container p{
-    padding-bottom: 2rem;
+.recommend-container h2 {
+    margin-top: 2em; /* Adjusts space above each h2 */
+    margin-bottom: 0.7em; /* Adjusts space below each h2 */
 }
 
-@media screen and (max-width: 850px){
-    .recommend-container{
+
+.recommend-container p {
+    padding-bottom: 0.5rem;
+}
+
+@media screen and (max-width: 850px) {
+    .recommend-container {
         margin: 4rem 2rem;
     }
+}
+
+@media screen and (max-width: 600px) {
+    .rounded-button {
+        min-width: calc((100% / 3) - 10px); /* 3 bubbles per row on small screens */
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .rounded-button {
+        min-width: calc((100% / 2) - 10px); /* 2 bubbles per row on very small screens */
+    }
+}
+
+.bubble-select {
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center children horizontally */
+    margin-bottom: 2rem;
+    padding-top: 0.7rem;
+}
+
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center buttons horizontally */
+    padding: 0 2rem; /* Adjust padding as needed */
+}
+
+.recc-submit {
+    font-size: 1.5em; /* Makes the text twice as large */
+    margin-top: 30px;
+    padding: 16px 32px; /* Increase padding to make the button larger overall */
+    /* Adjust as needed to fit your design */
+}
+
+.rounded-button {
+    min-width: calc((100% / 6) - 10px); /* Example calculation */
+    margin: 5px; /* Adjust margin as needed */
+    padding: 8px 16px;
+    /* Other styles remain the same */
+}
+
+
+.selected {
+    background-color: #000000;
+    color: #fff;
 }

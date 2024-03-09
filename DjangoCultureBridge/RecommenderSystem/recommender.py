@@ -1,125 +1,381 @@
 import pandas as pd
 import numpy as np
+import json
 import os
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.feature_extraction.text import TfidfVectorizer
 
-# read in the csv files
-module_dir = os.path.dirname(__file__)
-songs_csv_filepath = os.path.join(module_dir, 'SampleCSV', 'songs_genres.csv')
-cities_csv_filepath = os.path.join(module_dir, 'SampleCSV', 'cities.csv')
-events_csv_filepath = os.path.join(module_dir, 'SampleCSV', 'events.csv')
-universities_csv_filepath = os.path.join(module_dir, 'SampleCSV', 'universities.csv')
+def process_recommendations(selections):
+    # Initialize dictionaries to hold the separated values
+    genres = []
+    events = []
+    courses = []
+    traits = []
 
-songs_df = pd.read_csv(songs_csv_filepath)
-cities_df = pd.read_csv(cities_csv_filepath)
-events_df = pd.read_csv(events_csv_filepath)
-universities_df = pd.read_csv(universities_csv_filepath)
+    # Check if the key exists in selections and then extend the appropriate list
+    if 'genres' in selections:
+        genres.extend(selections['genres'])
+    if 'events' in selections:
+        events.extend(selections['events'])
+    if 'courses' in selections:
+        courses.extend(selections['courses'])
+    if 'traits' in selections:
+        traits.extend(selections['traits'])
 
-# select key information needed to conduct recommendations
-song_imp_features = ['song_name', 'genre']
-songs = songs_df[song_imp_features]
+    # Create a variable to hold the selections
+    processed_selections = {
+        "genres": genres,
+        "events": events,
+        "courses": courses,
+        "traits": traits
+    }
 
-cities_imp_features = ['country', 'population']
-cities = cities_df[cities_imp_features]
-
-events_imp_features = ['event_type']
-events = events_df[events_imp_features]
-
-universities_imp_features = ['course_name', 'university_name']
-universities = universities_df[universities_imp_features]
-
-# using .loc to avoid SettingWithCopyWarning
-songs.loc[:, 'combined_songs'] = songs['song_name'] + ' ' + songs['genre']
-cities.loc[:, 'combined_cities'] = cities['country'] + ' ' + cities['population'].astype(str)
-events.loc[:, 'combined_events'] = events['event_type']
-universities.loc[:, 'combined_unis'] = universities['course_name'] + ' ' + universities['university_name']
-
-# count vectorizer object
-cv = CountVectorizer()
-
-# creating a count vectorizer for each combined features
-songs_count_matrix = cv.fit_transform(songs['combined_songs'])
-cities_count_matrix = cv.fit_transform(cities['combined_cities'])
-events_count_matrix = cv.fit_transform(events['combined_events'])
-universities_count_matrix = cv.fit_transform(universities['combined_unis'])
-
-# calculate the cosine similarity of items in each of the datasets
-song_cosin_sim = cosine_similarity(songs_count_matrix)
-cities_cosin_sim = cosine_similarity(cities_count_matrix)
-events_cosin_sim = cosine_similarity(events_count_matrix)
-universities_cosin_sim = cosine_similarity(universities_count_matrix)
-
-
-# function for song recommendations (based on a user inputted song)
-def song_recommender(song_title):
-    if song_title not in songs_df['song_name'].values:
-        return pd.DataFrame() 
-    # find the index of the song the user has inputted
-    song_index = songs_df[songs_df.song_name == song_title]['ID'].values[0]
-    # find cosine similarity in respect to the index num of the given song
-    similar_songs = list(enumerate(song_cosin_sim[song_index]))
-
-    sorted_similar_songs = sorted(similar_songs, key=lambda x: x[1], reverse=True)
-    song_indices = [i[0] for i in sorted_similar_songs]
+    print("Processed Selections:", processed_selections)
     
-    # extract song names and genres from the extracted index numbers
-    recommended_songs = songs_df.loc[song_indices, ['song_name', 'genre']]
-    recommended_songs = recommended_songs.reset_index(drop=True)
-
-    return recommended_songs.iloc[1:11] # start from 1 to ignore the song the user inputted
-
-# testing
-# print(song_recommender('Mentirosa'))
-
-
-# function for city recommendations (based on extroversion or introversion of a user)
-# threshold is the percentage difference allowed from population_count
-def city_recommender(population_count, threshold = 0.3):
-    # range of population
-    min_population = population_count * (1 - threshold)
-    max_population = population_count * (1 + threshold)
-
-    # find cities where the population is within the range
-    similar_cities = cities_df[(cities_df['population'] >= min_population) &
-                               (cities_df['population'] <= max_population)]
-    similar_cities = similar_cities.reset_index(drop = True)
-
-    # return the city names
-    return similar_cities.head(5)
-
-# function for event recommender (based on event_genre)
-def event_recommender(eventType):
-    event_index = events_df[events_df.event_type == eventType]['ID'].values[0]
-
-    similar_events = list(enumerate(events_cosin_sim[event_index]))
+    return processed_selections
     
-    # sort events based on the similarity scores in descending order
-    sorted_similar_events = sorted(similar_events, key=lambda x: x[1], reverse=True)
-    event_indices = [i[0] for i in sorted_similar_events]
     
-    # dataFrame for the recommended events
-    recommended_events = events_df.iloc[event_indices][['event_name', 'location', 'event_type']]
-    
-    recommended_events = recommended_events.reset_index(drop=True)
-    return recommended_events.head(10)
+def load_json_lines(file_path):
+    # Load JSON objects from a file with JSON Lines format
+    data_list = []
+    with open(file_path, 'r') as file:
+        for line in file:
+            data_list.append(json.loads(line))
+    return data_list
+
+def load_json(file_path):
+    # Load a JSON file
+    with open(file_path, 'r') as file:
+        data = json.load(file)
+    return data
 
 
-# function for university recommender (based on course name)
-def uni_recommender(courseName):
-    course_indices = universities_df[universities_df.course_name == courseName].index
-    
-    # calculate the average cosine similarity score for the given course
-    course_cosine_scores = np.mean(universities_cosin_sim[course_indices], axis=0)
-    
-    # get similarity scores for all courses with respect to the input course
-    similar_courses = list(enumerate(course_cosine_scores))
+def create_dataframe(flat_data):
+    #Convert a list of dictionaries into a pandas DataFrame
+    return pd.DataFrame(flat_data)
 
-    sorted_similar_courses = sorted(similar_courses, key=lambda x: x[1], reverse=True)
-    course_indices = [i[0] for i in sorted_similar_courses]
-    
-    # dataFrame for the recommended courses
-    recommended_uni = universities_df.iloc[course_indices][['university_name', 'course_name']]
+def flatten_uni_courses(data_list):
+    # Flatten university course data into a list of dictionaries
+    flat_data = []
+    for university in data_list:
+        uni_name = university['uniName']
+        for course in university['courses']:
+            flat_data.append({
+                'University Name': uni_name,
+                'Course Name': course['Course Name']
+            })
+    return flat_data
 
-    recommended_uni = recommended_uni.reset_index(drop=True)
-    return recommended_uni.head(10)
+def flatten_live_events(data_list):
+    # Flatten live event data into a list of dictionaries, considering potential key discrepancies
+    flat_data = []
+    for event in data_list:
+        # Use a try-except block to catch missing keys and handle them gracefully
+        try:
+            # Initialize default values for keys
+            event_name = event.get('title') or event.get('name')  # Supports both 'title' and 'name' keys
+            date = event.get('date')
+            genre = event.get('genre', '')  # Use an empty string if 'genre' is not available
+            subgenre = event.get('subgenre', '')  # Use an empty string if 'subgenre' is not available
+            country_code = event.get('countryCode')
+            location = event.get('location', '')  # Use an empty string if 'location' is not available
+
+            # Append a dictionary for the event with available information
+            flat_data.append({
+                'Event Name': event_name,
+                'Date': date,
+                'Genre': genre,
+                'Subgenre': subgenre,
+                'Country Code': country_code,
+                'Location': location
+            })
+        except KeyError as e:
+            print(f"Missing key in event: {e}")
+            continue  # Skip this event and continue with the next
+    return flat_data
+
+def flatten_spotify_playlist(data_list):
+    # Flatten Spotify playlist data into a list of dictionaries, handling various formats
+    flat_data = []
+    for item in data_list:
+        # Handle track entries
+        if 'title' in item or 'name' in item:
+            title = item.get('title', '') or item.get('name', '')
+            artist = item.get('artist', '')
+            country_code = item.get('countryCode', '')
+            flat_data.append({
+                'Title': title,
+                'Artist': artist,
+                'Country Code': country_code,
+                # Set genre statistics to None for individual tracks
+                'Hip hop/Rap/R&b': None,
+                'EDM': None,
+                'Pop': None,
+                'Rock/Metal': None,
+                'Latin/Reggaeton': None,
+                'Other': None
+            })
+        # Handle genre statistics entries
+        else:
+            flat_data.append({
+                'Title': None,  # No title for genre statistics entries
+                'Artist': None,  # No artist for genre statistics entries
+                'Country Code': item['countryCode'],
+                'Hip hop/Rap/R&b': item.get('Hip hop/Rap/R&b'),
+                'EDM': item.get('EDM'),
+                'Pop': item.get('Pop'),
+                'Rock/Metal': item.get('Rock/Metal'),
+                'Latin/Reggaeton': item.get('Latin/Reggaeton'),
+                'Other': item.get('Other')
+            })
+    return flat_data
+
+def flatten_reviews(data):
+    # Flatten review data into a list of dictionaries.
+    flat_data = []
+    for institution, reviews in data.items():
+        for review in reviews:
+            flat_data.append({
+                'University Name': institution,
+                'Time Spent': review['timeSpent'],
+                'Description': review['description']
+            })
+    return flat_data
+
+
+
+def recommend_courses(processed_selections, uniCourses_df, top_n=5):
+    # Extract course preferences from the processed selections
+    course_preferences = processed_selections['courses']
+
+    # Combine all course names into a single string for each university
+    uniCourses_df['combined'] = uniCourses_df.groupby('University Name')['Course Name'].transform(lambda x: ' '.join(x))
+    # Drop duplicates to ensure we only have one row per university
+    uni_courses_combined = uniCourses_df[['University Name', 'combined']].drop_duplicates()
+
+    # Instantiate the vectorizer
+    vectorizer = CountVectorizer().fit(uni_courses_combined['combined'])
+    # Vectorize the combined course names
+    course_matrix = vectorizer.transform(uni_courses_combined['combined'])
+
+    # Vectorize the course preferences
+    prefs_vector = vectorizer.transform([' '.join(course_preferences)])
+    
+    # Compute cosine similarity between course preferences and university course offerings
+    cosine_sim = cosine_similarity(prefs_vector, course_matrix)
+
+    # Get similarity scores for all universities and sort them
+    similarity_scores = list(enumerate(cosine_sim[0]))
+    similarity_scores = sorted(similarity_scores, key=lambda x: x[1], reverse=True)
+
+    # Get the top 5 most similar universities
+    top_indexes = [i[0] for i in similarity_scores[:top_n]]
+    
+    # Fetch the top universities as before
+    top_universities = uni_courses_combined.iloc[top_indexes]
+    top_uni_names = top_universities['University Name'].tolist()
+
+    # Initialize a result dictionary
+    result = {}
+    
+    # For each top university, find courses that match the preferences
+    for uni in top_uni_names:
+        # Filter courses for the current university
+        uni_courses = uniCourses_df[uniCourses_df['University Name'] == uni]['Course Name'].tolist()
+        
+        # Calculate similarity scores for each course
+        course_scores = []
+        for course in uni_courses:
+            # Represent each course and preferences as text for vectorization
+            course_text = ' '.join([course])
+            prefs_text = ' '.join(course_preferences)
+            # Vectorize and calculate cosine similarity
+            vectorized_text = vectorizer.transform([course_text, prefs_text])
+            score = cosine_similarity(vectorized_text[0], vectorized_text[1])
+            course_scores.append((course, score[0][0]))
+        
+        # Sort courses based on similarity scores
+        sorted_courses = sorted(course_scores, key=lambda x: x[1], reverse=True)
+        # Select top matching courses
+        top_courses = sorted_courses[:top_n]
+        
+        # Add to result
+        result[uni] = [course[0] for course in top_courses]
+
+    return result
+
+
+
+'''
+# Example usage
+processed_selections = ['Art Design']
+recommendations = recommend_courses(processed_selections, uniCourses_df)
+for uni, courses in recommendations.items():
+    print(f"University: {uni}")
+    for course in courses:
+        print(f"  - {course}")
+'''
+
+
+def recommend_music(processed_selections, spotifyPlaylist_df):
+    # Extract course preferences from the processed selections
+    genre_preferences = processed_selections['genres']
+    # Filter out genres that do not exist in the DataFrame
+    valid_genres = [genre for genre in genre_preferences if genre in spotifyPlaylist_df.columns]
+    # Calculate combined score only for valid genres
+    spotifyPlaylist_df['combined_score'] = spotifyPlaylist_df[valid_genres].apply(pd.to_numeric, errors='coerce').sum(axis=1)
+    
+    # Sort the DataFrame by combined score in descending order
+    sorted_countries = spotifyPlaylist_df.sort_values(by='combined_score', ascending=False)
+    
+    # Select the top 5 countries
+    top_countries = sorted_countries.head(5)
+    
+    return top_countries[['Country Code', 'combined_score'] + valid_genres]
+
+'''
+# Example usage
+genres_preferences = ['EDM', 'Latin/Reggaeton']  # Ensure these genres exist in your DataFrame
+top_countries = recommend_countries_by_genres(genres_preferences, spotifyPlaylist_df)
+print(top_countries)
+'''
+
+def recommend_events(processed_selections, liveEvents_df, top_n=5):
+    # Extract genre preferences from the processed selections
+    genres_preferences = processed_selections['events']
+    # Filter DataFrame for rows where 'Genre' or 'Subgenre' matches the preferences
+    filtered_df = liveEvents_df[liveEvents_df['Genre'].isin(genres_preferences) | liveEvents_df['Subgenre'].isin(genres_preferences)]
+    
+    # Group by 'Country Code' and count the occurrences
+    country_counts = filtered_df.groupby('Country Code').size().reset_index(name='Counts').sort_values(by='Counts', ascending=False).head(top_n)
+    
+    # Initialize top_countries_events dictionary to include all country codes in country_counts with an empty list
+    # This ensures that every country code in the top_n has an entry, even if no events are available to sample
+    top_countries_events = {row['Country Code']: [] for _, row in country_counts.iterrows()}
+    
+    # For each top country, get a sample of matching events
+    for country_code in top_countries_events.keys():
+        # Ensure you don't sample more items than available for the specific country code
+        num_items = len(filtered_df[filtered_df['Country Code'] == country_code])
+        sample_size = min(num_items, 3)  # Sample up to 3 events, but not more than available
+        if sample_size > 0:  # Ensure there is something to sample
+            sample_events = filtered_df[filtered_df['Country Code'] == country_code].sample(sample_size)
+            top_countries_events[country_code] = sample_events[['Event Name', 'Genre', 'Subgenre']].to_dict('records')
+    
+    return country_counts, top_countries_events
+
+
+'''
+genres_preferences = ['Dance/Electronic']
+top_countries, matching_events = recommend_countries_by_live_events(genres_preferences, liveEvents_df)
+print(top_countries)
+for country, events in matching_events.items():
+    print(f"Country Code: {country}, Sample Events: {events}")
+    '''
+
+def recommend_reviews(processed_selections, reviews_df):
+    # Extract buzzwords from the processed selections
+    buzzwords = processed_selections['traits']
+    # Combine all descriptions into a single string for each institution
+    reviews_df['combined_descriptions'] = reviews_df.groupby('University Name')['Description'].transform(lambda x: ' '.join(x))
+    # Drop duplicates to ensure we only have one row per institution
+    uni_reviews_combined = reviews_df[['University Name', 'combined_descriptions']].drop_duplicates()
+
+    # Instantiate the vectorizer
+    vectorizer = TfidfVectorizer(stop_words='english')
+    # Vectorize the combined descriptions
+    descriptions_matrix = vectorizer.fit_transform(uni_reviews_combined['combined_descriptions'])
+
+    # Vectorize the buzzwords
+    buzzwords_vector = vectorizer.transform([' '.join(buzzwords)])
+    
+    # Compute cosine similarity between buzzwords and institution descriptions
+    cosine_sim = cosine_similarity(buzzwords_vector, descriptions_matrix)
+
+    # Get similarity scores for all institutions and sort them
+    similarity_scores = list(enumerate(cosine_sim[0]))
+    similarity_scores_sorted = sorted(similarity_scores, key=lambda x: x[1], reverse=True)
+
+    # Get the top 5 most similar institutions
+    top_indexes = [i[0] for i in similarity_scores_sorted[:5]]
+    
+    # Fetch the institution names and their scores
+    top_unis = uni_reviews_combined.iloc[top_indexes].copy()
+    top_unis['Similarity Score'] = [similarity_scores_sorted[i][1] for i in range(5)]
+
+
+    return top_unis[['University Name', 'Similarity Score']]
+
+'''
+# Example usage
+buzzwords = ['Lively', 'Fun', 'Bars']
+top_unis = recommend_unis_by_buzzwords(buzzwords, reviews_df)
+print(top_unis)
+'''
+
+def city_recommender(total_recommendations):
+    uni_to_country_code = {
+        'HDA': 'DE',
+        'WINDESHEIM': 'NL',
+        'OAMK': 'FI',
+        'OTH': 'DE',
+        'MDU': 'SE',
+        'FHNW': 'CH', 
+        'UIA': 'NO',
+        'FH': 'AT',
+        'RIT': 'HR',
+        'UNIZA': 'SK',
+        'UPC': 'ES',
+        'UNILJ': 'SI',
+        'UNIPG': 'IT',
+    }
+
+    location_counts = {}
+    uni_counts = {}
+    uni_associations = {}
+
+    # Handle 'courses'
+    for uni in total_recommendations['courses']:
+        country_code = uni_to_country_code.get(uni, uni)
+        location_counts[country_code] = location_counts.get(country_code, 0) + 1
+        uni_counts[uni] = uni_counts.get(uni, 0) + 1
+        uni_associations.setdefault(country_code, set()).add(uni)
+        
+    # Simplified handling for 'events', only using the dictionary part for counting occurrences
+    _, events_dict = total_recommendations['events']
+    for country_code in events_dict:
+        location_counts[country_code] = location_counts.get(country_code, 0) + len(events_dict[country_code])
+        # Since events don't specify universities, no association added here
+
+    # Handle 'music'
+    for _, row in total_recommendations['music'].iterrows():
+        country_code = row['Country Code']
+        location_counts[country_code] = location_counts.get(country_code, 0) + 1
+        # Music recommendations don't specify universities, so no association added
+
+    # Handle 'reviews'
+    for _, row in total_recommendations['reviews'].iterrows():
+        uni_name = row['University Name']
+        country_code = uni_to_country_code.get(uni_name, uni_name)
+        location_counts[country_code] = location_counts.get(country_code, 0) + 1
+        uni_counts[uni_name] = uni_counts.get(uni_name, 0) + 1
+        uni_associations.setdefault(country_code, set()).add(uni_name)
+
+    # Identify the top 3 locations based on occurrence
+    top_locations = sorted(location_counts.items(), key=lambda item: item[1], reverse=True)[:3]
+
+    top_cities = []
+    for loc, count in top_locations:
+        associated_unis = list(uni_associations.get(loc, []))
+        if len(associated_unis) > 1 and loc in uni_to_country_code.values():
+            # If multiple universities are associated with this country code, find the most frequently occurring one
+            highest_uni = max(associated_unis, key=lambda uni: uni_counts[uni])
+            associated_unis = [highest_uni]
+        top_cities.append({
+            'Location': loc,
+            'Count': count,
+            'Associated Universities': associated_unis
+        })
+
+    return top_cities

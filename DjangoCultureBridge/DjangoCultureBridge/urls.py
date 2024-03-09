@@ -16,10 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from RecommenderSystem.views import (
-    SongRecommenderView, 
-    CityRecommenderView, 
-    EventRecommenderView, 
-    UniversityRecommenderView
+    #SongRecommenderView, 
+    #CityRecommenderView, 
+    #EventRecommenderView, 
+    #UniversityRecommenderView,
+    RecommendationView
 )
 from WebScraper.views import (
     courses_view, 
@@ -33,10 +34,11 @@ from CityReviews.views import ReviewsView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/song-recommender/', SongRecommenderView.as_view(), name='song-recommender'),
-    path('api/city-recommender/', CityRecommenderView.as_view(), name='city-recommender'),
-    path('api/event-recommender/', EventRecommenderView.as_view(), name='event-recommender'),
-    path('api/university-recommender/', UniversityRecommenderView.as_view(), name='university-recommender'),
+    #path('api/song-recommender/', SongRecommenderView.as_view(), name='song-recommender'),
+    #path('api/city-recommender/', CityRecommenderView.as_view(), name='city-recommender'),
+    #path('api/event-recommender/', EventRecommenderView.as_view(), name='event-recommender'),
+    #path('api/university-recommender/', UniversityRecommenderView.as_view(), name='university-recommender'),
+    path('api/process-recommendations/', RecommendationView.as_view(), name='parse-recommender'),
     path('courses/', courses_view, name='get_courses'),
     path('events/', events_view, name='get_events'),
     path('concerts/', concerts_view, name='get_concerts'),

@@ -107,24 +107,26 @@ function RecommenderContent() {
             <div className='bubble-select'>
                 <h2>Types of Music</h2>
                 <div className="button-group">
-                    <button className={`rounded-button ${isSelected('genres', 'Hip hop/Rap/R&b') ? 'selected' : ''}`} onClick={() => handleSelect('genres', 'Hip hop/Rap/R&b')}>Hip Hop/ Rap</button>
+                    <button className={`rounded-button ${isSelected('genres', 'Hip Hop/Rap') ? 'selected' : ''}`} onClick={() => handleSelect('genres', 'Hip Hop/Rap')}>Hip Hop/ Rap</button>
                     <button className={`rounded-button ${isSelected('genres', 'Pop') ? 'selected' : ''}`} onClick={() => handleSelect('genres', 'Pop')}>Pop</button>
-                    <button className={`rounded-button ${isSelected('genres', 'EDM') ? 'selected' : ''}`} onClick={() => handleSelect('genres', 'EDM')}>Electronic</button>
-                    <button className={`rounded-button ${isSelected('genres', 'Rock/Metal') ? 'selected' : ''}`} onClick={() => handleSelect('genres', 'Rock/Metal')}>Rock</button>
-                    <button className={`rounded-button ${isSelected('genres', 'Latin/Reggaeton') ? 'selected' : ''}`} onClick={() => handleSelect('genres', 'Latin/Reggaeton')}>Reggae</button>
+                    <button className={`rounded-button ${isSelected('genres', 'Electronic') ? 'selected' : ''}`} onClick={() => handleSelect('genres', 'Electronic')}>Electronic</button>
+                    <button className={`rounded-button ${isSelected('genres', 'Rock') ? 'selected' : ''}`} onClick={() => handleSelect('genres', 'Rock')}>Rock</button>
+                    <button className={`rounded-button ${isSelected('genres', 'Reggae') ? 'selected' : ''}`} onClick={() => handleSelect('genres', 'Reggae')}>Reggae</button>
                 </div>
 
                 <h2>Types of Live Events</h2>
                 <div className="button-group">
+                    {/* Note: Assuming 'events' is the intended category for these selections */}
                     <button className={`rounded-button ${isSelected('events', 'Rock') ? 'selected' : ''}`} onClick={() => handleSelect('events', 'Rock')}>Rock</button>
                     <button className={`rounded-button ${isSelected('events', 'Hard Rock') ? 'selected' : ''}`} onClick={() => handleSelect('events', 'Hard Rock')}>Hard Rock</button>
                     <button className={`rounded-button ${isSelected('events', 'Pop') ? 'selected' : ''}`} onClick={() => handleSelect('events', 'Pop')}>Pop</button>
-                    <button className={`rounded-button ${isSelected('events', 'Dance/Electronic') ? 'selected' : ''}`} onClick={() => handleSelect('events', 'Dance/Electronic')}>Electronic</button>
-                    <button className={`rounded-button ${isSelected('events', 'Indie Pop') ? 'selected' : ''}`} onClick={() => handleSelect('events', 'Indie Pop')}>Indie</button>
-                    <button className={`rounded-button ${isSelected('events', 'Fairs & Festivals') ? 'selected' : ''}`} onClick={() => handleSelect('events', 'Fairs & Festivals')}>Festivals</button>
+                    <button className={`rounded-button ${isSelected('events', 'Electronic') ? 'selected' : ''}`} onClick={() => handleSelect('events', 'Electronic')}>Electronic</button>
+                    <button className={`rounded-button ${isSelected('events', 'Indie') ? 'selected' : ''}`} onClick={() => handleSelect('events', 'Indie')}>Indie</button>
+                    <button className={`rounded-button ${isSelected('events', 'Festivals') ? 'selected' : ''}`} onClick={() => handleSelect('events', 'Festivals')}>Festivals</button>
                     <button className={`rounded-button ${isSelected('events', 'Classical') ? 'selected' : ''}`} onClick={() => handleSelect('events', 'Classical')}>Classical</button>
-                    <button className={`rounded-button ${isSelected('events', 'Jazz Blues') ? 'selected' : ''}`} onClick={() => handleSelect('events', 'Jazz Blues')}>Jazz</button>
-                    <button className={`rounded-button ${isSelected('events', 'Hip-Hop/Rap') ? 'selected' : ''}`} onClick={() => handleSelect('events', 'Hip-Hop/Rap')}>Hip Hop/Rap</button>
+                    <button className={`rounded-button ${isSelected('events', 'Blues') ? 'selected' : ''}`} onClick={() => handleSelect('events', 'Blues')}>Blues</button>
+                    <button className={`rounded-button ${isSelected('events', 'Jazz') ? 'selected' : ''}`} onClick={() => handleSelect('events', 'Jazz')}>Jazz</button>
+                    <button className={`rounded-button ${isSelected('events', 'Hip Hop Rap') ? 'selected' : ''}`} onClick={() => handleSelect('events', 'Hip Hop Rap')}>Hip Hop/Rap</button>
                     <button className={`rounded-button ${isSelected('events', 'Theatre') ? 'selected' : ''}`} onClick={() => handleSelect('events', 'Theatre')}>Theatre</button>
                     <button className={`rounded-button ${isSelected('events', 'Metal') ? 'selected' : ''}`} onClick={() => handleSelect('events', 'Metal')}>Metal</button>
                     <button className={`rounded-button ${isSelected('events', 'World') ? 'selected' : ''}`} onClick={() => handleSelect('events', 'World')}>World Music</button>
@@ -144,20 +146,78 @@ function RecommenderContent() {
                 <h2>City Traits</h2>
                 <div className="button-group">
                     <button className={`rounded-button ${isSelected('traits', 'Busy') ? 'selected' : ''}`} onClick={() => handleSelect('traits', 'Busy')}>Busy</button>
-                    <button className={`rounded-button ${isSelected('traits', 'Sports') ? 'selected' : ''}`} onClick={() => handleSelect('traits', 'Sports')}>Sports</button>
-                    <button className={`rounded-button ${isSelected('traits', 'chill') ? 'selected' : ''}`} onClick={() => handleSelect('traits', 'chill')}>Quiet</button>
-                    <button className={`rounded-button ${isSelected('traits', 'Culture') ? 'selected' : ''}`} onClick={() => handleSelect('traits', 'Culture')}>Cultural Sites</button>
-                    <button className={`rounded-button ${isSelected('traits', 'Clubs') ? 'selected' : ''}`} onClick={() => handleSelect('traits', 'Clubs')}>Nightclubs</button>
-                    <button className={`rounded-button ${isSelected('traits', 'Cheap') ? 'selected' : ''}`} onClick={() => handleSelect('traits', 'Cheap')}>Cheap</button>
-                    <button className={`rounded-button ${isSelected('traits', 'Bars') ? 'selected' : ''}`} onClick={() => handleSelect('traits', 'Bars')}>Bars</button>
-                    <button className={`rounded-button ${isSelected('traits', 'Travel') ? 'selected' : ''}`} onClick={() => handleSelect('traits', 'Travel')}>Travelling</button>
-                    <button className={`rounded-button ${isSelected('traits', 'Event') ? 'selected' : ''}`} onClick={() => handleSelect('traits', 'Event')}>Live Events</button>
+                    <button className={`rounded-button ${isSelected('traits', 'Lively') ? 'selected' : ''}`} onClick={() => handleSelect('traits', 'Lively')}>Lively</button>
+                    <button className={`rounded-button ${isSelected('traits', 'Quiet') ? 'selected' : ''}`} onClick={() => handleSelect('traits', 'Quiet')}>Quiet</button>
+                    <button className={`rounded-button ${isSelected('traits', 'Cultural Sites') ? 'selected' : ''}`} onClick={() => handleSelect('traits', 'Cultural Sites')}>Cultural Sites</button>
+                    <button className={`rounded-button ${isSelected('traits', 'Bars and Clubs') ? 'selected' : ''}`} onClick={() => handleSelect('traits', 'Bars and Clubs')}>Bars and Clubs</button>
+                    <button className={`rounded-button ${isSelected('traits', 'Live Events') ? 'selected' : ''}`} onClick={() => handleSelect('traits', 'Live Events')}>Live Events</button>
                 </div>
                 <button className='recc-submit' onClick={handleSubmit}>Submit</button>
             </div>
 
             
-            
+            <div className="recommend-return">
+                <h2>Song Recommendations</h2>
+                <input 
+                    type="text" 
+                    value={songTitle} 
+                    onChange={(e) => setSongTitle(e.target.value)} 
+                    placeholder="Enter a song title" 
+                />
+                <button onClick={fetchSongRecommendations}>Get Song Recommendations</button>
+                {error && <div>Error: {error}</div>}
+
+                <ul>
+                    {recommendations.map((item, index) => (
+                        <li key={index}>{item.song_name} - {item.genre}</li>
+                    ))}
+                </ul>
+
+                <h2>City Recommendations</h2>
+                <input 
+                    type="text" 
+                    value={populationCount} 
+                    onChange={(e) => setPopulationCount(e.target.value)} 
+                    placeholder="Enter a population count" 
+                />
+                <button onClick={fetchCityRecommendations}>Get City Recommendations</button>
+                {error && <div>Error: {error}</div>}
+                <ul>
+                    {recommendations.map((item, index) => (
+                        <li key={index}>{item.city_name} - {item.country} - {item.population}</li>
+                    ))}
+                </ul>
+
+                <h2>Event Recommendations</h2>
+                <input 
+                    type="text" 
+                    value={eventType} 
+                    onChange={(e) => setEventType(e.target.value)} 
+                    placeholder="Enter an event type" 
+                />
+                <button onClick={fetchEventRecommendations}>Get Event Recommendations</button>
+                {error && <div>Error: {error}</div>}
+                <ul>
+                    {recommendations.map((item, index) => (
+                        <li key={index}>{item.event_name} - {item.location} - {item.event_type}</li>
+                    ))}
+                </ul>
+
+                <h2>University Recommendations</h2>
+                <input 
+                    type="text" 
+                    value={courseName} 
+                    onChange={(e) => setCourseName(e.target.value)} 
+                    placeholder="Enter a course name" 
+                />
+                <button onClick={fetchUniversityRecommendations}>Get University Recommendations</button>
+                {error && <div>Error: {error}</div>}
+                <ul>
+                    {recommendations.map((item, index) => (
+                        <li key={index}>{item.university_name} - {item.course_name}</li>
+                    ))}
+                </ul>
+            </div>
         </div>
     );
 }
