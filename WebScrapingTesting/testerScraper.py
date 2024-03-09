@@ -31,7 +31,7 @@ def parse_page(url):
         return None
 
 # URLs for Hochschule Darmstadt Germany
-base_url = 'https://www.upc.edu/ca/agenda'
+base_url = 'https://oamk.fi/en/study-at-oamk/bachelor-s-degrees/'
 study_programs_URL = f'{base_url}'
 events_URL = f'{base_url}'
 course_parse = parse_page(study_programs_URL)
@@ -41,14 +41,14 @@ events_parse = parse_page(events_URL)
 extracted_courses = []
 extracted_events = []
 
-'''
 if course_parse:
     # Find the elements containing course names
-    courses = course_parse.find_all('h2', {'class': 'h4 panel-title'})
+    courses = course_parse.find_all('div', {'class': 'study-cards-list-item__title bg-color bg-color--primary text-center p-3'})
+    print(courses)
     # Extract and print course titles
     for course in courses:
         # Use course to find the <a> tag within each element of the ResultSet
-        course_name = course.find('collapsible')
+        course_name = course.find('h3')
         if course_name:
             # Extract the text and strip whitespace from the course title
             course_title = course_name.get_text().strip()
@@ -88,4 +88,4 @@ for event in extracted_events:
     print("Description:", event['description'])
     print("Date:", event['date'])
     print()
-    
+    '''

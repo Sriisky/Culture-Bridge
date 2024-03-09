@@ -129,6 +129,7 @@ course_configs = {
         {'class': 'col-md-4 study-block'},
         {'class': 'block m-3'},
         {'class': 'study-name'},
+        {'class': 'study-cards-list-item__title bg-color bg-color--primary text-center p-3'},
         {'class': 'attribute-title'},
         {'class': 'sitemap-row-item'},
         {'class': 'accord_head test'},
