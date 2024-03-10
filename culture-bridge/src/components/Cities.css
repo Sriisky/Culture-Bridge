@@ -8,12 +8,38 @@
 }
 
 .citycard{
-    margin: 3rem;
+    margin: 4rem 6rem;
     display: table;
     flex-wrap: wrap;
     gap: 1.5rem;
     justify-content: space-between;
 }
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    position: relative; /* Ensure this is here */
+    width: 45%;
+    margin: 2rem auto;
+}
+
+.search-input {
+    padding-right: 30px; /* Make room for the 'X' */
+    padding: 0.5rem;
+    width: 100%; /* Adjust if necessary to exclude the 'X' area */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.clear-search {
+    position: absolute;
+    right:10px;
+    top: 10%;
+    transform: translateY(-10%);
+    cursor: pointer;
+}
+
 
 .c-card{
     width: calc(32% - 10px);
@@ -59,5 +85,9 @@
     .c-card{
         width: 100%;
         margin-bottom: 1.5rem;
+    }
+
+    .search-container {
+        width: 80%; /* More responsive on smaller screens */
     }
 }

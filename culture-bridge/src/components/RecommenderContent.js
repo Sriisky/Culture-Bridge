@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './RecommenderContent.css';
+import { cityInfos } from './CityDetails';
+import CityData from './CityData';
 
 function RecommenderContent() {
-    const [songTitle, setSongTitle] = useState('');
-    const [populationCount, setPopulationCount] = useState('');
-    const [eventType, setEventType] = useState('');
-    const [courseName, setCourseName] = useState('');
     const [recommendations, setRecommendations] = useState([]);
     const [error, setError] = useState('');
+    const [cityRecommendations, setCityRecommendations] = useState([]);
     const [selections, setSelections] = useState({
         genres: [],
         events: [],
@@ -37,59 +36,59 @@ function RecommenderContent() {
     const handleSubmit = async () => {
         try {
             const response = await axios.post(`http://localhost:8000/api/process-recommendations/`, selections);
-            console.log(response.data); // Handle the response data as needed
-            //setRecommendations(response.data); // Assuming you want to set the recommendations to state
+            console.log(response.data);
+            // Assuming the API returns the expected format
+            setRecommendations(response.data);
+            // Map to city recommendations
+            mapRecommendationsToCities(response.data);
         } catch (error) {
             console.error('Error submitting recommendations: ', error);
             setError('Error fetching recommendations');
         }
     };
+    
 
-    /*
-    const fetchSongRecommendations = async () => {
-        try {
-            const response = await axios.get(`http://localhost:8000/api/song-recommender/?song=${songTitle}`);
-            setRecommendations(response.data);
-            setError('');
-        } catch (error) {
-            console.error('Error fetching song data: ', error);
-            setError('Error fetching song data');
-        }
+    const mapRecommendationsToCities = (recommendations) => {
+        const mappedCities = recommendations.map(rec => {
+            const { Location, AssociatedUniversities } = rec;
+            let cityName = ""; // Default city name
+            // Completed mappings
+            if (Location === 'DE' && AssociatedUniversities.includes('OTH')) {
+                cityName = "Regensburg, Germany";
+            } else if (Location === 'DE' && AssociatedUniversities.includes('HDA')) {
+                cityName = "Darmstadt, Germany";
+            } else if (Location === 'NL') {
+                cityName = "Zwolle, Netherlands";
+            } else if (Location === 'FI') {
+                cityName = "Oulo, Finland";
+            } else if (Location === 'SE') {
+                cityName = "Vasteras, Sweden";
+            } else if (Location === 'CH') {
+                cityName = "Zurich, Switzerland";
+            } else if (Location === 'NO') {
+                cityName = "Grimstad/Kristiansand, Norway";
+            } else if (Location === 'AT') {
+                cityName = "Kufstein, Austria";
+            } else if (Location === 'HR') {
+                cityName = "Dubrovnik/Zagreb, Croatia";
+            } else if (Location === 'SK') {
+                cityName = "Zilina, Slovakia";
+            } else if (Location === 'ES') {
+                cityName = "Barcelona, Spain";
+            } else if (Location === 'SI') {
+                cityName = "Ljubljana, Slovenia";
+            } else if (Location === 'IT') {
+                cityName = "Perugia, Italy";
+            }
+    
+            // Find the city in cityInfos using the cityName
+            const cityInfo = cityInfos.find(info => info.heading.includes(cityName));
+            return cityInfo;
+        }).filter(city => city !== undefined); // Filter out undefined mappings
+    
+        setCityRecommendations(mappedCities);
     };
-
-    const fetchCityRecommendations = async () => {
-        try {
-            const response = await axios.get(`http://localhost:8000/api/city-recommender/?population=${populationCount}`);
-            setRecommendations(response.data);
-            setError('');
-        } catch (error) {
-            console.error('Error fetching city data: ', error);
-            setError('Error fetching city data');
-        }
-    };
-
-    const fetchEventRecommendations = async () => {
-        try {
-            const response = await axios.get(`http://localhost:8000/api/event-recommender/?event_type=${eventType}`);
-            setRecommendations(response.data);
-            setError('');
-        } catch (error) {
-            console.error('Error fetching event data: ', error);
-            setError('Error fetching event data');
-        }
-    };
-
-    const fetchUniversityRecommendations = async () => {
-        try {
-            const response = await axios.get(`http://localhost:8000/api/university-recommender/?course_name=${courseName}`);
-            setRecommendations(response.data);
-            setError('');
-        } catch (error) {
-            console.error('Error fetching university data: ', error);
-            setError('Error fetching university data');
-        }
-    };
- */
+    
 
     return (
         <div className="recommend-container">
@@ -155,9 +154,25 @@ function RecommenderContent() {
                 </div>
                 <button className='recc-submit' onClick={handleSubmit}>Submit</button>
             </div>
-
-            
-            
+            <div className='city-recommendations'>
+                <h1>City Recommendations</h1>
+                {cityRecommendations.length > 0 ? (
+                    <div className='city-recommendations-list'>
+                        {cityRecommendations.map((city, index) => (
+                            <CityData
+                                key={index}
+                                image={city.image}
+                                heading={city.heading}
+                                text={city.text}
+                                path={city.path}
+                            />
+                        ))}
+                    </div>
+                ) : (
+                    <p>Submit your preferences to get recommendations!</p>
+                )}
+            </div>
+    
         </div>
     );
 }

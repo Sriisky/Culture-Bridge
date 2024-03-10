@@ -64,6 +64,12 @@ img{
     color: #222;
 }
 
+.hero-text .show:hover {
+    background: #222; /* Invert background color */
+    color: #fff; /* Invert text color */
+    transition: all 0.2s ease-in-out;
+}
+
 .hero-text .hide{
     display: none;
 }

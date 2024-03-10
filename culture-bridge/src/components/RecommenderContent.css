@@ -70,3 +70,21 @@
     background-color: #000000;
     color: #fff;
 }
+
+.city-recommendations {
+    margin-top: 2rem; /* Add space above the recommendations section */
+    margin-bottom: 4rem; /* Add more space at the bottom to avoid overlapping with the footer */
+}
+
+.city-recommendations-list {
+    margin: 4rem 6rem;
+    display: table;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: space-between;
+}
+
+.recommend-container p {
+    text-align: center;
+}
+

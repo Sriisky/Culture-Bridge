@@ -375,7 +375,7 @@ def city_recommender(total_recommendations):
         top_cities.append({
             'Location': loc,
             'Count': count,
-            'Associated Universities': associated_unis
+            'AssociatedUniversities': associated_unis
         })
 
     return top_cities
