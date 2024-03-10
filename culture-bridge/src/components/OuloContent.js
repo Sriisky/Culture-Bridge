@@ -94,13 +94,15 @@ function OuloContent() {
     return (
         <div className="oulo-container">
             <p>Welcome to Oulo! On this page you will find information on Oulo University of Applied Sciences
-                which is the university you will be studying at if you choose to study in this city.Take a look at the courses on offer
+                which is the university you will be studying at if you choose to study in this city. Take a look at the courses on offer
                 to see what is on offer at this university. The 'about' section will provide some insight into what OAMK values which may help your decision making process
-                for choosing where to study.
+                for choosing where to study. You can also click on the headings below to get more information on the university.
             </p>
             <div className="section-wrapper">
                 <div className="content-section">
-                    <h1>Available Courses</h1>
+                    <a href="https://oamk.fi/en/study-at-oamk/bachelor-s-degrees/" target="_blank" rel="noopener noreferrer">
+                        <h1>Available Courses</h1>
+                    </a>
                     <ul className="scrollable-list">
                         {courses.map((course, index) => (
                             <li key={index}>{course['Course Name']}</li> 
@@ -108,7 +110,9 @@ function OuloContent() {
                     </ul>
                 </div>
                 <div className="content-section">
-                    <h1>About OAMK</h1>
+                    <a href="https://oamk.fi/en/" target="_blank" rel="noopener noreferrer">
+                        <h1>About OAMK</h1>
+                    </a>
                     <ul className="scrollable-list">
                         <p>Oulu University of Applied Sciences educates successful 
                             experts and promotes well-being to the northern region.

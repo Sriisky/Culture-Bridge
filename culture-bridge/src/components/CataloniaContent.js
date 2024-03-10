@@ -101,11 +101,14 @@ function CataloniaContent() {
         <div className="catalonia-container">
              <p>Welcome to Barcelona! On this page you will find information on the University Polytechnica Cataluyna
                 which is the university you will be studying at if you choose to study in this city.Take a look at the courses on offer
-                to see what is available at this university. The 'about' section will give some information about UPC.
+                to see what is available at this university. The 'about' section will give some information about UPC. If you would like more information
+                on UPC you can click on the headings below.
             </p>
             <div className="section-wrapper">
                 <div className="content-section">
+                <a href="https://www.upc.edu/ca/graus/" target="_blank" rel="noopener noreferrer">
                     <h1>Available Courses</h1>
+                </a>
                     <ul className="scrollable-list">
                         {courses.map((course, index) => (
                             <li key={index}>{course['Course Name']}</li> 
@@ -113,7 +116,9 @@ function CataloniaContent() {
                     </ul>
                 </div>
                 <div className="content-section">
-                    <h1>About UPC</h1>
+                    <a href="https://www.upc.edu/ca/agenda" target="_blank" rel="noopener noreferrer">
+                        <h1>About UPC</h1>
+                    </a>
                     <ul className="scrollable-list">
                     A key focus of UPC is its commitment to internationalization, 
                     evident in its status as one of Europe's technical universities with

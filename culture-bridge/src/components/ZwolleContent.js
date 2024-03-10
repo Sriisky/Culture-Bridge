@@ -100,13 +100,15 @@ function ZwolleContent() {
     return (
         <div className="zwolle-container">
            <p>Welcome to Zwolle! On this page you will find information on the University of Applied Sciences Windesheim
-                which is the university you will be studying at if you choose to study in this city.Take a look at the courses on offer
+                which is the university you will be studying at if you choose to study in this city. Take a look at the courses on offer
                 to see what is available at this university. The upcoming events will show you the events taking place at Windesheim which will give you some insight
-                into a student's life at this university.
+                into a student's life at this university. You can also click on the headings below to get more information on the university.
             </p>
             <div className="section-wrapper">
                 <div className="content-section">
-                    <h1>Available Courses</h1>
+                    <a href="https://www.windesheim.com/study-programmes/exchange-programmes" target="_blank" rel="noopener noreferrer">
+                        <h1>Available Courses</h1>
+                    </a>
                     <ul className="scrollable-list">
                         International Business Studies (autumn and spring)
                         <br></br>
@@ -156,7 +158,9 @@ function ZwolleContent() {
                     </ul>
                 </div>
                 <div className="content-section">
-                    <h1>Upcoming Events</h1>
+                    <a href="https://www.windesheim.com/news" target="_blank" rel="noopener noreferrer">
+                        <h1>Upcoming Events</h1>
+                    </a>
                     <ul className="scrollable-list">
                         {events.map((event, index) => (
                             <li key={index}>

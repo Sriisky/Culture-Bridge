@@ -93,12 +93,15 @@ function ZurichContent() {
     return (
         <div className="zurich-container">
             <p>Welcome to Zurich! On this page you will find information on University of Applied Sciences and Arts Northwestern Switzerland
-                which is the university you will be studying at if you choose to study in this city.Take a look at the courses on offer
+                which is the university you will be studying at if you choose to study in this city. Take a look at the courses on offer
                 to see what is available at this university. The 'about' section gives you a description of FHNW which may give you some insight into what the university is like.
+                You can also click on the headings below to get more information on the university.
             </p>
             <div className="section-wrapper">
                 <div className="content-section">
-                    <h1>Available Courses</h1>
+                    <a href="https://www.fhnw.ch/en/degree-programmes/undergraduate-programmes" target="_blank" rel="noopener noreferrer">
+                        <h1>Available Courses</h1>
+                    </a>
                     <ul className="scrollable-list">
                         {courses.map((course, index) => (
                             <li key={index}>{course['Course Name']}</li> 
@@ -106,7 +109,9 @@ function ZurichContent() {
                     </ul>
                 </div>
                 <div className="content-section">
-                    <h1>About FHNW</h1>
+                    <a href="https://www.fhnw.ch/en" target="_blank" rel="noopener noreferrer">
+                        <h1>About FHNW</h1>
+                    </a>
                     <ul className="scrollable-list">
                         <p>FHNW is one of Switzerland’s leading universities of applied sciences and arts, 
                             actively involved in teaching, research, continuing education and service provision – 

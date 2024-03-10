@@ -95,12 +95,15 @@ function ZilinaContent() {
     return (
         <div className="zilina-container">
             <p>Welcome to Zilina! On this page you will find information on the University of Žilina
-                which is the university you will be studying at if you choose to study in this city.Take a look at the courses on offer
+                which is the university you will be studying at if you choose to study in this city. Take a look at the courses on offer
                 to see what is available at this university. The 'about' section will give you some information about UNIZA.
+                You can also click on the headings below to get more information on the university.
             </p>
             <div className="section-wrapper">
                 <div className="content-section">
-                    <h1>Available Courses</h1>
+                    <a href="https://www.uniza.sk/index.php/en/study/study-options/programmes-2024-2025" target="_blank" rel="noopener noreferrer"> 
+                        <h1>Available Courses</h1>
+                    </a>
                     <ul className="scrollable-list">
                         {courses.map((course, index) => (
                             <li key={index}>{course['Course Name']}</li> 
@@ -108,7 +111,9 @@ function ZilinaContent() {
                     </ul>
                 </div>
                 <div className="content-section">
-                    <h1>Information on UNIZA</h1>
+                    <a href="https://www.uniza.sk/index.php/en/" target="_blank" rel="noopener noreferrer">
+                        <h1>Information on UNIZA</h1>
+                    </a>
                     <ul className="scrollable-list">
                         At present there are about 8,000 students being educated at seven faculties in 172 
                         accredited fields of study in all forms and degrees of university studies at the 

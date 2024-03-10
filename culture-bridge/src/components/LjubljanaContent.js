@@ -94,7 +94,9 @@ function LjubljanaContent() {
             </p>
             <div className="section-wrapper">
                 <div className="content-section">
+                <a href="https://www.uni-lj.si/study/eng/subjects-bachelor/#University%20of%20Ljubljana%20BIOTECHNICAL%20FACULTY" target="_blank" rel="noopener noreferrer">
                     <h1>Available Courses</h1>
+                </a>
                     <ul className="scrollable-list">
                         <p>
                         ACADEMY OF FINE ARTS AND DESIGN <br></br>
@@ -121,7 +123,9 @@ function LjubljanaContent() {
                     </ul>
                 </div>
                 <div className="content-section">
-                    <h1>Information on UNILJ</h1>
+                    <a href="https://www.uni-lj.si/news/events_calendar/" target="_blank" rel="noopener noreferrer">
+                        <h1>Information on UNILJ</h1>
+                    </a>
                     <ul className="scrollable-list">
                         <p>
                         University of Ljubljana is the oldest and largest higher 

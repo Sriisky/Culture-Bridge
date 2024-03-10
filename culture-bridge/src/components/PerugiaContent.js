@@ -92,13 +92,15 @@ function PerugiaContent() {
     return (
         <div className="perugia-container">
             <p>Welcome to Perugia! On this page you will find information on Universita Degli Studi de Perugia 
-                which is the university you will be studying at if you choose to study in this city.Take a look at the courses on offer
+                which is the university you will be studying at if you choose to study in this city. Take a look at the courses on offer
                 to see what is available at this university. The upcoming events will show you the events taking place at UNIPG which may give you some insight
-                into a student's life at this university.
+                into a student's life at this university. To get more information on the university, you can click on the headers below.
             </p>
             <div className="section-wrapper">
                 <div className="content-section">
-                    <h1>Available Courses</h1>
+                    <a href="https://www.unipg.it/didattica/corsi-di-laurea-e-laurea-magistrale/area-tecnologica" target="_blank" rel="noopener noreferrer">
+                        <h1>Available Courses</h1>
+                    </a>
                     <ul className="scrollable-list">
                         <p>Design
                         Economia e cultura dell'alimentazione
@@ -114,7 +116,9 @@ function PerugiaContent() {
                     </ul>
                 </div>
                 <div className="content-section">
-                    <h1>Upcoming Events</h1>
+                    <a href="https://www.unipg.it/eventi?view=elenco" target="_blank" rel="noopener noreferrer">
+                        <h1>Upcoming Events</h1>
+                    </a>
                     <ul className="scrollable-list">
                         <p>
                         {">"}Far fronte alla violenza sulle donne: Proposte dei giovani per una regolamentazione su scala europea

@@ -1,5 +1,6 @@
 import './App.css';
-import { Route, Routes } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { Route, Routes, useLocation } from "react-router-dom";
 import Home from './routes/Home';
 import Discover from './routes/Discover'
 import Benefits from './routes/Benefits'
@@ -18,9 +19,15 @@ import Zilina from './routes/Zilina'
 import Perugia from './routes/Perugia'
 import Catalonia from './routes/Catalonia'
 import Cities from './components/Cities';
-// All images have been sourced from pixabay
+// All images have been sourced from pixabay and pexels
 
 export default function App() {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   return (
     <div className="App">
 

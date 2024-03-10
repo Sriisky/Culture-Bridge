@@ -100,13 +100,15 @@ function RegensburgContent() {
     return (
         <div className="regensburg-container">
             <p>Welcome to Regensburg! On this page you will find information on Ostbayerische Technische Hochschule (OTH) Regensburg
-                which is the university you will be studying at if you choose to study in this city.Take a look at the courses on offer
+                which is the university you will be studying at if you choose to study in this city. Take a look at the courses on offer
                 to see what is available at this university. The upcoming events will show you the events taking place at OTH which may give you some insight
-                into a student's life at this university.
+                into a student's life at this university. You can click on the headings below to get more information on OTH.
             </p>
             <div className="section-wrapper">
                 <div className="content-section">
+                <a href="https://www.oth-regensburg.de/en/study/international-office/studying-in-regensburg/courses-in-english" target="_blank" rel="noopener noreferrer">
                     <h1>Available Courses</h1>
+                </a>
                     <ul className="scrollable-list">
                         {courses.map((course, index) => (
                             <li key={index}>{course['Course Name']}</li> 
@@ -114,7 +116,9 @@ function RegensburgContent() {
                     </ul>
                 </div>
                 <div className="content-section">
-                    <h1>Upcoming Events</h1>
+                    <a href="https://alumni.oth-regensburg.de/termine/" target="_blank" rel="noopener noreferrer">
+                        <h1>Upcoming Events</h1>
+                    </a>
                     <ul className="scrollable-list">
                         {events.map((event, index) => (
                             <li key={index}>

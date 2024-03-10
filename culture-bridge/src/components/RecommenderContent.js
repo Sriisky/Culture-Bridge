@@ -157,16 +157,19 @@ function RecommenderContent() {
             <div className='city-recommendations'>
                 <h1>City Recommendations</h1>
                 {cityRecommendations.length > 0 ? (
-                    <div className='city-recommendations-list'>
-                        {cityRecommendations.map((city, index) => (
-                            <CityData
-                                key={index}
-                                image={city.image}
-                                heading={city.heading}
-                                text={city.text}
-                                path={city.path}
-                            />
-                        ))}
+                    <div>
+                        <p>Based on your selection, here are the cities that best match your interest...</p>
+                        <div className='city-recommendations-list'>
+                            {cityRecommendations.map((city, index) => (
+                                <CityData
+                                    key={index}
+                                    image={city.image}
+                                    heading={city.heading}
+                                    text={city.text}
+                                    path={city.path}
+                                />
+                            ))}
+                        </div>
                     </div>
                 ) : (
                     <p>Submit your preferences to get recommendations!</p>

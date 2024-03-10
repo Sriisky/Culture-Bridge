@@ -100,13 +100,15 @@ function VasterasContent() {
     return (
         <div className="vasteras-container">
            <p>Welcome to Vasteras! On this page you will find information on Mälardalens University
-                which is the university you will be studying at if you choose to study in this city.Take a look at the courses on offer
+                which is the university you will be studying at if you choose to study in this city. Take a look at the courses on offer
                 to see what is on offer at this university. The upcoming events will show you the events taking place at MDU which wll give you some insight
-                into a student's life at this university.
+                into a student's life at this university. You can also click on the headings below to get more information on the university.
             </p>
             <div className="section-wrapper">
                 <div className="content-section">
-                    <h1>Available Courses</h1>
+                    <a href="https://www.mdu.se/international/programme" target="_blank" rel="noopener noreferrer">
+                        <h1>Available Courses</h1>
+                    </a>
                     <ul className="scrollable-list">
                         {courses.map((course, index) => (
                             <li key={index}>{course['Course Name']}</li> 
@@ -114,7 +116,9 @@ function VasterasContent() {
                     </ul>
                 </div>
                 <div className="content-section">
-                    <h1>Upcoming Events</h1>
+                    <a href="https://www.mdu.se/kalender" target="_blank" rel="noopener noreferrer">
+                        <h1>Upcoming Events</h1>
+                    </a>
                     <ul className="scrollable-list">
                         {events.map((event, index) => (
                             <li key={index}>

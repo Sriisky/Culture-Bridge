@@ -100,13 +100,16 @@ function KufsteinContent() {
     return (
         <div className="kufstein-container">
             <p>Welcome to Kufstein! On this page you will find information on the University of Applied Sciences Kufstein
-                which is the university you will be studying at if you choose to study in this city.Take a look at the courses on offer
+                which is the university you will be studying at if you choose to study in this city. Take a look at the courses on offer
                 to see what is available at this university. The upcoming events section will show you the events taking place at FH Kufstein which will give you some insight
-                into a student's life at this university.
+                into a student's life at this university. You can also click on the headings below to be redirected to the
+                website of the university.
             </p>
             <div className="section-wrapper">
                 <div className="content-section">
-                    <h1>Available Courses</h1>
+                    <a href="https://www.fh-kufstein.ac.at/eng/" target="_blank" rel="noopener noreferrer">
+                        <h1>Available Courses</h1>
+                    </a>
                     <ul className="scrollable-list">
                         {courses.map((course, index) => (
                             <li key={index}>{course['Course Name']}</li> 
@@ -114,7 +117,9 @@ function KufsteinContent() {
                     </ul>
                 </div>
                 <div className="content-section">
-                    <h1>Upcoming Events</h1>
+                    <a href="https://www.fh-kufstein.ac.at/eng/Events" target="_blank" rel="noopener noreferrer">
+                        <h1>Upcoming Events</h1>
+                    </a>
                     <ul className="scrollable-list">
                         {events.map((event, index) => (
                             <li key={index}>

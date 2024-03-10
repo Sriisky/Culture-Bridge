@@ -97,13 +97,15 @@ function DarmstadtContent() {
     return (
         <div className="darmstadt-container">
             <p>Welcome to Darmstadt! On this page you will find information on Hochschule Darmstadt
-                which is the university you will be studying at if you choose to study in this city.Take a look at the courses on offer
+                which is the university you will be studying at if you choose to study in this city. Take a look at the courses on offer
                 to see what is available to study at this university. The upcoming events will show you the events taking place at H-DA which will give you some insight
-                into a student's life at this university.
+                into a student's life at this university. You can also click on the headings below to get more information directly from the university page.
             </p>
             <div className="section-wrapper">
                 <div className="content-section">
+                <a href="https://h-da.de/studium/studienangebot/studiengaenge" target="_blank" rel="noopener noreferrer">
                     <h1>Available Courses</h1>
+                </a>
                     <ul className="scrollable-list">
                         {courses.map((course, index) => (
                             <li key={index}>{course['Course Name']}</li> 
@@ -111,7 +113,9 @@ function DarmstadtContent() {
                     </ul>
                 </div>
                 <div className="content-section">
-                    <h1>Upcoming Events at H-DA</h1>
+                    <a href="https://h-da.de/veranstaltungsliste" target="_blank" rel="noopener noreferrer">
+                        <h1>Events at H-DA</h1>
+                    </a>
                     <ul className="scrollable-list">
                         {events.map((event, index) => (
                             <li key={index}>

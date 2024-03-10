@@ -11,6 +11,35 @@
     padding-bottom: 2rem;
 }
 
+.students {
+    height: 400px;
+    overflow: hidden;
+    border-radius: 7px;
+}
+
+.students img {
+    height: 200px;
+    overflow: hidden;
+    border-radius: 7px;
+}
+
+.video-responsive {
+    overflow: hidden;
+    padding-top: 56.25%; /* Maintain 16:9 aspect ratio but apply as padding-top */
+    position: relative;
+    width: 100%; /* Adjust width as needed to make the video smaller */
+    margin: 0 auto; /* Centers the div horizontally */
+}
+
+.video-responsive iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 75%; /* Ensure the iframe fills the container width */
+    height: 75%; /* Ensure the iframe fills the container height */
+    transform: translate(-50%, -50%);
+}
+
 @media screen and (max-width: 850px){
     .benefits-container{
         margin: 4rem 2rem;

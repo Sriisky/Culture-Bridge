@@ -100,13 +100,16 @@ function GrimstadContent() {
     return (
         <div className="grimstad-container">
            <p>Welcome to Grimstad! On this page you will find information on University of Adger
-                which is the university you will be studying at if you choose to study in this city.Take a look at the courses on offer
+                which is the university you will be studying at if you choose to study in this city. Take a look at the courses on offer
                 to see what is available at this university. The upcoming events will show you the events taking place at UIA which will give you some insight
-                into a student's life at this university.
+                into a student's life at this university. You can also click on the headings below to find more information on the 
+                University of Adger's website.
             </p>
             <div className="section-wrapper">
                 <div className="content-section">
-                    <h1>Available Courses</h1>
+                    <a href="https://www.uia.no/study/search" target="_blank" rel="noopener noreferrer">
+                        <h1>Available Courses</h1>
+                    </a>
                     <ul className="scrollable-list">
                         {courses.map((course, index) => (
                             <li key={index}>{course['Course Name']}</li> 
@@ -114,7 +117,9 @@ function GrimstadContent() {
                     </ul>
                 </div>
                 <div className="content-section">
-                    <h1>Upcoming Events</h1>
+                    <a href="https://www.uia.no/arrangementer" target="_blank" rel="noopener noreferrer">
+                        <h1>Upcoming Events</h1>
+                    </a>
                     <ul className="scrollable-list">
                         {events.map((event, index) => (
                             <li key={index}>
