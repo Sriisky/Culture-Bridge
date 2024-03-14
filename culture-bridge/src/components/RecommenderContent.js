@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './RecommenderContent.css';
 import { cityInfos } from './CityDetails';
@@ -14,6 +14,12 @@ function RecommenderContent() {
         courses: [],
         traits: []
     });
+    useEffect(() => {
+        const savedRecommendations = sessionStorage.getItem('cityRecommendations');
+        if (savedRecommendations) {
+            setCityRecommendations(JSON.parse(savedRecommendations));
+        }
+    }, []);
 
     // Update handleSelect to work with the new state structure
     const handleSelect = (category, value) => {
@@ -87,6 +93,9 @@ function RecommenderContent() {
         }).filter(city => city !== undefined); // Filter out undefined mappings
     
         setCityRecommendations(mappedCities);
+
+        // Save to sessionStorage
+        sessionStorage.setItem('cityRecommendations', JSON.stringify(mappedCities));
     };
     
 

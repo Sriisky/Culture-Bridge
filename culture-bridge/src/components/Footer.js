@@ -9,7 +9,7 @@ const Footer = () =>{
                 <p>Enhance your Erasmus experience</p>
             </div>
             <div>
-                <a href="https://www.linkedin.com/in/sara-egan">
+                <a href="https://www.linkedin.com/in/sara-egan" target="_blank" rel="noopener noreferrer">
                     <i className="fa-brands fa-linkedin"></i>
                 </a>
                 <p>Sara Egan 2023</p>

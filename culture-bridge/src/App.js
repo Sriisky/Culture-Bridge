@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense, lazy } from 'react';
 import { Route, Routes, useLocation } from "react-router-dom";
 import Home from './routes/Home';
 import Discover from './routes/Discover'
@@ -18,7 +18,7 @@ import Ljubljana from './routes/Ljubljana'
 import Zilina from './routes/Zilina'
 import Perugia from './routes/Perugia'
 import Catalonia from './routes/Catalonia'
-import Cities from './components/Cities';
+const Cities = lazy(() => import('./components/Cities'));
 // All images have been sourced from pixabay and pexels
 
 export default function App() {
@@ -30,6 +30,7 @@ export default function App() {
 
   return (
     <div className="App">
+      <Suspense fallback={<div>Loading...</div>}></Suspense>
 
       <Routes>
         <Route path="/" element={<Home/>}/>

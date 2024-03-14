@@ -32,12 +32,11 @@ def process_recommendations(selections):
     }
 
     print("Processed Selections:", processed_selections)
-    
     return processed_selections
     
     
 def load_json_lines(file_path):
-    # Load JSON objects from a file with JSON Lines format
+    # Load JSON objects from the files with JSON lines format
     data_list = []
     with open(file_path, 'r') as file:
         for line in file:
@@ -45,7 +44,7 @@ def load_json_lines(file_path):
     return data_list
 
 def load_json(file_path):
-    # Load a JSON file
+    # Load the JSON files
     with open(file_path, 'r') as file:
         data = json.load(file)
     return data
@@ -77,9 +76,9 @@ def flatten_live_events(data_list):
             event_name = event.get('title') or event.get('name')  # Supports both 'title' and 'name' keys
             date = event.get('date')
             genre = event.get('genre', '')  # Use an empty string if 'genre' is not available
-            subgenre = event.get('subgenre', '')  # Use an empty string if 'subgenre' is not available
+            subgenre = event.get('subgenre', '')  
             country_code = event.get('countryCode')
-            location = event.get('location', '')  # Use an empty string if 'location' is not available
+            location = event.get('location', '')  
 
             # Append a dictionary for the event with available information
             flat_data.append({
@@ -346,13 +345,11 @@ def city_recommender(total_recommendations):
     _, events_dict = total_recommendations['events']
     for country_code in events_dict:
         location_counts[country_code] = location_counts.get(country_code, 0) + len(events_dict[country_code])
-        # Since events don't specify universities, no association added here
 
     # Handle 'music'
     for _, row in total_recommendations['music'].iterrows():
         country_code = row['Country Code']
         location_counts[country_code] = location_counts.get(country_code, 0) + 1
-        # Music recommendations don't specify universities, so no association added
 
     # Handle 'reviews'
     for _, row in total_recommendations['reviews'].iterrows():

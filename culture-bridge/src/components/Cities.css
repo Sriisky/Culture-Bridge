@@ -61,6 +61,7 @@
     height: 200px;
     overflow: hidden;
     border-radius: 7px;
+    transition: transform 0.3s ease;
 }
 
 .c-image:hover img{
