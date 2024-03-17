@@ -67,12 +67,12 @@
 
 
 .selected {
-    background-color: #000000;
-    color: #fff;
+    background-color: #282828;
+    color: #F8F7F4;
 }
 
 .city-recommendations {
-    margin-top: 2rem; /* Add space above the recommendations section */
+    margin-top: 7rem; /* Add space above the recommendations section */
     margin-bottom: 4rem; /* Add more space at the bottom to avoid overlapping with the footer */
 }
 

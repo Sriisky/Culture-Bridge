@@ -11,3 +11,13 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
+
+:root {
+    --background-color: #F8F7F4;
+    --text-color: #282828;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}

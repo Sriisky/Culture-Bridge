@@ -9,6 +9,7 @@ function DarmstadtContent() {
     const [museums, setMuseums] = useState([]);
     const [liveEvents, setLiveEvents] = useState([]);
     const [reviews, setReviews] = useState([]);
+    const [eventSearchTerm, setEventSearchTerm] = useState('');
     const coursesUrl = 'https://h-da.de/studium/studienangebot/studiengaenge';
     const eventsUrl = 'https://h-da.de/veranstaltungsliste';
     const countryCode = 'DE';
@@ -94,6 +95,10 @@ function DarmstadtContent() {
         }
     };
 
+    const handleEventSearchChange = (e) => {
+        setEventSearchTerm(e.target.value);
+    };
+
     return (
         <div className="darmstadt-container">
             <p>Welcome to Darmstadt! On this page you will find information on Hochschule Darmstadt
@@ -135,15 +140,18 @@ function DarmstadtContent() {
                         <li key={index} className="playlist-item">
                             <img src={song.thumbnail} alt="Thumbnail" className="playlist-thumbnail" />
                             <div className="playlist-details">
-                                {song.spotify_url ? (
-                                    <strong><a href={song.spotify_url} target="_blank" rel="noopener noreferrer">{song.title}</a></strong>
-                                ) : (
-                                    <strong>{song.title}</strong>
-                                )}
+                                <strong>
+                                    {song.spotify_url ? (
+                                        <a href={song.spotify_url} target="_blank" rel="noopener noreferrer">{song.title}</a>
+                                    ) : song.title}
+                                </strong>
                                 <br />
                                 {song.artist}<br />
                                 Length: {Math.floor(song.length / 60000)}:{(song.length % 60000 / 1000).toFixed(0)} minutes
                             </div>
+                            {song.spotify_url && (
+                                <a href={song.spotify_url} target="_blank" rel="noopener noreferrer" className="play-button">▶</a>
+                            )}
                         </li> 
                     ))}
                 </ul>
@@ -167,23 +175,43 @@ function DarmstadtContent() {
                 <h1>Live Music Events in Germany</h1>
                 <p>Here are some live music events taking place. Click on the title of the event to be redirected to the Ticketmaster website
                     to find more information and to buy tickets.</p>
-                <ul className="museum_scrollable-list">
-                    {liveEvents.map((event, index) => (
-                        <li key={index} className="museum-item">
-                            <img src={event.image_url} alt="Thumbnail" className="museum-thumbnail" />
-                            <div className="museum-details">
-                            {event.url ? (
-                                    <strong><a href={event.url} target="_blank" rel="noopener noreferrer">{event.name}</a></strong>
-                                ) : (
-                                    <strong>{event.name}</strong>
-                                )}
-                                <span>{event.date}</span>
-                                <span>{event.genre}</span>
-                                <span>{event.subgenre}</span>
-                            </div>
-                        </li> 
-                    ))}
-                </ul>
+                    <div className="search-container">
+                        <input
+                            type="text"
+                            placeholder="Search by Genre..."
+                            value={eventSearchTerm}
+                            onChange={handleEventSearchChange}
+                            className="search-input"
+                        />
+                        {eventSearchTerm && (
+                            <button
+                                onClick={() => setEventSearchTerm('')}
+                                className="clear-search"
+                            >
+                                X
+                            </button>
+                        )}
+                    </div>
+                    <ul className="museum_scrollable-list">
+                        {liveEvents.filter(event => 
+                            event.genre.toLowerCase().includes(eventSearchTerm.toLowerCase()) || 
+                            event.subgenre.toLowerCase().includes(eventSearchTerm.toLowerCase())
+                        ).map((event, index) => (
+                            <li key={index} className="museum-item">
+                                <img src={event.image_url} alt="Thumbnail" className="museum-thumbnail" />
+                                <div className="museum-details">
+                                    {event.url ? (
+                                        <strong><a href={event.url} target="_blank" rel="noopener noreferrer">{event.name}</a></strong>
+                                    ) : (
+                                        <strong>{event.name}</strong>
+                                    )}
+                                    <span>{event.date}</span>
+                                    <span>{event.genre}</span>
+                                    <span>{event.subgenre}</span>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
             </div>
             <div className="content-section">
                 <h1>Reviews of Darmstadt From Other Students:</h1>

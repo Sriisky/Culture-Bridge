@@ -1,5 +1,5 @@
 .NavBarItems{
-    background-color: #fff;
+    background-color: #F8F7F4;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -16,10 +16,15 @@
 }
 
 .navbar-logo{
-    color: #222;
+    color: #282828;
     font-size:1.8rem;
     cursor: pointer;
 }
+
+.NavBarItems > a, .NavBarItems > a:visited, .NavBarItems > a:hover, .NavBarItems > a:active {
+    text-decoration: none;
+}
+
 
 .nav-menu{
     display: grid;
@@ -31,7 +36,7 @@
 
 .nav-links{
     text-decoration: none;
-    color: #222;
+    color: #282828;
     font-size: 1.2rem;
     font-weight: 600;
     padding: 0.7rem 1rem;
@@ -44,7 +49,7 @@
 
 .nav-links:hover{
     background-color: #00b336;
-    color: #fff;
+    color: #F8F7F4;
     border-radius: 4px;
     transition: all 0.2s ease-in-out;
 }
@@ -65,8 +70,8 @@ button{
 }
 
 button:hover{
-    background-color: #151516;
-    color: #fff;
+    background-color: #282828;
+    color: #F8F7F4;
 }
 
 .menu-icons{
@@ -82,7 +87,7 @@ button:hover{
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-        background: #fff;
+        background: #F8F7F4;
         width: 100%;
         height: auto;
         position: absolute;
@@ -128,7 +133,7 @@ button:hover{
         width: 80%;
         background: #00b336;
         text-decoration: none;
-        color: #fff;
+        color: #F8F7F4;
         font-size: 1.2rem;
         font-weight: 700;
         letter-spacing: 2px;
@@ -141,6 +146,6 @@ button:hover{
 
     .menu-icons i{
         font-size: 1.2rem;
-        color: #222;
+        color: #282828;
     }
 }

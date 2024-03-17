@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import './RecommenderContent.css';
 import { cityInfos } from './CityDetails';
@@ -14,6 +14,9 @@ function RecommenderContent() {
         courses: [],
         traits: []
     });
+
+    const cityRecommendationsRef = useRef(null);
+
     useEffect(() => {
         const savedRecommendations = sessionStorage.getItem('cityRecommendations');
         if (savedRecommendations) {
@@ -47,6 +50,13 @@ function RecommenderContent() {
             setRecommendations(response.data);
             // Map to city recommendations
             mapRecommendationsToCities(response.data);
+            // Scroll to city recommendations
+            const scrollOffset = cityRecommendationsRef.current.offsetTop - 150;
+            // Scroll to the calculated position
+            window.scrollTo({
+                top: scrollOffset,
+                behavior: 'smooth'
+            });
         } catch (error) {
             console.error('Error submitting recommendations: ', error);
             setError('Error fetching recommendations');
@@ -163,7 +173,7 @@ function RecommenderContent() {
                 </div>
                 <button className='recc-submit' onClick={handleSubmit}>Submit</button>
             </div>
-            <div className='city-recommendations'>
+            <div ref={cityRecommendationsRef} className='city-recommendations'>
                 <h1>City Recommendations</h1>
                 {cityRecommendations.length > 0 ? (
                     <div>

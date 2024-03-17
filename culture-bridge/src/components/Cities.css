@@ -1,6 +1,6 @@
 .city{
     margin: 4rem, 6rem;
-    color: #2a2a2a;
+    color: #282828;
 }
 
 .city h1{
@@ -9,9 +9,11 @@
 
 .citycard{
     margin: 4rem 6rem;
-    display: table;
+    display: grid;
     flex-wrap: wrap;
-    gap: 1.5rem;
+    grid-template-columns: repeat(3, 1fr); /* Creates 3 columns of equal width */
+    grid-template-rows: auto auto; /* Creates rows to fit content */
+    gap: 50px;
     justify-content: space-between;
 }
 
@@ -42,13 +44,27 @@
 
 
 .c-card{
-    width: calc(32% - 10px);
     text-align: start;
     box-shadow: 0 5px 25px 2px rgba(0, 0, 0, 0.11);
     border-radius: 7px;
     cursor: pointer;
-    padding: 1rem .8rem;
+    padding: 2.9rem .8rem;
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Add transition for smooth effect */
     float: left;
+}
+
+.c-card:hover {
+    box-shadow: 0 10px 30px 2px rgba(0, 0, 0, 0.15); /* Slightly larger shadow for depth */
+    transform: translateY(-5px); /* Slightly raise the card */
+}
+
+.c-card h4 {
+    font-size: 1.5rem; /* Adjusted from 1.3rem to make it bigger */
+    padding: 0.9rem 0 0.2rem;
+}
+
+.c-card p{
+    padding: 1em;
 }
 
 .c-image{

@@ -41,7 +41,7 @@ img{
 .hero-text h1{
     font-size: 3rem;
     font-weight: 800;
-    background: #fff;
+    background: #F8F7F4;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -49,24 +49,24 @@ img{
 .hero-text p{
     font-size: 1.3rem;
     font-weight: 500;
-    color: #fff;
+    color: #F8F7F4;
     padding: 0.5rem 0 2rem 0;
 }
 
 .hero-text .show{
     text-decoration: none;
-    background: #fff;
+    background: #F8F7F4;
     padding: 1rem 2rem;
     border-radius: 6px;
     font-size: 1.1rem;
     font-weight: bold;
     letter-spacing: 2px;
-    color: #222;
+    color: #282828;
 }
 
 .hero-text .show:hover {
-    background: #222; /* Invert background color */
-    color: #fff; /* Invert text color */
+    background: #282828; /* Invert background color */
+    color: #F8F7F4; /* Invert text color */
     transition: all 0.2s ease-in-out;
 }
 

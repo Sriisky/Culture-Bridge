@@ -12,6 +12,7 @@ function CataloniaContent() {
     const [museums, setMuseums] = useState([]);
     const [liveEvents, setLiveEvents] = useState([]);
     const [reviews, setReviews] = useState([]);
+    const [eventSearchTerm, setEventSearchTerm] = useState('');
     const coursesUrl = 'https://www.upc.edu/ca/graus/';
     const eventsUrl = 'https://www.upc.edu/ca/agenda';
     const countryCode = 'ES';
@@ -97,6 +98,11 @@ function CataloniaContent() {
         }
     };
 
+    // Add handleChange for search input
+    const handleEventSearchChange = (e) => {
+        setEventSearchTerm(e.target.value);
+    };
+
     return (
         <div className="catalonia-container">
              <p>Welcome to Barcelona! On this page you will find information on the University Polytechnica Cataluyna
@@ -141,15 +147,18 @@ function CataloniaContent() {
                         <li key={index} className="playlist-item">
                             <img src={song.thumbnail} alt="Thumbnail" className="playlist-thumbnail" />
                             <div className="playlist-details">
-                                {song.spotify_url ? (
-                                    <strong><a href={song.spotify_url} target="_blank" rel="noopener noreferrer">{song.title}</a></strong>
-                                ) : (
-                                    <strong>{song.title}</strong>
-                                )}
+                                <strong>
+                                    {song.spotify_url ? (
+                                        <a href={song.spotify_url} target="_blank" rel="noopener noreferrer">{song.title}</a>
+                                    ) : song.title}
+                                </strong>
                                 <br />
                                 {song.artist}<br />
                                 Length: {Math.floor(song.length / 60000)}:{(song.length % 60000 / 1000).toFixed(0)} minutes
                             </div>
+                            {song.spotify_url && (
+                                <a href={song.spotify_url} target="_blank" rel="noopener noreferrer" className="play-button">▶</a>
+                            )}
                         </li> 
                     ))}
                 </ul>
@@ -172,23 +181,43 @@ function CataloniaContent() {
             <div className="content-section">
                 <h1>Live Music Events in Spain</h1>
                 <p>Here are some events taking place across Spain:</p>
-                <ul className="museum_scrollable-list">
-                    {liveEvents.map((event, index) => (
-                        <li key={index} className="museum-item">
-                            <img src={event.image_url} alt="Thumbnail" className="museum-thumbnail" />
-                            <div className="museum-details">
-                            {event.url ? (
-                                    <strong><a href={event.url} target="_blank" rel="noopener noreferrer">{event.name}</a></strong>
-                                ) : (
-                                    <strong>{event.name}</strong>
-                                )}
-                                <span>{event.date}</span>
-                                <span>{event.genre}</span>
-                                <span>{event.subgenre}</span>
-                            </div>
-                        </li> 
-                    ))}
-                </ul>
+                <div className="search-container">
+                        <input
+                            type="text"
+                            placeholder="Search by Genre..."
+                            value={eventSearchTerm}
+                            onChange={handleEventSearchChange}
+                            className="search-input"
+                        />
+                        {eventSearchTerm && (
+                            <button
+                                onClick={() => setEventSearchTerm('')}
+                                className="clear-search"
+                            >
+                                X
+                            </button>
+                        )}
+                    </div>
+                    <ul className="museum_scrollable-list">
+                        {liveEvents.filter(event => 
+                            event.genre.toLowerCase().includes(eventSearchTerm.toLowerCase()) || 
+                            event.subgenre.toLowerCase().includes(eventSearchTerm.toLowerCase())
+                        ).map((event, index) => (
+                            <li key={index} className="museum-item">
+                                <img src={event.image_url} alt="Thumbnail" className="museum-thumbnail" />
+                                <div className="museum-details">
+                                    {event.url ? (
+                                        <strong><a href={event.url} target="_blank" rel="noopener noreferrer">{event.name}</a></strong>
+                                    ) : (
+                                        <strong>{event.name}</strong>
+                                    )}
+                                    <span>{event.date}</span>
+                                    <span>{event.genre}</span>
+                                    <span>{event.subgenre}</span>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
             </div>
             <div className="content-section">
                 <h1>Reviews of Barcelona From Other Students:</h1>

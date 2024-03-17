@@ -11,6 +11,7 @@ function ZilinaContent() {
     const [museums, setMuseums] = useState([]);
     const [concerts, setLiveEvents] = useState([]);
     const [reviews, setReviews] = useState([]);
+    const [eventSearchTerm, setEventSearchTerm] = useState('');
     const coursesUrl = 'https://www.uniza.sk/index.php/en/study/study-options/programmes-2024-2025';
     const songkickUrl = 'https://www.songkick.com/metro-areas/32271-slovakia-zilina?utf8=%E2%9C%93&filters%5BminDate%5D=03%2F11%2F2024&filters%5BmaxDate%5D=12%2F31%2F2024';
     const countryCode = 'SK';
@@ -92,6 +93,10 @@ function ZilinaContent() {
         }
     };
 
+    const handleEventSearchChange = (e) => {
+        setEventSearchTerm(e.target.value);
+    };
+
     return (
         <div className="zilina-container">
             <p>Welcome to Zilina! On this page you will find information on the University of Žilina
@@ -143,15 +148,18 @@ function ZilinaContent() {
                         <li key={index} className="playlist-item">
                             <img src={song.thumbnail} alt="Thumbnail" className="playlist-thumbnail" />
                             <div className="playlist-details">
-                                {song.spotify_url ? (
-                                    <strong><a href={song.spotify_url} target="_blank" rel="noopener noreferrer">{song.title}</a></strong>
-                                ) : (
-                                    <strong>{song.title}</strong>
-                                )}
+                                <strong>
+                                    {song.spotify_url ? (
+                                        <a href={song.spotify_url} target="_blank" rel="noopener noreferrer">{song.title}</a>
+                                    ) : song.title}
+                                </strong>
                                 <br />
                                 {song.artist}<br />
                                 Length: {Math.floor(song.length / 60000)}:{(song.length % 60000 / 1000).toFixed(0)} minutes
                             </div>
+                            {song.spotify_url && (
+                                <a href={song.spotify_url} target="_blank" rel="noopener noreferrer" className="play-button">▶</a>
+                            )}
                         </li> 
                     ))}
                 </ul>
@@ -174,10 +182,28 @@ function ZilinaContent() {
             <div className="content-section">
                 <h1>Live Concerts across Zilina</h1>
                 <p>Here are some events taking place across Zilina:</p>
+                <div className="search-container">
+                    <input
+                        type="text"
+                        placeholder="Search for artists..."
+                        value={eventSearchTerm}
+                        onChange={handleEventSearchChange}
+                        className="search-input"
+                    />
+                    {eventSearchTerm && (
+                        <button
+                            onClick={() => setEventSearchTerm('')}
+                            className="clear-search"
+                        >
+                            X
+                        </button>
+                    )}
+                </div>
                 <ul className="museum_scrollable-list">
-                    {concerts.map((liveEvent, index) => (
+                    {concerts.filter(liveEvent => 
+                        liveEvent.title.toLowerCase().includes(eventSearchTerm.toLowerCase())
+                    ).map((liveEvent, index) => (
                         <li key={index} className="museum-item">
-
                             <div className="museum-details">
                                 {liveEvent.event_url ? (
                                     <strong>
