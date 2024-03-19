@@ -1,5 +1,6 @@
 import "./ErasmusBenefits.css"
-import students from "../assets/images/erasmusbenefits.jpg";
+import students from "../assets/images/tudublin1.jpeg";
+import erasmus from "../assets/images/erasmus3.jpg";
 
 function ErasmusBenefits(){
     return(
@@ -17,6 +18,10 @@ function ErasmusBenefits(){
                 You get to explore your personal preferences, habits, and lifestyle choices without the influence of others.
                 You make all the decisions about your living space and lifestyle, which can boost your confidence and decision-making skills.
                 Living alone in student communities can offer networking opportunities with neighbors who may be attending the same university or college.</p>
+            <a href="https://erasmus-plus.ec.europa.eu/about-erasmus/what-is-erasmus" target="_blank" rel="noopener noreferrer">
+                <img src={erasmus} alt="erasmus" className="students" />
+            </a>
+
 
             <h1>Experience Future Possibilities</h1>
             <p>The Erasmus experience can be a test ground for students considering long-term travel or moving to another country for work or study. 

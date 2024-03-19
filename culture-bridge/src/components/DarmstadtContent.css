@@ -127,12 +127,13 @@ form {
 
 /* Style for the submit button to make it align with the input fields */
 form button {
-    width: 50%; /* Match the width of input and textarea */
+    width: 40%; /* Match the width of input and textarea */
     margin-bottom: 1rem;
     margin-left: auto; /* Auto margins for centering */
     margin-right: auto; /* Auto margins for centering */
     font-size: 1.1em; /* Increase font size */
     padding: 10px; /* Add more padding for a larger button */
+    background-color: #d4d4d4;
 }
 
 ul.reviews-list {

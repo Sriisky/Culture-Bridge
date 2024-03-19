@@ -125,51 +125,51 @@ function RecommenderContent() {
             <div className='bubble-select'>
                 <h2>Types of Music</h2>
                 <div className="button-group">
-                    <button className={`rounded-button ${isSelected('genres', 'Hip hop/Rap/R&b') ? 'selected' : ''}`} onClick={() => handleSelect('genres', 'Hip hop/Rap/R&b')}>Hip Hop/ Rap</button>
-                    <button className={`rounded-button ${isSelected('genres', 'Pop') ? 'selected' : ''}`} onClick={() => handleSelect('genres', 'Pop')}>Pop</button>
-                    <button className={`rounded-button ${isSelected('genres', 'EDM') ? 'selected' : ''}`} onClick={() => handleSelect('genres', 'EDM')}>Electronic</button>
-                    <button className={`rounded-button ${isSelected('genres', 'Rock/Metal') ? 'selected' : ''}`} onClick={() => handleSelect('genres', 'Rock/Metal')}>Rock</button>
-                    <button className={`rounded-button ${isSelected('genres', 'Latin/Reggaeton') ? 'selected' : ''}`} onClick={() => handleSelect('genres', 'Latin/Reggaeton')}>Reggae</button>
+                    <button className={`rounded-button ${isSelected('genres', 'Hip hop/Rap/R&b') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('genres', 'Hip hop/Rap/R&b')}>Hip Hop/ Rap</button>
+                    <button className={`rounded-button ${isSelected('genres', 'Pop') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('genres', 'Pop')}>Pop</button>
+                    <button className={`rounded-button ${isSelected('genres', 'EDM') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('genres', 'EDM')}>Electronic</button>
+                    <button className={`rounded-button ${isSelected('genres', 'Rock/Metal') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('genres', 'Rock/Metal')}>Rock</button>
+                    <button className={`rounded-button ${isSelected('genres', 'Latin/Reggaeton') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('genres', 'Latin/Reggaeton')}>Reggae</button>
                 </div>
 
                 <h2>Types of Live Events</h2>
                 <div className="button-group">
-                    <button className={`rounded-button ${isSelected('events', 'Rock') ? 'selected' : ''}`} onClick={() => handleSelect('events', 'Rock')}>Rock</button>
-                    <button className={`rounded-button ${isSelected('events', 'Hard Rock') ? 'selected' : ''}`} onClick={() => handleSelect('events', 'Hard Rock')}>Hard Rock</button>
-                    <button className={`rounded-button ${isSelected('events', 'Pop') ? 'selected' : ''}`} onClick={() => handleSelect('events', 'Pop')}>Pop</button>
-                    <button className={`rounded-button ${isSelected('events', 'Dance/Electronic') ? 'selected' : ''}`} onClick={() => handleSelect('events', 'Dance/Electronic')}>Electronic</button>
-                    <button className={`rounded-button ${isSelected('events', 'Indie Pop') ? 'selected' : ''}`} onClick={() => handleSelect('events', 'Indie Pop')}>Indie</button>
-                    <button className={`rounded-button ${isSelected('events', 'Fairs & Festivals') ? 'selected' : ''}`} onClick={() => handleSelect('events', 'Fairs & Festivals')}>Festivals</button>
-                    <button className={`rounded-button ${isSelected('events', 'Classical') ? 'selected' : ''}`} onClick={() => handleSelect('events', 'Classical')}>Classical</button>
-                    <button className={`rounded-button ${isSelected('events', 'Jazz Blues') ? 'selected' : ''}`} onClick={() => handleSelect('events', 'Jazz Blues')}>Jazz</button>
-                    <button className={`rounded-button ${isSelected('events', 'Hip-Hop/Rap') ? 'selected' : ''}`} onClick={() => handleSelect('events', 'Hip-Hop/Rap')}>Hip Hop/Rap</button>
-                    <button className={`rounded-button ${isSelected('events', 'Theatre') ? 'selected' : ''}`} onClick={() => handleSelect('events', 'Theatre')}>Theatre</button>
-                    <button className={`rounded-button ${isSelected('events', 'Metal') ? 'selected' : ''}`} onClick={() => handleSelect('events', 'Metal')}>Metal</button>
-                    <button className={`rounded-button ${isSelected('events', 'World') ? 'selected' : ''}`} onClick={() => handleSelect('events', 'World')}>World Music</button>
+                    <button className={`rounded-button ${isSelected('events', 'Rock') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('events', 'Rock')}>Rock</button>
+                    <button className={`rounded-button ${isSelected('events', 'Hard Rock') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('events', 'Hard Rock')}>Hard Rock</button>
+                    <button className={`rounded-button ${isSelected('events', 'Pop') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('events', 'Pop')}>Pop</button>
+                    <button className={`rounded-button ${isSelected('events', 'Dance/Electronic') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('events', 'Dance/Electronic')}>Electronic</button>
+                    <button className={`rounded-button ${isSelected('events', 'Indie Pop') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('events', 'Indie Pop')}>Indie</button>
+                    <button className={`rounded-button ${isSelected('events', 'Fairs & Festivals') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('events', 'Fairs & Festivals')}>Festivals</button>
+                    <button className={`rounded-button ${isSelected('events', 'Classical') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('events', 'Classical')}>Classical</button>
+                    <button className={`rounded-button ${isSelected('events', 'Jazz Blues') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('events', 'Jazz Blues')}>Jazz</button>
+                    <button className={`rounded-button ${isSelected('events', 'Hip-Hop/Rap') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('events', 'Hip-Hop/Rap')}>Hip Hop/Rap</button>
+                    <button className={`rounded-button ${isSelected('events', 'Theatre') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('events', 'Theatre')}>Theatre</button>
+                    <button className={`rounded-button ${isSelected('events', 'Metal') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('events', 'Metal')}>Metal</button>
+                    <button className={`rounded-button ${isSelected('events', 'World') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('events', 'World')}>World Music</button>
                 </div>
 
                 <h2>University Courses</h2>
                 <div className="button-group">
-                    <button className={`rounded-button ${isSelected('courses', 'Computer Science') ? 'selected' : ''}`} onClick={() => handleSelect('courses', 'Computer Science')}>Computer Science</button>
-                    <button className={`rounded-button ${isSelected('courses', 'Information Technology') ? 'selected' : ''}`} onClick={() => handleSelect('courses', 'Information Technology')}>Information Technology</button>
-                    <button className={`rounded-button ${isSelected('courses', 'Art Design') ? 'selected' : ''}`} onClick={() => handleSelect('courses', 'Art Design')}>Art and Design</button>
-                    <button className={`rounded-button ${isSelected('courses', 'Architecture') ? 'selected' : ''}`} onClick={() => handleSelect('courses', 'Architecture')}>Architecture</button>
-                    <button className={`rounded-button ${isSelected('courses', 'Business Studies') ? 'selected' : ''}`} onClick={() => handleSelect('courses', 'Business Studies')}>Business Studies</button>
-                    <button className={`rounded-button ${isSelected('courses', 'Engineering') ? 'selected' : ''}`} onClick={() => handleSelect('courses', 'Engineering')}>Engineering</button>
-                    <button className={`rounded-button ${isSelected('courses', 'Marketing') ? 'selected' : ''}`} onClick={() => handleSelect('courses', 'Marketing')}>Marketing</button>
+                    <button className={`rounded-button ${isSelected('courses', 'Computer Science') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('courses', 'Computer Science')}>Computer Science</button>
+                    <button className={`rounded-button ${isSelected('courses', 'Information Technology') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('courses', 'Information Technology')}>Information Technology</button>
+                    <button className={`rounded-button ${isSelected('courses', 'Art Design') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('courses', 'Art Design')}>Art and Design</button>
+                    <button className={`rounded-button ${isSelected('courses', 'Architecture') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('courses', 'Architecture')}>Architecture</button>
+                    <button className={`rounded-button ${isSelected('courses', 'Business Studies') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('courses', 'Business Studies')}>Business Studies</button>
+                    <button className={`rounded-button ${isSelected('courses', 'Engineering') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('courses', 'Engineering')}>Engineering</button>
+                    <button className={`rounded-button ${isSelected('courses', 'Marketing') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('courses', 'Marketing')}>Marketing</button>
                 </div>
 
                 <h2>City Traits</h2>
                 <div className="button-group">
-                    <button className={`rounded-button ${isSelected('traits', 'Busy') ? 'selected' : ''}`} onClick={() => handleSelect('traits', 'Busy')}>Busy</button>
-                    <button className={`rounded-button ${isSelected('traits', 'Sports') ? 'selected' : ''}`} onClick={() => handleSelect('traits', 'Sports')}>Sports</button>
-                    <button className={`rounded-button ${isSelected('traits', 'chill') ? 'selected' : ''}`} onClick={() => handleSelect('traits', 'chill')}>Quiet</button>
-                    <button className={`rounded-button ${isSelected('traits', 'Culture') ? 'selected' : ''}`} onClick={() => handleSelect('traits', 'Culture')}>Cultural Sites</button>
-                    <button className={`rounded-button ${isSelected('traits', 'Clubs') ? 'selected' : ''}`} onClick={() => handleSelect('traits', 'Clubs')}>Nightclubs</button>
-                    <button className={`rounded-button ${isSelected('traits', 'Cheap') ? 'selected' : ''}`} onClick={() => handleSelect('traits', 'Cheap')}>Cheap</button>
-                    <button className={`rounded-button ${isSelected('traits', 'Bars') ? 'selected' : ''}`} onClick={() => handleSelect('traits', 'Bars')}>Bars</button>
-                    <button className={`rounded-button ${isSelected('traits', 'Travel') ? 'selected' : ''}`} onClick={() => handleSelect('traits', 'Travel')}>Travelling</button>
-                    <button className={`rounded-button ${isSelected('traits', 'Event') ? 'selected' : ''}`} onClick={() => handleSelect('traits', 'Event')}>Live Events</button>
+                    <button className={`rounded-button ${isSelected('traits', 'Busy') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('traits', 'Busy')}>Busy</button>
+                    <button className={`rounded-button ${isSelected('traits', 'Sports') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('traits', 'Sports')}>Sports</button>
+                    <button className={`rounded-button ${isSelected('traits', 'chill') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('traits', 'chill')}>Quiet</button>
+                    <button className={`rounded-button ${isSelected('traits', 'Culture') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('traits', 'Culture')}>Cultural Sites</button>
+                    <button className={`rounded-button ${isSelected('traits', 'Clubs') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('traits', 'Clubs')}>Nightclubs</button>
+                    <button className={`rounded-button ${isSelected('traits', 'Cheap') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('traits', 'Cheap')}>Cheap</button>
+                    <button className={`rounded-button ${isSelected('traits', 'Bars') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('traits', 'Bars')}>Bars</button>
+                    <button className={`rounded-button ${isSelected('traits', 'Travel') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('traits', 'Travel')}>Travelling</button>
+                    <button className={`rounded-button ${isSelected('traits', 'Event') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('traits', 'Event')}>Live Events</button>
                 </div>
                 <button className='recc-submit' onClick={handleSubmit}>Submit</button>
             </div>
@@ -198,5 +198,6 @@ function RecommenderContent() {
         </div>
     );
 }
+
 
 export default RecommenderContent;

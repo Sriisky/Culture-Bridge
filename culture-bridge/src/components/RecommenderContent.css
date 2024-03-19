@@ -49,13 +49,20 @@
     flex-wrap: wrap;
     justify-content: center; /* Center buttons horizontally */
     padding: 0 2rem; /* Adjust padding as needed */
+    
 }
 
 .recc-submit {
     font-size: 1.5em; /* Makes the text twice as large */
     margin-top: 30px;
     padding: 16px 32px; /* Increase padding to make the button larger overall */
-    /* Adjust as needed to fit your design */
+    background-color: #d9d8d8;
+    color: #282828;
+}
+
+.recc-submit:hover {
+    background-color: #00b336;
+    color: #F8F7F4;
 }
 
 .rounded-button {
@@ -65,6 +72,11 @@
     /* Other styles remain the same */
 }
 
+
+.not-selected {
+    background-color: #d9d8d8;
+    color: #282828;
+}
 
 .selected {
     background-color: #282828;
@@ -78,9 +90,11 @@
 
 .city-recommendations-list {
     margin: 4rem 6rem;
-    display: table;
+    display: grid;
     flex-wrap: wrap;
-    gap: 1.5rem;
+    grid-template-columns: repeat(3, 1fr); /* Creates 3 columns of equal width */
+    grid-template-rows: auto auto; /* Creates rows to fit content */
+    gap: 50px;
     justify-content: space-between;
 }
 
