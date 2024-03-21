@@ -18,11 +18,15 @@ import Ljubljana from './routes/Ljubljana'
 import Zilina from './routes/Zilina'
 import Perugia from './routes/Perugia'
 import Catalonia from './routes/Catalonia'
+
+// Lazy loading for the Cities component to improve initial load performance
 const Cities = lazy(() => import('./components/Cities'));
 
 export default function App() {
+  // useLocation hook to access the location object which represents the current URL
   const location = useLocation();
 
+  // Scroll to top of page on route change
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
@@ -30,7 +34,6 @@ export default function App() {
   return (
     <div className="App">
       <Suspense fallback={<div>Loading...</div>}></Suspense>
-
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/Discover" element={<Discover/>}/>

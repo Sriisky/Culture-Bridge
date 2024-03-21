@@ -3,10 +3,10 @@
 import React from "react";
 import "./Destinations.css";
 import DestinationData from "./DestinationData";
-import Zagreb1 from "../assets/images/zagreb-home1.jpg";
-import Zagreb2 from "../assets/images/zagreb-home2.jpg";
-import Zurich1 from "../assets/images/zurich-home1.jpg";
-import Zurich2 from "../assets/images/zurich-home2.jpg";
+import Regensburg1 from "../assets/images/regensburgHome1.jpg";
+import Regensburg2 from "../assets/images/regensburgHome2.jpg";
+import Vasteras1 from "../assets/images/vasterasHome1.jpg";
+import Vasteras2 from "../assets/images/vasterasHome2.jpg";
 
 const Destinations = () => {
     return (
@@ -16,20 +16,21 @@ const Destinations = () => {
 
             <DestinationData
                 className="first-des"
-                heading="Zagreb, Croatia"
-                text="Known for its rich cultural heritage, vibrant arts scene, and welcoming atmosphere, Zagreb offers students a unique and enriching academic experience. Studying in Zagreb also offers students the opportunity to immerse themselves in a diverse and dynamic environment, with a blend of traditional European charm and modern amenities. Additionally, Zagreb's central location within Europe makes it a convenient hub for exploring other European destinations during breaks or weekends. Whether it's the historical architecture, bustling cafes, or the lush parks, Zagreb provides an inspiring backdrop for academic pursuits and personal growth."
-                img1={Zagreb1}
-                img2={Zagreb2}
-                link="../Zagreb" 
+                heading="Regensburg, Germany"
+                text="Regensburg is not just a monument to the past; it's a contemporary academic hub with a vibrant student life that's home to one of Germany’s youngest universities, infusing the ancient city with youthful energy. The presence of numerous global firms in the region also provides a plethora of internship opportunities, allowing for practical experience alongside academic learning. Regensburg's geographical position is a gateway to Central Europe, inviting students to venture into diverse landscapes and cultures over short journeys. The city's culinary scene is as enriching as its academia, with cozy beer gardens and historic breweries that tell tales of Bavaria’s rich brewing traditions."
+                img1={Regensburg1}
+                img2={Regensburg2}
+                link="../Regensburg" 
             />
 
             <DestinationData
                 className="first-des-reverse"
-                heading="Zurich, Switzerland"
-                text="Renowned for its high quality of life, picturesque landscapes, and robust economy, Zurich offers an exceptional environment for learning and growth. With a strong emphasis on innovation and technology, Zurich provides students with access to cutting-edge resources and opportunities for collaboration with industry leaders. Moreover, Zurich's cosmopolitan atmosphere and multicultural community offer a truly enriching experience, fostering cross-cultural understanding and global perspectives. Beyond academia, students can indulge in the city's vibrant arts scene, scenic beauty, and outdoor activities, making Zurich an ideal destination for both intellectual and personal development."
-                img1={Zurich1}
-                img2={Zurich2}
-                link="../Zurich" 
+                heading="Västerås, Sweden"
+                text="
+                Nestled on the shores of Lake Mälaren in Sweden, Västerås offers a serene yet stimulating study environment. Known for its innovation and industry, the city is also rich in natural beauty, from waterfront vistas to green expanses like Djäkneberget Park. Västerås’s blend of modern technology centers and historical landmarks like the Västerås Cathedral provides a unique contrast that enriches the student experience. Compact and student-friendly, Västerås is a place where education and relaxation go hand in hand, making it an ideal locale for students seeking balance between rigorous academics and a peaceful lifestyle."
+                img1={Vasteras1}
+                img2={Vasteras2}
+                link="../Vasteras" 
             />
         </div>
     );

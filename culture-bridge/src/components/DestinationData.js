@@ -1,4 +1,4 @@
-// This component is used to display the highlighted cities
+// This component is used to display the highlighted cities from Destinations.js
 
 import React, { Component } from "react";
 import { Link } from "react-router-dom";

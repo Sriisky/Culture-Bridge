@@ -19,7 +19,14 @@ To start the React app, navigate into the same directory as the App.js file loca
 To start the Django project navigate into the backend DjangoCultureBridge folder and run - **python manage.py runserver**
 
 ### Brief Explanation of key files:
-
+#### Frontend
+- Each city has its own page for displaying its unique content and for making calls to the relevent APIs and scrapers for that city. These are the CITYNAMEContent.js files. The majority of CSS for these files is completed it DarmstadtContent.css, but each city has its own css file in case of unique required alterations.
+- The files Cities.js, CityData.js, CityDetails are each used in conjunction to present the cities as cards with the required information and route for each city.
+- Destinations.js, DestinationData.js are used together to provide the information for the highlighted cities and the component to display them.
+- Hero.js is the picture display at the top of each web page. Provides a nice uniform and consistent design to the web app.
+- MenuItems.js, NavBar.js contain the routes and design for the navbar elements.
+- The Routes folder contains each page of the website with the required elements needed to display content.
+- App.js contains the main rendering of the web app. Specifies the paths and components to render.
 
 ### Sources used for icons and images:
 - Icons are sourced from [fontawsome.com](https://fontawesome.com/)
