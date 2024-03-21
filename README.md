@@ -28,6 +28,10 @@ To start the Django project navigate into the backend DjangoCultureBridge folder
 - The Routes folder contains each page of the website with the required elements needed to display content.
 - App.js contains the main rendering of the web app. Specifies the paths and components to render.
 
+#### Backend
+- 
+- 
+
 ### Sources used for icons and images:
 - Icons are sourced from [fontawsome.com](https://fontawesome.com/)
 - All images are sourced from either [pexels.com](https://www.pexels.com/) or [pixabay.com](https://pixabay.com/)
