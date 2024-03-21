@@ -1,3 +1,6 @@
+// This file gathers all the data for Darmstadt and displays it on the Darmstadt page
+// Contains a lot of the same code from CataloniaContent.js, where you can find more detailed comments
+
 import "./DarmstadtContent.css";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -29,7 +32,6 @@ function DarmstadtContent() {
             .then(response => setEvents(response.data.events))
             .catch(error => console.log('Error fetching events:', error));
         
-        // Fetch reviews
         axios.get('http://localhost:8000/api/get_reviews/', { params: { uniName: uniName } })
         .then(response => {
             setReviews(response.data.reviews);
@@ -87,7 +89,7 @@ function DarmstadtContent() {
                 },
                 uniName: uniName
             };
-            const response = await axios.post('http://localhost:8000/api/save_reviews/', reviewData);
+            await axios.post('http://localhost:8000/api/save_reviews/', reviewData);
             setReviews([...reviews, reviewData.review]);
             setUserReview({ timeSpent: '', description: '' });
         } catch (error) {

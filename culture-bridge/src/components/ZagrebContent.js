@@ -1,3 +1,6 @@
+// This file gathers all the data for Zagreb and displays it on the Zagreb page
+// Contains a lot of the same code from CataloniaContent.js, where you can find more detailed comments
+
 import "./ZagrebContent.css";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -6,7 +9,7 @@ import axios from 'axios';
 // Rochester Institute of Technology events url - https://www.rit.edu/croatia/events-0
 
 function ZagrebContent() {
-    const [courses, setCourses] = useState([]);
+    const [setCourses] = useState([]);
     const [events, setEvents] = useState([]);
     const [playlist, setPlaylist] = useState([]);
     const [museums, setMuseums] = useState([]);
@@ -91,7 +94,7 @@ function ZagrebContent() {
                 },
                 uniName: uniName
             };
-            const response = await axios.post('http://localhost:8000/api/save_reviews/', reviewData);
+            await axios.post('http://localhost:8000/api/save_reviews/', reviewData);
             setReviews([...reviews, reviewData.review]);
             setUserReview({ timeSpent: '', description: '' });
         } catch (error) {

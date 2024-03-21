@@ -1,4 +1,5 @@
-// all icons are taken from fontawsome.com
+// Clickable menu items for the navigation bar
+
 export const MenuItems = [
     {
         title : "Home",

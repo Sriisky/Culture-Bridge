@@ -17,7 +17,6 @@
     flex-direction: row-reverse;
 }
 
-/* Align only the h2 to the right in the reversed layout */
 .first-des-reverse .des-text h2 {
     text-align: center;
 }
@@ -35,7 +34,7 @@ p {
 .des-text h2, .des-header-link h2 {
     padding-bottom: 1rem;
     text-align: center;
-    text-decoration: none; /* Remove underline from header links */
+    text-decoration: none; 
 }
 
 .image {
@@ -47,15 +46,15 @@ p {
 }
 
 .image-link {
-    width: 48%; /* Adjusted width for spacing */
-    margin-right: 3%; /* Added margin for space between images */
+    width: 48%; 
+    margin-right: 3%;
     display: inline-block;
-    text-decoration: none; /* Remove default link underlines */
-    transition: transform 0.3s ease; /* Smooth transition for hover effect */
+    text-decoration: none; 
+    transition: transform 0.3s ease; 
 }
 
 .image-link:last-child {
-    margin-right: 0; /* Ensure the last image link doesn't have a right margin */
+    margin-right: 0; 
 }
 
 .styled-img {
@@ -64,12 +63,12 @@ p {
     object-fit: cover;
     border-radius: 6px;
     box-shadow: -1px 1px 62px -18px rgba(0, 0, 0, 0.19);
-    transition: transform 0.3s ease; /* Smooth transition for the hover effect */
+    transition: transform 0.3s ease; 
 }
 
 .image-link:hover .styled-img {
-    transform: scale(1.05); /* Slightly scale up on hover */
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Enhanced shadow for visibility */
+    transform: scale(1.05); 
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); 
 }
 
 @media screen and (max-width: 850px) {
@@ -97,8 +96,8 @@ p {
     }
 
     .image-link {
-        width: 100%; /* Full width in mobile view */
-        margin-right: 0; /* Reset margin in mobile view */
+        width: 100%; 
+        margin-right: 0; 
     }
 
     .styled-img {

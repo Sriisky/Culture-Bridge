@@ -1,3 +1,5 @@
+// This component contains the information for each cityCard
+
 import Darmstadt from "../assets/images/darmstadt.jpg";
 import Zwolle from "../assets/images/zwolle.jpg";
 import Oulo from "../assets/images/finland.jpg";

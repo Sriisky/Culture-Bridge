@@ -1,3 +1,6 @@
+// This file gathers all the data for Kufstein and displays it on the Kufstein page
+// Contains a lot of the same code from CataloniaContent.js, where you can find more detailed comments
+
 import "./KufsteinContent.css";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -49,7 +52,7 @@ function KufsteinContent() {
     const fetchPlaylistInformation = async () => {
         try {
             const response = await axios.get('http://localhost:8000/api/authenticate/', { params: { countryCode: countryCode }});
-            console.log('Playlist response:', response.data); // Log the response for debugging
+            console.log('Playlist response:', response.data);
             setPlaylist(response.data.playlist);
         } catch (error) {
             console.error('Error fetching playlist data: ', error);
@@ -90,7 +93,7 @@ function KufsteinContent() {
                 },
                 uniName: uniName
             };
-            const response = await axios.post('http://localhost:8000/api/save_reviews/', reviewData);
+            await axios.post('http://localhost:8000/api/save_reviews/', reviewData);
             setReviews([...reviews, reviewData.review]);
             setUserReview({ timeSpent: '', description: '' });
         } catch (error) {
@@ -98,7 +101,6 @@ function KufsteinContent() {
         }
     };
 
-    // Add handleChange for search input
     const handleEventSearchChange = (e) => {
         setEventSearchTerm(e.target.value);
     };

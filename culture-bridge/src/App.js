@@ -19,7 +19,6 @@ import Zilina from './routes/Zilina'
 import Perugia from './routes/Perugia'
 import Catalonia from './routes/Catalonia'
 const Cities = lazy(() => import('./components/Cities'));
-// All images have been sourced from pixabay and pexels
 
 export default function App() {
   const location = useLocation();

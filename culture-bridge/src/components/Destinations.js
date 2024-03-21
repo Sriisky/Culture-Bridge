@@ -1,3 +1,5 @@
+// This file contains the content for the highlighted cities seciton
+
 import React from "react";
 import "./Destinations.css";
 import DestinationData from "./DestinationData";

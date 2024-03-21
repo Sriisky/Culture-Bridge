@@ -1,4 +1,6 @@
-import React, {Component, useState} from 'react'
+// Navbar component for every page
+
+import React, {Component} from 'react'
 import "./NavBar.css";
 import {Link} from "react-router-dom";
 import { MenuItems } from './MenuItems';

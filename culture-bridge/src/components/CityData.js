@@ -1,3 +1,5 @@
+// This component is used to display the city data in the form of cards in the cities page
+
 import './Cities.css';
 import { Link } from 'react-router-dom';
 

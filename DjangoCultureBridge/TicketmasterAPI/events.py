@@ -2,8 +2,8 @@ import requests
 import json
 import os
 
-# Define the path to the JSON file
-json_file_path = r"C:\Users\srisk\OneDrive - Technological University Dublin\Documents\YEAR 4 SEM 1\Final Year Project\Coding\Culture-Bridge\DjangoCultureBridge\DataFiles\liveEvents_data.json"
+# Define the relative path to the JSON file
+json_file_path = os.path.join(os.path.dirname(__file__), '..', 'DataFiles', 'liveEvents_data.json')
 
 def save_to_json_file(new_data, country_code):
     existing_data = read_existing_data(json_file_path)

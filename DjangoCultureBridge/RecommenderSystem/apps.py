@@ -10,10 +10,10 @@ class RecommendersystemConfig(AppConfig):
         from .recommender import load_json_lines, flatten_uni_courses, create_dataframe, flatten_live_events, flatten_spotify_playlist, flatten_reviews, load_json
         
         # Define file paths
-        uniCourses_file_path = r'C:\Users\srisk\OneDrive - Technological University Dublin\Documents\YEAR 4 SEM 1\Final Year Project\Coding\Culture-Bridge\DjangoCultureBridge\DataFiles\uniCourses_data.json'
-        liveEvents_file_path = r'C:\Users\srisk\OneDrive - Technological University Dublin\Documents\YEAR 4 SEM 1\Final Year Project\Coding\Culture-Bridge\DjangoCultureBridge\DataFiles\liveEvents_data.json'
-        spotifyPlaylist_file_path = r'C:\Users\srisk\OneDrive - Technological University Dublin\Documents\YEAR 4 SEM 1\Final Year Project\Coding\Culture-Bridge\DjangoCultureBridge\DataFiles\spotifyPlaylist_data.json'
-        reviews_file_path = r'C:\Users\srisk\OneDrive - Technological University Dublin\Documents\YEAR 4 SEM 1\Final Year Project\Coding\Culture-Bridge\DjangoCultureBridge\DataFiles\reviews_data.json'
+        uniCourses_file_path = os.path.join(os.path.dirname(__file__), '..', 'DataFiles', 'uniCourses_data.json')
+        liveEvents_file_path = os.path.join(os.path.dirname(__file__), '..', 'DataFiles', 'liveEvents_data.json')
+        spotifyPlaylist_file_path = os.path.join(os.path.dirname(__file__), '..', 'DataFiles', 'spotifyPlaylist_data.json')
+        reviews_file_path = os.path.join(os.path.dirname(__file__), '..', 'DataFiles', 'reviews_data.json')
         # Load and process uniCourses data
         data_list = load_json_lines(uniCourses_file_path)
         flat_data = flatten_uni_courses(data_list)

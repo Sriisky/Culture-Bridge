@@ -1,3 +1,6 @@
+// This file gathers all the data for Grimstad and displays it on the Grimstad city page
+// Contains a lot of the same code from CataloniaContent.js, where you can find more detailed comments
+
 import "./GrimstadContent.css";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -98,7 +101,6 @@ function GrimstadContent() {
         }
     };
 
-    // Add handleChange for search input
     const handleEventSearchChange = (e) => {
         setEventSearchTerm(e.target.value);
     };

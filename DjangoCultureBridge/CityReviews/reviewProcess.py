@@ -1,8 +1,7 @@
 import json
 import os
 
-json_file_path = r"C:\Users\srisk\OneDrive - Technological University Dublin\Documents\YEAR 4 SEM 1\Final Year Project\Coding\Culture-Bridge\DjangoCultureBridge\DataFiles\reviews_data.json"
-
+json_file_path = os.path.join(os.path.dirname(__file__), '..', 'DataFiles', 'reviews_data.json')
 
 def save_reviews(review_data, uniName):
     # Ensure the file exists and has an empty dictionary if new

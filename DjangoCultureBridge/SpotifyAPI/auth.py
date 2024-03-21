@@ -9,8 +9,8 @@ dotenv_path = os.path.join(os.path.dirname(__file__), '..', 'keys.env')
 load_dotenv(dotenv_path)
 
 
-# Define the path to the JSON file
-json_file_path = r"C:\Users\srisk\OneDrive - Technological University Dublin\Documents\YEAR 4 SEM 1\Final Year Project\Coding\Culture-Bridge\DjangoCultureBridge\DataFiles\spotifyPlaylist_data.json"
+# Define the relative path to the JSON file
+json_file_path = os.path.join(os.path.dirname(__file__), '..', 'DataFiles', 'spotifyPlaylist_data.json')
 
 def save_to_json_file(new_data, countryCode):
     existing_data = read_existing_data(json_file_path)

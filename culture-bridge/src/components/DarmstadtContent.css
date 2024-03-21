@@ -38,20 +38,18 @@
 }
 
 .museum-details {
-    display: flex; /* Use flexbox */
-    flex-direction: column; /* Arrange children vertically */
+    display: flex;
+    flex-direction: column;
     padding-bottom: 2rem;
     padding-top: 2rem;
 }
 
 .museum-item {
-    display: flex; /* Use flexbox */
-    align-items: center; /* Align items vertically */
+    display: flex;
+    align-items: center;
     margin-bottom: 2rem;
     background-color: #fff;
 }
-
-
 
 @media screen and (max-width: 850px) {
     .darmstadt-container {
@@ -65,13 +63,13 @@
         margin-bottom: 2rem;
     }
     input, textarea, form button {
-        width: 100%; /* Full width on smaller screens for better visibility */
-        margin-left: auto; /* Keep auto margins for centering */
-        margin-right: auto; /* Keep auto margins for centering */
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     ul.reviews-list li {
-        width: 100%; /* Full width on smaller screens */
+        width: 100%;
     }
 }
 
@@ -84,13 +82,12 @@
 }
 
 .museum_scrollable-list {
-    max-height: 500px; /* Adjust the max height as needed */
+    max-height: 500px;
     overflow-y: auto;
     border: 1px solid #ccc;
     padding: 0.5rem;
     background-color: #fff;
 }
-
 
 .playlist-item {
     display: flex;
@@ -111,49 +108,46 @@
 input, textarea {
     display: block;
     margin-bottom: 1rem;
-    width: 50%; /* Set width to 50% */
-    margin-left: auto; /* Auto margins for centering */
-    margin-right: auto; /* Auto margins for centering */
-    font-size: 1.05em; /* Increase font size */
-    padding: 10px; /* Add more padding for larger boxes */
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.05em;
+    padding: 10px;
 }
 
-/* Additional styles for the form to align items properly */
 form {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center items horizontally in the column */
+    align-items: center;
 }
 
-/* Style for the submit button to make it align with the input fields */
 form button {
-    width: 40%; /* Match the width of input and textarea */
+    width: 40%;
     margin-bottom: 1rem;
-    margin-left: auto; /* Auto margins for centering */
-    margin-right: auto; /* Auto margins for centering */
-    font-size: 1.1em; /* Increase font size */
-    padding: 10px; /* Add more padding for a larger button */
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.1em;
+    padding: 10px;
     background-color: #d4d4d4;
 }
 
 ul.reviews-list {
-    list-style-type: none; /* Remove bullet points */
-    padding: 0; /* Remove default padding */
+    list-style-type: none;
+    padding: 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     margin: 0;
 }
 
-/* Card Style for Each Review */
 ul.reviews-list li {
     border: 1px solid #ccc;
     padding: 15px;
     background-color: #fff;
     margin: 10px;
-    border-radius: 15px; /* Increased border-radius for more rounded corners */
+    border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 45%; /* Adjust width to fit two cards per line */
+    width: 45%;
     margin-bottom: 20px;
 }
 
@@ -161,16 +155,16 @@ ul.reviews-list li {
     display: inline-block;
     margin-left: 10px;
     cursor: pointer;
-    background-color: #1DB954; /* Spotify green, or choose your color */
+    background-color: #1DB954;
     color: white;
-    padding: 10px 12px; /* Increased padding for a larger button */
+    padding: 10px 12px;
     border-radius: 50%;
     text-decoration: none;
-    font-size: 40px; /* Increased font size for a larger play icon */
-    line-height: 40px; /* Adjusted for vertical centering, may need tweaking */
+    font-size: 40px;
+    line-height: 40px;
     box-sizing: content-box;
 }
 
 .play-button:hover {
-    background-color: #1ed760; /* A lighter green for hover */
+    background-color: #1ed760;
 }

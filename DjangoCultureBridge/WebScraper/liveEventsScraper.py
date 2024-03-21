@@ -3,7 +3,8 @@ import requests
 import json
 import os
 
-json_file_path = r"C:\Users\srisk\OneDrive - Technological University Dublin\Documents\YEAR 4 SEM 1\Final Year Project\Coding\Culture-Bridge\DjangoCultureBridge\DataFiles\liveEvents_data.json"
+# Define the relative path to the JSON file
+json_file_path = os.path.join(os.path.dirname(__file__), '..', 'DataFiles', 'liveEvents_data.json')
 
 # Function to parse a single page
 def parse_page(url):

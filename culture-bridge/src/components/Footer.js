@@ -1,3 +1,5 @@
+// Footer component displayed on each page
+
 import "./Footer.css"
 
 const Footer = () =>{

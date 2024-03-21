@@ -1,3 +1,6 @@
+// This file contains the code for the Cities component it displays the cities available for the Erasmus at TU Dublin 
+// It uses the CityData component to display the individual city cards
+
 import React, { useState } from "react";
 import "./Cities.css";
 import CityData from "./CityData";

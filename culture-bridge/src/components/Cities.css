@@ -11,8 +11,8 @@
     margin: 4rem 6rem;
     display: grid;
     flex-wrap: wrap;
-    grid-template-columns: repeat(3, 1fr); /* Creates 3 columns of equal width */
-    grid-template-rows: auto auto; /* Creates rows to fit content */
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
     gap: 50px;
     justify-content: space-between;
 }
@@ -20,15 +20,15 @@
 .search-container {
     display: flex;
     justify-content: center;
-    position: relative; /* Ensure this is here */
+    position: relative;
     width: 45%;
     margin: 2rem auto;
 }
 
 .search-input {
-    padding-right: 30px; /* Make room for the 'X' */
+    padding-right: 30px;
     padding: 0.5rem;
-    width: 100%; /* Adjust if necessary to exclude the 'X' area */
+    width: 100%;
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -49,17 +49,17 @@
     border-radius: 7px;
     cursor: pointer;
     padding: 2.9rem .8rem;
-    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Add transition for smooth effect */
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
     float: left;
 }
 
 .c-card:hover {
-    box-shadow: 0 10px 30px 2px rgba(0, 0, 0, 0.15); /* Slightly larger shadow for depth */
-    transform: translateY(-5px); /* Slightly raise the card */
+    box-shadow: 0 10px 30px 2px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
 }
 
 .c-card h4 {
-    font-size: 1.5rem; /* Adjusted from 1.3rem to make it bigger */
+    font-size: 1.5rem;
     padding: 0.9rem 0 0.2rem;
 }
 
@@ -104,6 +104,6 @@
     }
 
     .search-container {
-        width: 80%; /* More responsive on smaller screens */
+        width: 80%;
     }
 }

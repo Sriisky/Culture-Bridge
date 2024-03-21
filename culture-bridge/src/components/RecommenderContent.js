@@ -1,3 +1,5 @@
+// This component is responsible for the recommendation section of the website. It allows users to select their preferences and returns top 3 cities
+
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import './RecommenderContent.css';
@@ -5,8 +7,9 @@ import { cityInfos } from './CityDetails';
 import CityData from './CityData';
 
 function RecommenderContent() {
-    const [recommendations, setRecommendations] = useState([]);
-    const [error, setError] = useState('');
+    // state hooks to hole UI state
+    const [setRecommendations] = useState([]);
+    const [setError] = useState('');
     const [cityRecommendations, setCityRecommendations] = useState([]);
     const [selections, setSelections] = useState({
         genres: [],
@@ -15,8 +18,10 @@ function RecommenderContent() {
         traits: []
     });
 
+    // Ref hook to refer to the city recommendations section in the DOM for scrolling purposes
     const cityRecommendationsRef = useRef(null);
 
+    // useEffect hook to load saved recommendations from sessionStorage on component mount
     useEffect(() => {
         const savedRecommendations = sessionStorage.getItem('cityRecommendations');
         if (savedRecommendations) {
@@ -25,12 +30,16 @@ function RecommenderContent() {
     }, []);
 
     // Update handleSelect to work with the new state structure
+    // Handles selections for recommendation criteria
     const handleSelect = (category, value) => {
         setSelections(prevSelections => {
             const newSelections = { ...prevSelections };
+            // Toggles the selection of a value in a category
             if (newSelections[category].includes(value)) {
+                // If already selected, remove it from the array
                 newSelections[category] = newSelections[category].filter(item => item !== value);
             } else {
+                // If not selected, add it to the array
                 newSelections[category].push(value);
             }
             return newSelections;
@@ -42,13 +51,12 @@ function RecommenderContent() {
         return selections[category].includes(value);
     };
 
+    // Submits the user selections for processing and retrieves recommendations
     const handleSubmit = async () => {
         try {
             const response = await axios.post(`http://localhost:8000/api/process-recommendations/`, selections);
             console.log(response.data);
-            // Assuming the API returns the expected format
             setRecommendations(response.data);
-            // Map to city recommendations
             mapRecommendationsToCities(response.data);
             // Scroll to city recommendations
             const scrollOffset = cityRecommendationsRef.current.offsetTop - 150;
@@ -63,12 +71,12 @@ function RecommenderContent() {
         }
     };
     
-
+    // Maps recommendation data to city pages
     const mapRecommendationsToCities = (recommendations) => {
         const mappedCities = recommendations.map(rec => {
             const { Location, AssociatedUniversities } = rec;
             let cityName = ""; // Default city name
-            // Completed mappings
+            // Mappings
             if (Location === 'DE' && AssociatedUniversities.includes('OTH')) {
                 cityName = "Regensburg, Germany";
             } else if (Location === 'DE' && AssociatedUniversities.includes('HDA')) {
@@ -104,7 +112,7 @@ function RecommenderContent() {
     
         setCityRecommendations(mappedCities);
 
-        // Save to sessionStorage
+        // Save to sessionStorage which allows the user to refresh the page without losing the recommendations
         sessionStorage.setItem('cityRecommendations', JSON.stringify(mappedCities));
     };
     

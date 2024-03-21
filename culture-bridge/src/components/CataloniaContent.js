@@ -1,3 +1,5 @@
+// This file contains information on Barcelona and gathers required information from the backend to display on the page
+
 import "./CataloniaContent.css";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -5,29 +7,36 @@ import axios from 'axios';
 // University Polytechnica Cataluyna Course URL- https://www.upc.edu/ca/graus/
 // University Polytechnica Cataluyna Events URL- https://www.upc.edu/ca/agenda
 
+// Component that displays information about Catalonia
 function CataloniaContent() {
     const [courses, setCourses] = useState([]);
-    const [events, setEvents] = useState([]);
+    const [setEvents] = useState([]);
     const [playlist, setPlaylist] = useState([]);
     const [museums, setMuseums] = useState([]);
     const [liveEvents, setLiveEvents] = useState([]);
     const [reviews, setReviews] = useState([]);
     const [eventSearchTerm, setEventSearchTerm] = useState('');
+
     const coursesUrl = 'https://www.upc.edu/ca/graus/';
     const eventsUrl = 'https://www.upc.edu/ca/agenda';
+
     const countryCode = 'ES';
     const uniName = 'UPC';
     const searchCity = 'Barcelona';
+
     const [userReview, setUserReview] = useState({
         timeSpent: '',
         description: ''
     });
 
+    // useEffect hook to load data on component mount
     useEffect(() => {
+        // Fetch courses
         axios.get('http://localhost:8000/courses/', { params: { url: coursesUrl, uniName: uniName }  })
             .then(response => setCourses(response.data.courses))  
             .catch(error => console.log(error));
 
+        // Fetch events
         axios.get('http://localhost:8000/events/', { params: { url: eventsUrl, uniName: uniName } })
             .then(response => setEvents(response.data.events))
             .catch(error => console.log(error));
@@ -56,6 +65,7 @@ function CataloniaContent() {
         }
     };
 
+    // To fetch artworks from Barcelona
     const handleSearch = async () => {
         try {
             const response = await axios.get('http://localhost:8000/api/search_europeana/', { params: { cityName: searchCity }});
@@ -76,12 +86,14 @@ function CataloniaContent() {
         }
     };
 
+    // Function to update userReview state when the form fields change
     const handleChange = (e) => {
         setUserReview({...userReview, [e.target.name]: e.target.value });
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        // Post the new review to the server
         try {
             const reviewData = {
                 review: {
@@ -90,7 +102,7 @@ function CataloniaContent() {
                 },
                 uniName: uniName
             };
-            const response = await axios.post('http://localhost:8000/api/save_reviews/', reviewData);
+            await axios.post('http://localhost:8000/api/save_reviews/', reviewData);
             setReviews([...reviews, reviewData.review]);
             setUserReview({ timeSpent: '', description: '' });
         } catch (error) {
@@ -98,7 +110,7 @@ function CataloniaContent() {
         }
     };
 
-    // Add handleChange for search input
+    // To handle user search input changes
     const handleEventSearchChange = (e) => {
         setEventSearchTerm(e.target.value);
     };
@@ -110,6 +122,7 @@ function CataloniaContent() {
                 to see what is available at this university. The 'about' section will give some information about UPC. If you would like more information
                 on UPC you can click on the headings below.
             </p>
+
             <div className="section-wrapper">
                 <div className="content-section">
                 <a href="https://www.upc.edu/ca/graus/" target="_blank" rel="noopener noreferrer">
@@ -121,6 +134,7 @@ function CataloniaContent() {
                         ))}
                     </ul>
                 </div>
+
                 <div className="content-section">
                     <a href="https://www.upc.edu/ca/agenda" target="_blank" rel="noopener noreferrer">
                         <h1>About UPC</h1>
@@ -138,7 +152,9 @@ function CataloniaContent() {
                      it 36th globally in Computer Science and 60th in Engineering.
                     </ul>
                 </div>
+
             </div>
+
             <div className="content-section">
                 <h1>Top 50 - Spain Playlist</h1>
                 <p>The following tracks are trending in Spain today! If you click on any song you will be redirected to Spotify where you can listen to the song or add it to your playlist</p>
@@ -163,6 +179,7 @@ function CataloniaContent() {
                     ))}
                 </ul>
             </div>
+
             <div className="content-section">
                 <h1>Artworks from Barcelona</h1>
                 <p>Here are some artworks from Barcelona:</p>
@@ -178,6 +195,7 @@ function CataloniaContent() {
                     ))}
                 </ul>
             </div>
+
             <div className="content-section">
                 <h1>Live Music Events in Spain</h1>
                 <p>Here are some events taking place across Spain:</p>
@@ -219,6 +237,7 @@ function CataloniaContent() {
                         ))}
                     </ul>
             </div>
+
             <div className="content-section">
                 <h1>Reviews of Barcelona From Other Students:</h1>
                 <form onSubmit={handleSubmit}>
@@ -246,6 +265,7 @@ function CataloniaContent() {
                     ))}
                 </ul>
             </div>
+
         </div>
     );
 }

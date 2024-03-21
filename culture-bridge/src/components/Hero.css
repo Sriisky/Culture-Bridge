@@ -65,8 +65,8 @@ img{
 }
 
 .hero-text .show:hover {
-    background: #282828; /* Invert background color */
-    color: #F8F7F4; /* Invert text color */
+    background: #282828; 
+    color: #F8F7F4; 
     transition: all 0.2s ease-in-out;
 }
 

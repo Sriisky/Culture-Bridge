@@ -1,3 +1,6 @@
+// This file gathers all the data for Perugia and displays it on the Perugia page
+// Contains a lot of the same code from CataloniaContent.js, where you can find more detailed comments
+
 import "./PerugiaContent.css";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -11,8 +14,6 @@ function PerugiaContent() {
     const [concerts, setLiveEvents] = useState([]);
     const [reviews, setReviews] = useState([]);
     const [eventSearchTerm, setEventSearchTerm] = useState('');
-    //const coursesUrl = 'https://www.unipg.it/didattica/corsi-di-laurea-e-laurea-magistrale/area-tecnologica';
-    //const eventsUrl = 'https://www.unipg.it/eventi?view=elenco';
     const songkickUrl = 'https://www.songkick.com/metro-areas/30351-italy-perugia?utf8=%E2%9C%93&filters%5BminDate%5D=03%2F11%2F2024&filters%5BmaxDate%5D=12%2F31%2F2024';
     const countryCode = 'IT';
     const uniName = 'UNIPG';
@@ -23,7 +24,6 @@ function PerugiaContent() {
     });
 
     useEffect(() => {
-        // Fetch reviews
         axios.get('http://localhost:8000/api/get_reviews/', { params: { uniName: uniName } })
         .then(response => {
             setReviews(response.data.reviews);
@@ -81,7 +81,7 @@ function PerugiaContent() {
                 },
                 uniName: uniName
             };
-            const response = await axios.post('http://localhost:8000/api/save_reviews/', reviewData);
+            await axios.post('http://localhost:8000/api/save_reviews/', reviewData);
             setReviews([...reviews, reviewData.review]);
             setUserReview({ timeSpent: '', description: '' });
         } catch (error) {

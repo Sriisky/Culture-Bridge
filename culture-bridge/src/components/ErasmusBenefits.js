@@ -1,3 +1,5 @@
+// This component is responsible for displaying the benefits of the Erasmus program
+
 import "./ErasmusBenefits.css"
 import students from "../assets/images/tudublin1.jpeg";
 import erasmus from "../assets/images/erasmus3.jpg";

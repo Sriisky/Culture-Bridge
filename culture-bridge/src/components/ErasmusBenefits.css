@@ -16,12 +16,12 @@
     height: 400px;
     overflow: hidden;
     border-radius: 7px;
-    transition: transform 0.5s ease; /* Add transition effect */
-    cursor: pointer; /* Optional: changes the cursor on hover */
+    transition: transform 0.5s ease; 
+    cursor: pointer; 
 }
 
 .students:hover {
-    transform: scale(1.02); /* Adjust the scale as needed for the desired zoom */
+    transform: scale(1.02); 
 }
 
 .students img {
@@ -32,18 +32,18 @@
 
 .video-responsive {
     overflow: hidden;
-    padding-top: 56.25%; /* Maintain 16:9 aspect ratio but apply as padding-top */
+    padding-top: 56.25%; 
     position: relative;
-    width: 100%; /* Adjust width as needed to make the video smaller */
-    margin: 0 auto; /* Centers the div horizontally */
+    width: 100%; 
+    margin: 0 auto; 
 }
 
 .video-responsive iframe {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 75%; /* Ensure the iframe fills the container width */
-    height: 75%; /* Ensure the iframe fills the container height */
+    width: 75%; 
+    height: 75%; 
     transform: translate(-50%, -50%);
 }
 

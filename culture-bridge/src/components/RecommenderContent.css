@@ -66,10 +66,9 @@
 }
 
 .rounded-button {
-    min-width: calc((100% / 6) - 10px); /* Example calculation */
-    margin: 5px; /* Adjust margin as needed */
+    min-width: calc((100% / 6) - 10px); 
+    margin: 5px; 
     padding: 8px 16px;
-    /* Other styles remain the same */
 }
 
 
@@ -84,16 +83,16 @@
 }
 
 .city-recommendations {
-    margin-top: 7rem; /* Add space above the recommendations section */
-    margin-bottom: 4rem; /* Add more space at the bottom to avoid overlapping with the footer */
+    margin-top: 7rem; 
+    margin-bottom: 4rem; 
 }
 
 .city-recommendations-list {
     margin: 4rem 6rem;
     display: grid;
     flex-wrap: wrap;
-    grid-template-columns: repeat(3, 1fr); /* Creates 3 columns of equal width */
-    grid-template-rows: auto auto; /* Creates rows to fit content */
+    grid-template-columns: repeat(3, 1fr); 
+    grid-template-rows: auto auto; 
     gap: 50px;
     justify-content: space-between;
 }
