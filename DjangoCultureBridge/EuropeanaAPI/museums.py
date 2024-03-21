@@ -1,6 +1,11 @@
+import os
+from dotenv import load_dotenv
 import requests
 
-API_KEY = 'blestredya'
+dotenv_path = os.path.join(os.path.dirname(__file__), '..', 'keys.env')
+load_dotenv(dotenv_path)
+
+API_KEY = os.getenv('EUROPEANA_API_KEY')
 API_URL = 'https://api.europeana.eu/record/v2/search.json'
 
 def search_europeana(query):

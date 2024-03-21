@@ -2,6 +2,12 @@ import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import json
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from keys.env
+dotenv_path = os.path.join(os.path.dirname(__file__), '..', 'keys.env')
+load_dotenv(dotenv_path)
+
 
 # Define the path to the JSON file
 json_file_path = r"C:\Users\srisk\OneDrive - Technological University Dublin\Documents\YEAR 4 SEM 1\Final Year Project\Coding\Culture-Bridge\DjangoCultureBridge\DataFiles\spotifyPlaylist_data.json"
@@ -49,8 +55,9 @@ playlist_configs = {
 }
 
 def authenticate(countryCode):
-    client_credentials_manager = SpotifyClientCredentials(client_id='41a902302c9b4c80a9ab4ea8e7d15306',
-                                                        client_secret='1b082af1f5964f568ff95a2aa1987a4e')
+    client_credentials_manager = SpotifyClientCredentials(
+        client_id=os.getenv('SPOTIFY_CLIENT_ID'),
+        client_secret=os.getenv('SPOTIFY_CLIENT_SECRET'))
 
     sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
