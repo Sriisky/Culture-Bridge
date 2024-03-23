@@ -3,12 +3,14 @@
     text-align: start;
 }
 
-.zagreb-container h1{
+.zagreb-container h1, h2, h3{
     padding-bottom: 1rem;
+    text-align: center;
 }
 
 .zagreb-container p{
     padding-bottom: 2rem;
+    text-align: center;
 }
 
 @media screen and (max-width: 850px){

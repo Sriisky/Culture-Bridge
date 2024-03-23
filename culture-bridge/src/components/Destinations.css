@@ -2,8 +2,39 @@
     margin: 4rem 6rem;
 }
 
+.des-header-link a {
+    display: block; 
+}
+
+.des-header-link a, .des-header-link a h2 {
+    text-decoration: none ; 
+}
+
+
 .destination h1 {
     font-size: 3rem;
+}
+
+.first-des .des-text h2 {
+    color: #282828;
+    text-decoration: none;
+    transition: color 0.2s ease, transform 0.3s ease;
+}
+
+.first-des .des-text h2:hover {
+    color: #00b336; 
+    transform: scale(1.1);
+}
+
+.first-des-reverse .des-text h2 {
+    color: #282828;
+    text-decoration: none;
+    transition: color 0.2s ease, transform 0.3s ease;
+}
+
+.first-des-reverse .des-text h2:hover {
+    color: #00b336; 
+    transform: scale(1.1);
 }
 
 .first-des, .first-des-reverse {
@@ -19,6 +50,7 @@
 
 .first-des-reverse .des-text h2 {
     text-align: center;
+    text-decoration: none;
 }
 
 .des-text {

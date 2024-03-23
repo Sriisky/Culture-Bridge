@@ -3,12 +3,14 @@
     text-align: start;
 }
 
-.ljubljana-container h1{
+.ljubljana-container h1, h2, h3{
     padding-bottom: 1rem;
+    text-align: center;
 }
 
 .ljubljana-container p{
     padding-bottom: 2rem;
+    text-align: center;
 }
 
 @media screen and (max-width: 850px){

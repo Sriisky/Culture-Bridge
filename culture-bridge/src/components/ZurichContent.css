@@ -3,12 +3,14 @@
     text-align: start;
 }
 
-.zurich-container h1{
+.zurich-container h1, h2, h3{
     padding-bottom: 1rem;
+    text-align: center;
 }
 
 .zurich-container p{
     padding-bottom: 2rem;
+    text-align: center;
 }
 
 @media screen and (max-width: 850px){

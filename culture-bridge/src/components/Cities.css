@@ -17,6 +17,20 @@
     justify-content: space-between;
 }
 
+.citycard p{
+    color: #282828;
+}
+
+.citycard h4{
+    color: #282828;
+    transition: color 0.3s ease;
+}
+
+.citycard h4:hover{
+    color: #00b336;
+}
+
+
 .search-container {
     display: flex;
     justify-content: center;
@@ -89,7 +103,48 @@
     padding: .9rem 0 .2rem 0;
 }
 
+/* for my laptop */
+@media screen and (max-width: 1800px) {
+    .citycard {
+        grid-template-columns: repeat(3, 1fr); 
+    }
+
+    .c-card {
+        padding: 2rem 0.6rem; 
+    }
+
+    .c-card h4 {
+        font-size: 1.2rem; 
+        padding: 0.7rem 0 0.1rem; 
+    }
+
+    .c-card p {
+        font-size: 0.9rem; 
+        padding: 0.8em; 
+    }
+
+    .c-image {
+        height: 180px; 
+    }
+
+    .c-image img {
+        height: 180px; 
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .citycard {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+}
+
+
+/* for mobile devices */
 @media screen and (max-width:850px) {
+    .citycard {
+        grid-template-columns: repeat(1, 1fr); 
+    }
+
     .city{
         margin: 4rem 2rem;
     }
@@ -107,3 +162,4 @@
         width: 80%;
     }
 }
+

@@ -3,12 +3,14 @@
     text-align: start;
 }
 
-.kufstein-container h1{
+.kufstein-container h1, h2, h3{
     padding-bottom: 1rem;
+    text-align: center;
 }
 
 .kufstein-container p{
     padding-bottom: 2rem;
+    text-align: center;
 }
 
 @media screen and (max-width: 850px){

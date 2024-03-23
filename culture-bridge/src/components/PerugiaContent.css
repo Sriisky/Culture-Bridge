@@ -3,12 +3,14 @@
     text-align: start;
 }
 
-.perugia-container h1{
+.perugia-container h1, h2{
     padding-bottom: 1rem;
+    text-align: center;
 }
 
 .perugia-container p{
     padding-bottom: 2rem;
+    text-align: center;
 }
 
 @media screen and (max-width: 850px){

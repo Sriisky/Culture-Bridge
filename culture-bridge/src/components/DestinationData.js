@@ -9,7 +9,7 @@ class DestinationData extends Component {
         return (
             <div className={this.props.className}>
                 <div className="des-text">
-                    <Link to={this.props.link} className="des-header-link">
+                    <Link to={this.props.link}  style={{ textDecoration: 'none' }} className="des-header-link">
                         <h2>{this.props.heading}</h2>
                     </Link>
                     <p>{this.props.text}</p>
