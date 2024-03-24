@@ -1,3 +1,5 @@
+# File to retrieve top 50 tracks of a country from Spotify API
+
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import json
@@ -8,16 +10,14 @@ from dotenv import load_dotenv
 dotenv_path = os.path.join(os.path.dirname(__file__), '..', 'keys.env')
 load_dotenv(dotenv_path)
 
-
-# Define the relative path to the JSON file
 json_file_path = os.path.join(os.path.dirname(__file__), '..', 'DataFiles', 'spotifyPlaylist_data.json')
 
+# Function to save the top 50 tracks of a country to a JSON file
 def save_to_json_file(new_data, countryCode):
     existing_data = read_existing_data(json_file_path)
     if not is_duplicate(countryCode, existing_data):
         with open(json_file_path, 'a') as file:
             for entry in new_data:
-                # Prepare entry for JSON file (if needed, modify here)
                 entry_to_save = {
                     'title': entry['title'],
                     'artist': entry['artist'],
@@ -26,17 +26,20 @@ def save_to_json_file(new_data, countryCode):
                 json.dump(entry_to_save, file)
                 file.write('\n')
 
+# Function to read existing data from a JSON file
 def read_existing_data(file_path):
     if not os.path.exists(file_path):
         return []
     with open(file_path, 'r') as file:
         return [json.loads(line) for line in file]
 
+# Function to check if the country code is already in the JSON file
 def is_duplicate(countryCode, existing_data):
     for existing_song in existing_data:
         if existing_song['countryCode'] == countryCode:
             return True
     return False
+
 # Dictionary of all playlist ID's for the top-50 tracks of a country
 playlist_configs = {
     'US': '37i9dQZEVXbLRQDuF5jeBp',  
@@ -54,6 +57,7 @@ playlist_configs = {
     'NL': '37i9dQZEVXbKCF6dqVpDkS',   
 }
 
+# Function to authenticate with Spotify API and fetch the top 50 tracks of a country
 def authenticate(countryCode):
     client_credentials_manager = SpotifyClientCredentials(
         client_id=os.getenv('SPOTIFY_CLIENT_ID'),
@@ -68,7 +72,7 @@ def authenticate(countryCode):
 
     top_tracks = sp.playlist_tracks(playlist_id=playlist_id, market=countryCode)
 
-    # Extract relevant information from top_tracks
+    # Extract information from top_tracks
     playlist = []
     for track in top_tracks['items']:
         track_info = {
@@ -80,6 +84,5 @@ def authenticate(countryCode):
         }
         playlist.append(track_info)
     
-    # Save to JSON file
     save_to_json_file(playlist, countryCode)
     return playlist

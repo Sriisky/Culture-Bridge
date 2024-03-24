@@ -1,3 +1,5 @@
+# File to scrape information on each cities university for courses and events and save to a json file
+
 from bs4 import BeautifulSoup
 import requests
 import json
@@ -5,6 +7,7 @@ import os
 
 json_file_path = os.path.join(os.path.dirname(__file__), '..', 'DataFiles', 'uniCourses_data.json')
 
+# Function to save the extracted data to a json file
 def save_to_json_file(new_data, uniName):
     existing_data = read_existing_data(json_file_path)
     if not is_duplicate(uniName, existing_data):
@@ -14,19 +17,21 @@ def save_to_json_file(new_data, uniName):
             json.dump(entry_to_save, file)
             file.write('\n')
 
+# Function to read existing data from a json file
 def read_existing_data(file_path):
     if not os.path.exists(file_path):
         return []
     with open(file_path, 'r') as file:
         return [json.loads(line) for line in file]
 
+# Function to check if the entry is a duplicate
 def is_duplicate(uniName, existing_data):
     for existing_entry in existing_data:
         if existing_entry['uniName'] == uniName:
             return True
     return False
 
-# parse a single page
+# Parse a single page
 def parse_page(url):
     response = requests.get(url)
     if response.status_code == 200:
@@ -35,16 +40,19 @@ def parse_page(url):
         print(f"Failed to retrieve content from {url}, status code: {response.status_code}")
         return None
 
-# function to get courses
+# Function to get courses
 def get_courses(url, uniName):
+    # Parse into a beautifulSoup object
     course_parse = parse_page(url)
     extracted_courses = []
 
+    # Scraping process using the course_configs dictionary to find elements for each uni
     if course_parse:
         for tag in course_configs['url_tag']:
             for attrs in course_configs['url_attrs']:
                 courses = course_parse.find_all(tag, attrs=attrs)
                 if courses:
+                    # For each course name found tidy and trim it and add it to the extracted_courses list
                     for course in courses:
                         course_name_tag = course_configs['course_name_tag']
                         course_name = course.find(course_name_tag)
@@ -63,8 +71,9 @@ def get_courses(url, uniName):
     save_to_json_file(extracted_courses, uniName)
     return extracted_courses
 
-# function to get events
+# Function to get uni events
 def get_events(url, uniName):
+    # Retrieve the configuration for the specified uni
     config = events_config.get(uniName)
     if not config:
         print(f"No configuration found for {uniName}")
@@ -73,6 +82,7 @@ def get_events(url, uniName):
     events_parse = parse_page(url)
     extracted_events = []
 
+    # Attempts to find the title, description and date of each event
     if events_parse:
         for tag in config['url_tags']:
             for attrs in config.get('url_attrs_list', [{}]):
@@ -80,7 +90,7 @@ def get_events(url, uniName):
 
                 for event in events:
                     event_info = {}
-                    found_elements = 0
+                    found_elements = 0 # To track number of elements found for each event
 
                     # Extract title
                     for title_tag in config.get('title_tags', []):
@@ -109,7 +119,7 @@ def get_events(url, uniName):
                     # Check if event should be added based on 'require_all_elements' flag
                     if (config['require_all_elements'] and found_elements == 3) or \
                        (not config['require_all_elements'] and found_elements > 0):
-                        extracted_events.append(event_info)
+                        extracted_events.append(event_info) # If all 3 elements were found, add the event
                     else:
                         print(f"Incomplete event details found for tag {tag} and attributes {attrs}")
     else:
@@ -158,9 +168,9 @@ events_config = {
         {'itemprop': 'description'},
         {'class': 'place'}
     ],
-    'date_tags': ['ul', 'date', 'span'],  # Adjusted to include 'span' if needed
+    'date_tags': ['ul', 'date', 'span'],  
     'date_attrs_list': [
-        {'class': 'infos list-unstyled'},  # Corrected to combine class names
+        {'class': 'infos list-unstyled'},  
         {'class': 'attribute-date'}
     ]
     },

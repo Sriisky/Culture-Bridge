@@ -1,3 +1,5 @@
+# Views to handle the requests to the Europeana API
+
 from rest_framework.views import APIView
 from django.http import JsonResponse
 from .museums import search_europeana

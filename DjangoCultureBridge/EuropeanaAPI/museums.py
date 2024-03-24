@@ -1,3 +1,5 @@
+# File to search for museums in Europeana API
+
 import os
 from dotenv import load_dotenv
 import requests

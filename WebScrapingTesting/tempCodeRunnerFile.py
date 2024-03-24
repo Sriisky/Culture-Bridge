@@ -1,1 +1,0 @@
-('td', {'data-title': 'Studiengang', 'class': 'a1'})

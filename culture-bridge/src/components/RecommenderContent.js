@@ -8,8 +8,8 @@ import CityData from './CityData';
 
 function RecommenderContent() {
     // state hooks to hole UI state
-    const [setRecommendations] = useState([]);
-    const [setError] = useState('');
+    const [recommendations, setRecommendations] = useState([]);
+    const [error, setError] = useState('');
     const [cityRecommendations, setCityRecommendations] = useState([]);
     const [selections, setSelections] = useState({
         genres: [],

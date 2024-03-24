@@ -1,3 +1,5 @@
+# Views to manage GET and POST requests for city reviews
+
 from django.http import JsonResponse
 from .reviewProcess import get_reviews, save_reviews
 from rest_framework.views import APIView
