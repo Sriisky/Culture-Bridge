@@ -29,8 +29,12 @@ To start the Django project navigate into the backend DjangoCultureBridge folder
 - App.js contains the main rendering of the web app. Specifies the paths and components to render.
 
 #### Backend
-- 
-- 
+- Each piece of functionality has their own directory. CityReviews is used to handle adding and retrieving reviews for each city.
+- DataFiles contains the JSON files that each API and scraper adds retrieved information to.
+- DjangoCultureBridge contains the settings and urls of the backend
+- EuropeanaAPI, SpotifyAPI, and TicketmasterAPI are responsible for gather content from their websites using country/ city codes.
+- RecommenderSystem contains the programs used to determine recommendations to the user based on their interests.
+- WebScraper contains a scraper for the university information, and another for cities that need their events gathered through SongKick instead of Ticketmaster.
 
 ### Sources used for icons and images:
 - Icons are sourced from [fontawsome.com](https://fontawesome.com/)
