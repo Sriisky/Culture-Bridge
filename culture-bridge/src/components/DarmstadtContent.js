@@ -2,6 +2,7 @@
 // Contains a lot of the same code from CataloniaContent.js, where you can find more detailed comments
 
 import "./DarmstadtContent.css";
+import MapComponent from './MapComponent';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -157,6 +158,17 @@ function DarmstadtContent() {
                         </li> 
                     ))}
                 </ul>
+            </div>
+            <div className="content-section">
+                <h1>Map of Darmstadt</h1>
+                <p>Explore Darmstadt through google maps! Clicking on a location allows you to explore it further on the Google Maps website.</p>
+                <MapComponent 
+                    id="darmstadtMap" 
+                    lat={49.8728} 
+                    lng={8.6512} 
+                    zoom={13} 
+                    markerPosition={{ lat: 49.86731, lng: 8.63819 }} 
+                    markerTitle="Hochschule Darmstadt"/>
             </div>
             <div className="content-section">
                 <h1>Artworks from Darmstadt</h1>

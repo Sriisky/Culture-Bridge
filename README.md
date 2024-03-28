@@ -22,6 +22,7 @@ To start the Django project navigate into the backend DjangoCultureBridge folder
 #### Frontend
 - Each city has its own page for displaying its unique content and for making calls to the relevent APIs and scrapers for that city. These are the CITYNAMEContent.js files. The majority of CSS for these files is completed it DarmstadtContent.css, but each city has its own css file in case of unique required alterations.
 - The files Cities.js, CityData.js, CityDetails are each used in conjunction to present the cities as cards with the required information and route for each city.
+- MapComponent.js uses 'Maps JavaScript API' from Google Cloud to render a map for each city.
 - Destinations.js, DestinationData.js are used together to provide the information for the highlighted cities and the component to display them.
 - Hero.js is the picture display at the top of each web page. Provides a nice uniform and consistent design to the web app.
 - MenuItems.js, NavBar.js contain the routes and design for the navbar elements.

@@ -2,6 +2,7 @@
 // Contains a lot of the same code from CataloniaContent.js, where you can find more detailed comments
 
 import "./KufsteinContent.css";
+import MapComponent from './MapComponent';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -162,6 +163,17 @@ function KufsteinContent() {
                         </li> 
                     ))}
                 </ul>
+            </div>
+            <div className="content-section">
+                <h1>Map of Kufstein</h1>
+                <p>Explore Kufstein through google maps! Clicking on a location allows you to explore it further on the Google Maps website.</p>
+                <MapComponent 
+                    id="kufsteinMap" 
+                    lat={47.5824} 
+                    lng={12.1627} 
+                    zoom={14} 
+                    markerPosition={{ lat: 47.583944468662104, lng: 12.173700083957618 }} 
+                    markerTitle="FH Kufstein Tirol"/>
             </div>
             <div className="content-section">
                 <h1>Artworks from Austria</h1>

@@ -29,7 +29,7 @@ export const cityInfos = [
     },
     {
         image: Oulo,
-        heading: "Oulo, Finland",
+        heading: "Oulu, Finland",
         text: "Oulu offers a gateway to arctic experiences with its stunning landscapes and unique cultural heritage. Visitors can enjoy the serene beauty of the Oulujoki River, explore the vibrant market square, and experience the magic of the Northern Lights. With year-round activities from cycling along its extensive paths in summer to cross-country skiing in winter, Oulu is a dynamic city for all seasons.",
         path: "../Oulo",
     },

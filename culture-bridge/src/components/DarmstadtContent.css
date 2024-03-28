@@ -18,6 +18,14 @@
     margin-top: 2rem;;
 }
 
+.map-section {
+    flex: 1;
+    margin-right: 2rem;
+    padding-top: 2rem;
+    margin-top: 2rem;
+    height: 70vh;
+}
+
 .darmstadt-container h1 {
     padding-bottom: 1rem;
     text-align: center;

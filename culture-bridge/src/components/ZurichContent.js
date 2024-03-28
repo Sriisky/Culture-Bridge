@@ -2,6 +2,7 @@
 // Contains a lot of the same code from CataloniaContent.js, where you can find more detailed comments
 
 import "./ZurichContent.css";
+import MapComponent from './MapComponent';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -154,6 +155,17 @@ function ZurichContent() {
                         </li> 
                     ))}
                 </ul>
+            </div>
+            <div className="content-section">
+                <h1>Map of Zurich</h1>
+                <p>Explore Zurich through google maps! Clicking on a location allows you to explore it further on the Google Maps website.</p>
+                <MapComponent 
+                    id="zurichMap" 
+                    lat={47.48250} 
+                    lng={8.2116309} 
+                    zoom={13} 
+                    markerPosition={{ lat: 47.482503142, lng: 8.2116309 }} 
+                    markerTitle="University of Applied Sciences Northwestern Switzerland"/>
             </div>
             <div className="content-section">
                 <h1>Artworks from Zurich</h1>

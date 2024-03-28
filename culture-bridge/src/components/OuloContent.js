@@ -2,6 +2,7 @@
 // Contains a lot of the same code from CataloniaContent.js, where you can find more detailed comments
 
 import "./OuloContent.css";
+import MapComponent from './MapComponent';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -100,7 +101,7 @@ function OuloContent() {
 
     return (
         <div className="oulo-container">
-            <p>Welcome to Oulo! On this page you will find information on Oulo University of Applied Sciences
+            <p>Welcome to Oulu! On this page you will find information on Oulu University of Applied Sciences
                 which is the university you will be studying at if you choose to study in this city. Take a look at the courses on offer
                 to see what is on offer at this university. The 'about' section will provide some insight into what OAMK values which may help your decision making process
                 for choosing where to study. You can also click on the headings below to get more information on the university.
@@ -160,8 +161,19 @@ function OuloContent() {
                 </ul>
             </div>
             <div className="content-section">
-                <h1>Artworks from Oulo</h1>
-                <p>Here are some artworks from Oulo:</p>
+                <h1>Map of Oulu</h1>
+                <p>Explore Oulu through google maps! Clicking on a location allows you to explore it further on the Google Maps website.</p>
+                <MapComponent 
+                    id="ouluMap" 
+                    lat={65.0121} 
+                    lng={25.4651} 
+                    zoom={11.5} 
+                    markerPosition={{ lat: 65.0612885254399, lng: 25.467594054146023 }} 
+                    markerTitle="Oulu University of Applied Sciences"/>
+            </div>
+            <div className="content-section">
+                <h1>Artworks from Oulu</h1>
+                <p>Here are some artworks from Oulu:</p>
                 <ul className="museum_scrollable-list">
                     {museums.map((art, index) => (
                         <li key={index} className="museum-item">
@@ -216,7 +228,7 @@ function OuloContent() {
                     </ul>
             </div>
             <div className="content-section">
-                <h1>Reviews of Oulo From Other Students:</h1>
+                <h1>Reviews of Oulu From Other Students:</h1>
                 <form onSubmit={handleSubmit}>
                     <input
                         type="text"

@@ -2,6 +2,7 @@
 // Contains a lot of the same code from CataloniaContent.js, where you can find more detailed comments
 
 import "./PerugiaContent.css";
+import MapComponent from './MapComponent';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -173,6 +174,17 @@ function PerugiaContent() {
                         </li> 
                     ))}
                 </ul>
+            </div>
+            <div className="content-section">
+                <h1>Map of Perugia</h1>
+                <p>Explore Perugia through google maps! Clicking on a location allows you to explore it further on the Google Maps website.</p>
+                <MapComponent 
+                    id="perugiaMap" 
+                    lat={43.1107} 
+                    lng={12.3908} 
+                    zoom={14} 
+                    markerPosition={{ lat: 43.11658340471552, lng: 12.386876939538805 }} 
+                    markerTitle="University of Perugia"/>
             </div>
             <div className="content-section">
                 <h1>Artworks from Perugia</h1>

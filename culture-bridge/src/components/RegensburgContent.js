@@ -2,6 +2,7 @@
 // Contains a lot of the same code from CataloniaContent.js, where you can find more detailed comments
 
 import "./RegensburgContent.css";
+import MapComponent from './MapComponent';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -161,6 +162,17 @@ function RegensburgContent() {
                         </li> 
                     ))}
                 </ul>
+            </div>
+            <div className="content-section">
+                <h1>Map of Regensburg</h1>
+                <p>Explore Regensburg through google maps! Clicking on a location allows you to explore it further on the Google Maps website.</p>
+                <MapComponent 
+                    id="regensburgMap" 
+                    lat={49.0134} 
+                    lng={12.1016} 
+                    zoom={13} 
+                    markerPosition={{ lat: 49.0036457385977, lng: 12.095721957794623 }} 
+                    markerTitle="Ostbayerische Technische Hochschule (OTH) Regensburg"/>
             </div>
             <div className="content-section">
                 <h1>Artworks from Regensburg</h1>

@@ -2,6 +2,7 @@
 // Contains a lot of the same code from CataloniaContent.js, where you can find more detailed comments
 
 import "./VasterasContent.css";
+import MapComponent from './MapComponent';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -161,6 +162,17 @@ function VasterasContent() {
                         </li> 
                     ))}
                 </ul>
+            </div>
+            <div className="content-section">
+                <h1>Map of Vasteras</h1>
+                <p>Explore Vasteras through google maps! Clicking on a location allows you to explore it further on the Google Maps website.</p>
+                <MapComponent 
+                    id="vasterasMap" 
+                    lat={59.6099} 
+                    lng={16.5448} 
+                    zoom={13} 
+                    markerPosition={{ lat: 59.6200561306, lng: 16.5404782 }} 
+                    markerTitle="Mälardalens University"/>
             </div>
             <div className="content-section">
                 <h1>Artworks from Vasteras</h1>

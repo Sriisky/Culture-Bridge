@@ -2,6 +2,7 @@
 // Contains a lot of the same code from CataloniaContent.js, where you can find more detailed comments
 
 import "./GrimstadContent.css";
+import MapComponent from './MapComponent';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -163,6 +164,18 @@ function GrimstadContent() {
                     ))}
                 </ul>
             </div>
+            <div className="map-section">
+                <h1>Map of Grimstad</h1>
+                <p>Explore Grimstad through google maps! Clicking on a location allows you to explore it further on the Google Maps website.</p>
+                <MapComponent 
+                    id="grimstadMap"
+                    lat={58.3421} 
+                    lng={8.5945} 
+                    zoom={13} 
+                    markerPosition={{ lat: 58.33472212754776, lng: 8.577336665676428 }}
+                    markerTitle="University of Agder"/>
+            </div>
+            <br />
             <div className="content-section">
                 <h1>Artworks from Norway</h1>
                 <p>Here are some artworks from Norway</p>

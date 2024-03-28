@@ -2,6 +2,7 @@
 // Contains a lot of the same code from CataloniaContent.js, where you can find more detailed comments
 
 import "./ZagrebContent.css";
+import MapComponent from './MapComponent';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -167,6 +168,17 @@ function ZagrebContent() {
                         </li> 
                     ))}
                 </ul>
+            </div>
+            <div className="content-section">
+                <h1>Map of Zagreb</h1>
+                <p>Explore Zagreb through google maps! Clicking on a location allows you to explore it further on the Google Maps website.</p>
+                <MapComponent 
+                    id="zagrebMap" 
+                    lat={45.8150} 
+                    lng={15.9819} 
+                    zoom={13} 
+                    markerPosition={{ lat: 45.78302, lng: 15.9810970 }} 
+                    markerTitle="Rochester Institute of Technology Zagreb"/>
             </div>
             <div className="content-section">
                 <h1>Artworks from Zagreb</h1>

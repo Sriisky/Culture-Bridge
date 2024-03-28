@@ -2,6 +2,7 @@
 // Contains a lot of the same code from CataloniaContent.js, where you can find more detailed comments
 
 import "./ZwolleContent.css";
+import MapComponent from './MapComponent';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -204,6 +205,17 @@ function ZwolleContent() {
                         </li> 
                     ))}
                 </ul>
+            </div>
+            <div className="content-section">
+                <h1>Map of Zwolle</h1>
+                <p>Explore Zwolle through google maps! Clicking on a location allows you to explore it further on the Google Maps website.</p>
+                <MapComponent 
+                    id="zwolleMap" 
+                    lat={52.5168} 
+                    lng={6.0830} 
+                    zoom={13} 
+                    markerPosition={{ lat: 52.499624936, lng: 6.080140399493844 }} 
+                    markerTitle="Windesheim University of Applied Sciences"/>
             </div>
             <div className="content-section">
                 <h1>Artworks from Zwolle</h1>

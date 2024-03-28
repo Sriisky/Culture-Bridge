@@ -1,6 +1,7 @@
 // This file contains information on Barcelona and gathers required information from the backend to display on the page
 
 import "./CataloniaContent.css";
+import MapComponent from './MapComponent';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -179,7 +180,17 @@ function CataloniaContent() {
                     ))}
                 </ul>
             </div>
-
+            <div className="content-section">
+                <h1>Map of Barcelona</h1>
+                <p>Explore Barcelona through google maps! Clicking on a location allows you to explore it further on the Google Maps website.</p>
+                <MapComponent 
+                    id="barcelonaMap"  
+                    lat={41.3851} 
+                    lng={2.1734} 
+                    zoom={13} 
+                    markerPosition={{ lat: 41.38938820840345, lng: 2.1156649953367217 }}
+                    markerTitle="Universitat Politècnica de Catalunya"/>
+            </div>
             <div className="content-section">
                 <h1>Artworks from Barcelona</h1>
                 <p>Here are some artworks from Barcelona:</p>
