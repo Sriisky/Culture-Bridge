@@ -43,7 +43,7 @@ const MapComponent = ({ id, lat, lng, zoom, markerPosition, markerTitle }) => {
         window.initMap = initMap;
 
         const script = document.createElement('script');
-        script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyA7aLKCbvGec73aVKUcJkYSLYNORRiXmwA&callback=initMap`;
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&callback=initMap`;
         script.async = true;
         script.defer = true;
         document.head.appendChild(script);
