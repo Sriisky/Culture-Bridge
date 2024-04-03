@@ -41,6 +41,7 @@ def is_duplicate(countryCode, existing_data):
     return False
 
 # Dictionary of all playlist ID's for the top-50 tracks of a country
+# Country codes are also used to specify the market code so that the tracks are always visible
 playlist_configs = {
     'US': '37i9dQZEVXbLRQDuF5jeBp',  
     'DE': '37i9dQZEVXbJiZcmkrIHGU',  

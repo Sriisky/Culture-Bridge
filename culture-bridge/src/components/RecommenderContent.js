@@ -83,7 +83,7 @@ function RecommenderContent() {
                 cityName = "Darmstadt, Germany";
             } else if (Location === 'NL') {
                 cityName = "Zwolle, Netherlands";
-            } else if (Location === 'FI') {
+            } else if (Location === 'FI'&& AssociatedUniversities.includes('OAMK')) {
                 cityName = "Oulo, Finland";
             } else if (Location === 'SE') {
                 cityName = "Vasteras, Sweden";

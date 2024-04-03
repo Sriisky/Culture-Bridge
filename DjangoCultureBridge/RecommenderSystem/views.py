@@ -37,8 +37,9 @@ class RecommendationView(APIView):
             'reviews': review_recommendations
         }
         
-        # Testing
-        print(total_recommendations)
+        # Testing - print each part divided by a new line
+        for category, recommendations in total_recommendations.items():
+            print(f"{category}: {recommendations}\n")
 
         # Call city_recommender function with the aggregated recommendations to determine the final city recommendations
         city_recommendations = city_recommender(total_recommendations)

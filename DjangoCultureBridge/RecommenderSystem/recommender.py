@@ -214,9 +214,13 @@ def city_recommender(total_recommendations):
         'UNIPG': 'IT',
     }
 
-    location_counts = {}
-    uni_counts = {}
-    uni_associations = {}
+    location_counts = {code: 0 for code in set(uni_to_country_code.values())}
+    uni_counts = {uni: 0 for uni in uni_to_country_code.keys()}
+    uni_associations = {code: set() for code in set(uni_to_country_code.values())}
+
+    # Prepopulate uni_associations with universities, ensuring all are represented
+    for uni, code in uni_to_country_code.items():
+        uni_associations[code].add(uni)
 
     # Handle courses
     for uni in total_recommendations['courses']:

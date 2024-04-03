@@ -1,7 +1,7 @@
 # Culture Bridge – A website application to help TU Dublin students with the decision making process for Erasmus
 ## Final year project
 
-This project is a website application to help encourage more students to take part in Erasmus. This will be achieved through giving users’ information on different cities that take part in the Erasmus programme. There are huge benefits to studying abroad and this app will highlight these to helps users explore the advantages of Erasmus along with the experience you can gain from studying in a new culture. Each city has information relating to the university of that city, music, live events, art, and reviews from past students. This information is gathered through web scrapers and APIs. There is also a recommender element to help students find locations that match them best.
+This project is a website application to help encourage more students to take part in Erasmus. This will be achieved through giving users information on different cities that take part in the Erasmus programme. There are huge benefits to studying abroad and this app will highlight these to helps users explore the advantages of Erasmus along with the experience you can gain from studying in a new culture. Each city has information relating to the university of that city, music, live events, art, and reviews from past students. This information is gathered through web scrapers and APIs. There is also a recommender element to help students find locations that match them best.
 
 ### When running the project for the first time please follow these steps:
 Install the following
@@ -33,7 +33,7 @@ To start the Django project navigate into the backend DjangoCultureBridge folder
 - Each piece of functionality has their own directory. CityReviews is used to handle adding and retrieving reviews for each city.
 - DataFiles contains the JSON files that each API and scraper adds retrieved information to.
 - DjangoCultureBridge contains the settings and urls of the backend
-- EuropeanaAPI, SpotifyAPI, and TicketmasterAPI are responsible for gather content from their websites using country/ city codes.
+- EuropeanaAPI, SpotifyAPI, and TicketmasterAPI are responsible for gathering content from their websites using relevant country/ city codes.
 - RecommenderSystem contains the programs used to determine recommendations to the user based on their interests.
 - WebScraper contains a scraper for the university information, and another for cities that need their events gathered through SongKick instead of Ticketmaster.
 
