@@ -195,10 +195,10 @@ buzzwords = ['Lively', 'Fun', 'Bars']
 top_unis = recommend_unis_by_buzzwords(buzzwords, reviews_df)
 print(top_unis)
 '''
-# Function to determine what cities get returned to the user
-def city_recommender(total_recommendations):
+
+def city_recommender(total_recommendations, starred_category=None, extra_weight=4):
     # Dictionary to map university names to country codes
-    uni_to_country_code = {
+    uni_identifiers = {
         'HDA': 'DE',
         'WINDESHEIM': 'NL',
         'OAMK': 'FI',
@@ -213,54 +213,58 @@ def city_recommender(total_recommendations):
         'UNILJ': 'SI',
         'UNIPG': 'IT',
     }
+    # Inverting the uni_identifiers dictionary for reverse lookup from country code to university name
+    identifier_to_uni = {v: k for k, v in uni_identifiers.items()}
+    location_counts = {}
+    applied_extra_weight = False  # Flag to track if extra weight has already been applied to any category
 
-    location_counts = {code: 0 for code in set(uni_to_country_code.values())}
-    uni_counts = {uni: 0 for uni in uni_to_country_code.keys()}
-    uni_associations = {code: set() for code in set(uni_to_country_code.values())}
-
-    # Prepopulate uni_associations with universities, ensuring all are represented
-    for uni, code in uni_to_country_code.items():
-        uni_associations[code].add(uni)
+    # Function to update counts for each location, applying extra weight for the first item in the starred category
+    def add_or_update_count(identifier, category, is_first=False):
+        nonlocal applied_extra_weight # allows the inner function to modify variables defined in the parent function.
+        # Check if this entry should receive extra weight
+        weight = extra_weight if is_first and category == starred_category and not applied_extra_weight else 1
+        if is_first and category == starred_category:
+            applied_extra_weight = True
+        location_counts[identifier] = location_counts.get(identifier, 0) + weight
 
     # Handle courses
-    for uni in total_recommendations['courses']:
-        country_code = uni_to_country_code.get(uni, uni)
-        location_counts[country_code] = location_counts.get(country_code, 0) + 1
-        uni_counts[uni] = uni_counts.get(uni, 0) + 1
-        uni_associations.setdefault(country_code, set()).add(uni) # Set means that each university is only added once
-        
-    # Handle live events
-    _, events_dict = total_recommendations['events']
-    for country_code in events_dict:
-        location_counts[country_code] = location_counts.get(country_code, 0) + len(events_dict[country_code])
-
-    # Handle music
-    for _, row in total_recommendations['music'].iterrows():
-        country_code = row['Country Code']
-        location_counts[country_code] = location_counts.get(country_code, 0) + 1 # Count occurences of each country
+    if 'courses' in total_recommendations and total_recommendations['courses']:
+        for index, uni in enumerate(total_recommendations['courses']):
+            identifier = uni_identifiers.get(uni, uni)
+            add_or_update_count(identifier, 'courses', index == 0)
 
     # Handle reviews
-    for _, row in total_recommendations['reviews'].iterrows():
-        uni_name = row['University Name']
-        country_code = uni_to_country_code.get(uni_name, uni_name) # If the uni name is not in the dictionary, use the name itself
-        location_counts[country_code] = location_counts.get(country_code, 0) + 1 # Count occurences of each country
-        uni_counts[uni_name] = uni_counts.get(uni_name, 0) + 1 # Count occurences of each university
-        uni_associations.setdefault(country_code, set()).add(uni_name) 
+    if 'reviews' in total_recommendations and not total_recommendations['reviews'].empty and starred_category == 'reviews':
+        for index, row in enumerate(total_recommendations['reviews'].iterrows()):
+            uni_name = row[1]['University Name']
+            identifier = uni_identifiers.get(uni_name, uni_name)
+            add_or_update_count(identifier, 'reviews', index == 0)
 
-    # Identify the top 3 locations based on occurrence
-    top_locations = sorted(location_counts.items(), key=lambda item: item[1], reverse=True)[:3]
+    # Handle live events
+    if 'events' in total_recommendations and total_recommendations['events']:
+        _, events_dict = total_recommendations['events']
+        for index, country_code in enumerate(events_dict):
+            add_or_update_count(country_code, 'events', index == 0)
 
+    # Handle music
+    if 'music' in total_recommendations and not total_recommendations['music'].empty and starred_category == 'music':
+        for index, row in enumerate(total_recommendations['music'].iterrows()):
+            country_code = row[1]['Country Code']
+            add_or_update_count(country_code, 'music', index == 0)
+
+    # Sorting and finalizing top cities
+    sorted_locations = sorted(location_counts.items(), key=lambda item: item[1], reverse=True)[:3]
+    
     top_cities = []
-    for loc, count in top_locations:
-        associated_unis = list(uni_associations.get(loc, []))
-        if len(associated_unis) > 1 and loc in uni_to_country_code.values():
-            # If multiple universities are associated with this country code, find the most frequently occurring one
-            highest_uni = max(associated_unis, key=lambda uni: uni_counts[uni])
-            associated_unis = [highest_uni]
-        top_cities.append({
-            'Location': loc,
-            'Count': count,
-            'AssociatedUniversities': associated_unis
-        })
+    for identifier, count in sorted_locations:
+        city_info = {
+            'Location': identifier.split('-')[0],
+            'Count': count
+        }
+        uni_name = identifier_to_uni.get(identifier)
+        if uni_name and uni_name != "No associated university":
+            city_info['AssociatedUniversities'] = [uni_name]
+
+        top_cities.append(city_info)
 
     return top_cities

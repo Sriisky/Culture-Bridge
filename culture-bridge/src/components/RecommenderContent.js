@@ -11,6 +11,7 @@ function RecommenderContent() {
     const [recommendations, setRecommendations] = useState([]);
     const [error, setError] = useState('');
     const [cityRecommendations, setCityRecommendations] = useState([]);
+    const [starredCategory, setStarredCategory] = useState("");
     const [selections, setSelections] = useState({
         genres: [],
         events: [],
@@ -28,6 +29,12 @@ function RecommenderContent() {
             setCityRecommendations(JSON.parse(savedRecommendations));
         }
     }, []);
+
+    // Function to handle star selection
+    const handleStar = (category) => {
+        setStarredCategory(prevCategory => prevCategory === category ? "" : category);
+    };
+
 
     // Update handleSelect to work with the new state structure
     // Handles selections for recommendation criteria
@@ -53,8 +60,13 @@ function RecommenderContent() {
 
     // Submits the user selections for processing and retrieves recommendations
     const handleSubmit = async () => {
+        // Include the starred category in the data sent to the backend
+        const postData = {
+            ...selections,
+            starredCategory: starredCategory,
+        };
         try {
-            const response = await axios.post(`http://localhost:8000/api/process-recommendations/`, selections);
+            const response = await axios.post(`http://localhost:8000/api/process-recommendations/`, postData);
             console.log(response.data);
             setRecommendations(response.data);
             mapRecommendationsToCities(response.data);
@@ -70,7 +82,7 @@ function RecommenderContent() {
             setError('Error fetching recommendations');
         }
     };
-    
+
     // Maps recommendation data to city pages
     const mapRecommendationsToCities = (recommendations) => {
         const mappedCities = recommendations.map(rec => {
@@ -84,7 +96,7 @@ function RecommenderContent() {
             } else if (Location === 'NL') {
                 cityName = "Zwolle, Netherlands";
             } else if (Location === 'FI'&& AssociatedUniversities.includes('OAMK')) {
-                cityName = "Oulo, Finland";
+                cityName = "Oulu, Finland";
             } else if (Location === 'SE') {
                 cityName = "Vasteras, Sweden";
             } else if (Location === 'CH') {
@@ -131,7 +143,14 @@ function RecommenderContent() {
                 </p>
             </div>
             <div className='bubble-select'>
-                <h2>Types of Music</h2>
+            <h2>Types of Music 
+                <button
+                    onClick={() => handleStar('music')}
+                    className={`star-button ${starredCategory === 'music' ? 'starred' : ''}`}
+                    aria-pressed={starredCategory === 'music' ? 'true' : 'false'}
+                >&#9733;
+                </button>
+            </h2>
                 <div className="button-group">
                     <button className={`rounded-button ${isSelected('genres', 'Hip hop/Rap/R&b') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('genres', 'Hip hop/Rap/R&b')}>Hip Hop/ Rap</button>
                     <button className={`rounded-button ${isSelected('genres', 'Pop') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('genres', 'Pop')}>Pop</button>
@@ -140,7 +159,14 @@ function RecommenderContent() {
                     <button className={`rounded-button ${isSelected('genres', 'Latin/Reggaeton') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('genres', 'Latin/Reggaeton')}>Reggae</button>
                 </div>
 
-                <h2>Types of Live Events</h2>
+                <h2>Types of Live Events
+                    <button
+                        onClick={() => handleStar('events')}
+                        className={`star-button ${starredCategory === 'events' ? 'starred' : ''}`}
+                        aria-pressed={starredCategory === 'events' ? 'true' : 'false'}
+                    >&#9733;
+                    </button>
+                </h2>
                 <div className="button-group">
                     <button className={`rounded-button ${isSelected('events', 'Rock') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('events', 'Rock')}>Rock</button>
                     <button className={`rounded-button ${isSelected('events', 'Hard Rock') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('events', 'Hard Rock')}>Hard Rock</button>
@@ -156,7 +182,14 @@ function RecommenderContent() {
                     <button className={`rounded-button ${isSelected('events', 'World') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('events', 'World')}>World Music</button>
                 </div>
 
-                <h2>University Courses</h2>
+                <h2>University Courses
+                <button
+                        onClick={() => handleStar('courses')}
+                        className={`star-button ${starredCategory === 'courses' ? 'starred' : ''}`}
+                        aria-pressed={starredCategory === 'courses' ? 'true' : 'false'}
+                    >&#9733;
+                    </button>
+                </h2>
                 <div className="button-group">
                     <button className={`rounded-button ${isSelected('courses', 'Computer Science') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('courses', 'Computer Science')}>Computer Science</button>
                     <button className={`rounded-button ${isSelected('courses', 'Information Technology') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('courses', 'Information Technology')}>Information Technology</button>
@@ -167,7 +200,14 @@ function RecommenderContent() {
                     <button className={`rounded-button ${isSelected('courses', 'Marketing') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('courses', 'Marketing')}>Marketing</button>
                 </div>
 
-                <h2>City Traits</h2>
+                <h2>City Traits 
+                    <button
+                            onClick={() => handleStar('reviews')}
+                            className={`star-button ${starredCategory === 'reviews' ? 'starred' : ''}`}
+                            aria-pressed={starredCategory === 'reviews' ? 'true' : 'false'}
+                    >&#9733;
+                    </button>
+                </h2>
                 <div className="button-group">
                     <button className={`rounded-button ${isSelected('traits', 'Busy') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('traits', 'Busy')}>Busy</button>
                     <button className={`rounded-button ${isSelected('traits', 'Sports') ? 'selected' : 'not-selected'}`} onClick={() => handleSelect('traits', 'Sports')}>Sports</button>

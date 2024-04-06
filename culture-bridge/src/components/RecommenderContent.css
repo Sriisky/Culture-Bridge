@@ -101,3 +101,26 @@
     text-align: center;
 }
 
+.star-button {
+    background-color: #d9d8d8;
+    color: #282828;
+    border: none;
+    margin: 1em;
+    cursor: pointer;
+  }
+
+  .star-button:hover {
+    background-color: #00b336;
+    color: #F8F7F4;
+  }
+
+  .star-button.starred {
+    background-color: #00b336;
+    color: #F8F7F4;
+  }
+
+  .star-button:hover, .star-button.starred {
+    transition: all 0.2s ease-in-out;
+    transform: scale(1.1);
+  }
+
