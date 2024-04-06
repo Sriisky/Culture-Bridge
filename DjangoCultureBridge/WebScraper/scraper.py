@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 import requests
 import json
 import os
+from .translator import translate_text
 
 json_file_path = os.path.join(os.path.dirname(__file__), '..', 'DataFiles', 'uniCourses_data.json')
 
@@ -19,10 +20,19 @@ def save_to_json_file(new_data, uniName):
 
 # Function to read existing data from a json file
 def read_existing_data(file_path):
+    data_list = []
     if not os.path.exists(file_path):
-        return []
+        return data_list
     with open(file_path, 'r') as file:
-        return [json.loads(line) for line in file]
+        for line in file:
+            try:
+                data = json.loads(line)
+                data_list.append(data)
+            except json.JSONDecodeError as e:
+                print(f"An error occurred while reading the JSON file: {e}")
+                # Handle the error or continue if you want to skip over lines that have errors
+                continue
+    return data_list
 
 # Function to check if the entry is a duplicate
 def is_duplicate(uniName, existing_data):
@@ -58,6 +68,11 @@ def get_courses(url, uniName):
                         course_name = course.find(course_name_tag)
                         if course_name:
                             course_title = course_name.get_text().strip()
+                            # Translate course title if university is norwegian
+                            if uniName == 'UIA':
+                                course_title = translate_text(course_title, "en")
+                            if uniName == 'UPC':
+                                course_title = translate_text(course_title, "en")
                             extracted_courses.append({'Course Name': course_title})
                         else:
                             print("No course name was found within the table cell.")

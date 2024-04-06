@@ -9,7 +9,15 @@ def load_json_lines(file_path):
     data_list = []
     with open(file_path, 'r') as file:
         for line in file:
-            data_list.append(json.loads(line))
+            try:
+                # Attempt to parse each line as a separate JSON object
+                json_object = json.loads(line)
+                data_list.append(json_object)
+            except json.JSONDecodeError as e:
+                # Log the error and the problematic line for debugging purposes
+                print(f"Error parsing JSON: {e} at line: {line}")
+                # Depending on your needs, either continue to the next line or raise an error
+                continue
     return data_list
 
 # Function to load data from a JSON file containing a single JSON object

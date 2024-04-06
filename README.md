@@ -13,6 +13,7 @@ Install the following
 - pip install python-dotenv 
 - pip install requests_oauthlib
 - pip install spotipy 
+- pip install --upgrade google-cloud-translate
 
 To start the React app, navigate into the same directory as the App.js file located in culture-bridge/src and run - **npm start**
 
