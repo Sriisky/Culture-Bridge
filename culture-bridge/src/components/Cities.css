@@ -161,5 +161,16 @@
     .search-container {
         width: 80%;
     }
+
+    .clear-search {
+        display: block; 
+        right: 5px;
+        top: 35%;
+        transform: translateY(-50%);
+        z-index: 10;
+        width: 2.5em; 
+        height: 2.5em; 
+        color: #282828; 
+    }
 }
 

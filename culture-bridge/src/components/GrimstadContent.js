@@ -164,7 +164,7 @@ function GrimstadContent() {
                     ))}
                 </ul>
             </div>
-            <div className="map-section">
+            <div className="content-section">
                 <h1>Map of Grimstad</h1>
                 <p>Explore Grimstad through google maps! Clicking on a location allows you to explore it further on the Google Maps website.</p>
                 <MapComponent 

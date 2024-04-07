@@ -108,17 +108,16 @@ function PerugiaContent() {
                         <h1>Available Courses</h1>
                     </a>
                     <ul className="scrollable-list">
-                        <p>Design
-                        Economia e cultura dell'alimentazione
-                        Engineering management (corso in lingua inglese)
-                        Ingegneria civile e ambientale
-                        Ingegneria industriale (sede di Terni)
-                        Ingegneria informatica ed elettronica
-                        Ingegneria meccanica
-                        Scienze agrarie e ambientali
-                        Scienze e tecnologie agro-alimentari
-                        Tecniche digitali per la gestione sostenibile delle costruzioni, dell’ambiente e del territorio
-                        </p>                  
+                        <li>Design</li>
+                        <li>Economia e cultura dell'alimentazione</li>
+                        <li>Engineering management (corso in lingua inglese)</li>
+                        <li>Ingegneria civile e ambientale</li>
+                        <li>Ingegneria industriale (sede di Terni)</li>
+                        <li>Ingegneria informatica ed elettronica</li>
+                        <li>Ingegneria meccanica</li>
+                        <li>Scienze agrarie e ambientali</li>
+                        <li>Scienze e tecnologie agro-alimentari</li>
+                        <li>Tecniche digitali per la gestione sostenibile delle costruzioni, dell’ambiente e del territorio</li>                 
                     </ul>
                 </div>
                 <div className="content-section">
@@ -126,28 +125,16 @@ function PerugiaContent() {
                         <h1>Upcoming Events</h1>
                     </a>
                     <ul className="scrollable-list">
-                        <p>
-                        {">"}Far fronte alla violenza sulle donne: Proposte dei giovani per una regolamentazione su scala europea
-                        Perugia, 23 aprile 2024 - ore 11
-                        {">"}Far fronte alla violenza sulle donne: Proposte dei giovani per una regolamentazione su scala europea
-                        Perugia, 22 aprile 2024 - ore 13
-                        {">"}Novità in endocrinologia pediatrica
-                        Perugia, 2 marzo 2024 - ore 8,30
-                        {">"}MarzOrienta: DSA3, giornata di accoglienza e orientamento
-                        Perugia, 1 marzo 2024 - ore 10
-                        {">"}Scarti materiali e risorse sociali
-                        Perugia, 29 febbraio 2024 - ore 9,30
-                        {">"}Open day Medicina Veterianria
-                        Perugia, 23 Febbraio 2024 ore 10
-                        {">"}Terni Festival: Lectio Magistrale del Rettore
-                        Terni, 23 febbraio 2024 - ore 17,30
-                        {">"}I dialoghi di Scienze Politiche - Fog in the channel: continent isolated. Uno sguardo storico sulla Brexit
-                        Perugia, 19 febbraio 2024 - ore 16,30
-                        {">"}Ciclo di seminari dei dottorandi del Dipartimento di Scienze Agrarie, Alimentari ed Ambientali
-                        Perugia, 19 febbraio 2024 - ore 15,30
-                        {">"}Learn to fly - Financial literacy for youth
-                        Perugia, 19 febbraio 2024 - ore 16
-                        </p>
+                        <li>Far fronte alla violenza sulle donne: Proposte dei giovani per una regolamentazione su scala europea<br />Perugia, 23 aprile 2024 - ore 11</li>
+                        <li>Far fronte alla violenza sulle donne: Proposte dei giovani per una regolamentazione su scala europea<br />Perugia, 22 aprile 2024 - ore 13</li>
+                        <li>Novità in endocrinologia pediatrica<br />Perugia, 2 marzo 2024 - ore 8,30</li>
+                        <li>MarzOrienta: DSA3, giornata di accoglienza e orientamento<br />Perugia, 1 marzo 2024 - ore 10</li>
+                        <li>Scarti materiali e risorse sociali<br />Perugia, 29 febbraio 2024 - ore 9,30</li>
+                        <li>Open day Medicina Veterinaria<br />Perugia, 23 Febbraio 2024 - ore 10</li>
+                        <li>Terni Festival: Lectio Magistrale del Rettore<br />Terni, 23 febbraio 2024 - ore 17,30</li>
+                        <li>I dialoghi di Scienze Politiche - Fog in the channel: continent isolated. Uno sguardo storico sulla Brexit<br />Perugia, 19 febbraio 2024 - ore 16,30</li>
+                        <li>Ciclo di seminari dei dottorandi del Dipartimento di Scienze Agrarie, Alimentari ed Ambientali<br />Perugia, 19 febbraio 2024 - ore 15,30</li>
+                        <li>Learn to fly - Financial literacy for youth<br />Perugia, 19 febbraio 2024 - ore 16</li>
                     </ul>
                 </div>
             </div>
