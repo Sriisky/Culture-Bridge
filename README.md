@@ -14,6 +14,8 @@ Install the following
 - pip install requests_oauthlib
 - pip install spotipy 
 - pip install --upgrade google-cloud-translate
+- pip install coverage
+- pip install pytest
 
 To start the React app, navigate into the same directory as the App.js file located in culture-bridge/src and run - **npm start**
 
@@ -35,8 +37,8 @@ To start the Django project navigate into the backend DjangoCultureBridge folder
 - DataFiles contains the JSON files that each API and scraper adds retrieved information to.
 - DjangoCultureBridge contains the settings and urls of the backend
 - EuropeanaAPI, SpotifyAPI, and TicketmasterAPI are responsible for gathering content from their websites using relevant country/ city codes.
-- RecommenderSystem contains the programs used to determine recommendations to the user based on their interests.
-- WebScraper contains a scraper for the university information, and another for cities that need their events gathered through SongKick instead of Ticketmaster.
+- RecommenderSystem contains the programs used to determine recommendations to the user based on their interests. It also has a tests folder that contains test scripts for the recommender functions.
+- WebScraper contains a scraper for the university information, and another for cities that need their events gathered through SongKick instead of Ticketmaster. This directory also contains the translator script for translating courses.
 
 ### Sources used for icons and images:
 - Icons are sourced from [fontawsome.com](https://fontawesome.com/)
