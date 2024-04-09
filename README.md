@@ -1,9 +1,13 @@
 # Culture Bridge – A website application to help TU Dublin students with the decision making process for Erasmus
 ## Final year project
 
-This project is a website application to help encourage more students to take part in Erasmus. This will be achieved through giving users information on different cities that take part in the Erasmus programme. There are huge benefits to studying abroad and this app will highlight these to helps users explore the advantages of Erasmus along with the experience you can gain from studying in a new culture. Each city has information relating to the university of that city, music, live events, art, and reviews from past students. This information is gathered through web scrapers and APIs. There is also a recommender element to help students find locations that match them best.
+This project is a website application to help encourage more students to take part in Erasmus. This will be achieved through giving users information on different cities that take part in the Erasmus programme. There are huge benefits to studying abroad and this app will highlight these to helps users explore the advantages of Erasmus along with the experience you can gain from studying in a new culture. Each city has information relating to the university of that city, music, live events, maps, art, and reviews from past students. This information is gathered through web scrapers and APIs. A recommender system was developed to help students find locations that match their personal preferences.
 
 ### When running the project for the first time please follow these steps:
+Prerequisites
+- npm (Node Package Manager). You can download from https://nodejs.org/.
+- Python. Download it from https://www.python.org/downloads/.
+
 Install the following
 - npm install react-router-dom 
 - npm install axios

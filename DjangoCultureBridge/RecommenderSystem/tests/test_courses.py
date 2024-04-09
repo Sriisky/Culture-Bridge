@@ -20,7 +20,7 @@ def test_recommend_courses():
     # Expected output: Dictionary with university names as keys and lists of recommended courses as values
     expected_result = {
         'UniB': ['Artificial Intelligence'],
-        'UniC': ['Data Science', 'Artificial Intelligence']  # Assuming UniC also matches well but has both courses
+        'UniC': ['Data Science', 'Artificial Intelligence']  
     }
     
     # Call the function with mock data

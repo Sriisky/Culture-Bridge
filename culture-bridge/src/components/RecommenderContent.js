@@ -7,7 +7,7 @@ import { cityInfos } from './CityDetails';
 import CityData from './CityData';
 
 function RecommenderContent() {
-    // state hooks to hole UI state
+    // State hooks to hold UI state
     const [recommendations, setRecommendations] = useState([]);
     const [error, setError] = useState('');
     const [cityRecommendations, setCityRecommendations] = useState([]);

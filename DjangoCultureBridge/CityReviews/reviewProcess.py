@@ -24,7 +24,7 @@ def save_reviews(review_data, uniName):
         data[uniName].append(review_data)
 
         file.seek(0)  # Move the file pointer to the beginning of the file
-        file.truncate()  # Clears the content of the file.ensures that when the updated data is written back, it replaces the old content rather than appending to it
+        file.truncate()  # Clears the content
         json.dump(data, file, indent=4)  # Write the updated dictionary back to the file, indent for readability
 
 # Function to retrieve reviews from a JSON file
