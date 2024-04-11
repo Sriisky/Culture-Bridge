@@ -237,7 +237,7 @@ function ZilinaContent() {
                 </ul>
             </div>
             <div className="content-section">
-                <h1>Reviews of Darmstadt From Other Students:</h1>
+                <h1>Reviews of Zilina From Other Students:</h1>
                 <form onSubmit={handleSubmit}>
                     <input
                         type="text"
